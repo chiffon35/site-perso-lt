@@ -1,8 +1,11 @@
 {
-  "name": "loic-truchot",                                              
+  "name": "loic-truchot",
+  "description": "Application présentant la personne et les travaux de Loïc Truchot",  
   "version": "0.0.1",
+  "private": true,
   "dependencies":
   {
-    "socket.io": ">= 0.8.7"
+    "socket.io": ">= 0.8.7",
+    "express": "3.x"
   }
 }
