@@ -11,3 +11,6 @@
 {"ts":1365505212479,"patch":[[{"diffs":[[0,"y>\r\n<h1>"],[1,"<span>"],[0,"Loic Tru"]],"start1":2289,"start2":2289,"length1":16,"length2":22},{"diffs":[[0,"ruchot</"],[1,"span></"],[0,"h1>\r\n<sp"]],"start1":2309,"start2":2309,"length1":16,"length2":23}]],"length":2966,"saved":false}
 {"ts":1365505226166,"patch":[[{"diffs":[[0,"dy>\r\n<h1"],[1," class=\"titre\""],[0,"><span>L"]],"start1":2288,"start2":2288,"length1":16,"length2":30}]],"length":2980,"saved":false}
 {"ts":1365505317587,"patch":[[{"diffs":[[0,"html"],[-1,">\r\n<head"],[1," lang=\"fr\">\r\n<head>\r\n    <meta charset=\"utf-8\""],[0,">\r\n "]],"start1":18,"start2":18,"length1":16,"length2":54}]],"length":3018,"saved":false}
+{"ts":1365517330203,"patch":[[{"diffs":[[0,"tualités"],[1," d'un développeur web"],[0,"</title>"]],"start1":111,"start2":111,"length1":16,"length2":37}]],"length":3039,"saved":false}
+{"ts":1365517353131,"patch":[[{"diffs":[[0,"eacute;s"],[1," d'un d&eacute;veloppeur web"],[0,"</span>\r"]],"start1":2429,"start2":2429,"length1":16,"length2":44}]],"length":3067,"saved":false}
+{"ts":1365517489607,"patch":[[{"diffs":[[0,"alit"],[-1,"és d'un dé"],[1,"&eacute;s d'un d&eacute;"],[0,"velo"]],"start1":113,"start2":113,"length1":18,"length2":32}]],"length":3081,"saved":false}
