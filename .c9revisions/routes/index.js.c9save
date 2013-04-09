@@ -1,1 +1,2 @@
 {"ts":1365521774926,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"\n/*\n * GET home page.\n */\n\nexports.index = function(req, res){\n  res.render('index', { title: 'Express' });\n};"]],"start1":0,"start2":0,"length1":0,"length2":110}]],"length":110}
+{"ts":1365522951376,"patch":[[{"diffs":[[0,"le: "],[-1,"'Express'"],[1,"\"Loic TRUCHOT : Parcours et actualit&eacute;s d'un d&eacute;veloppeur web\""],[0," });"]],"start1":90,"start2":90,"length1":17,"length2":82}]],"length":175,"saved":false}
