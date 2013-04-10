@@ -19,5 +19,5 @@ var voc = {
 };
 
 exports.index = function(req, res){
-  res.render('index', { title: "Loic TRUCHOT : " + voc.parcours.fr + " " + voc.en.et + " " + voc.fr.actualite + " d'un d&eacute;veloppeur web" });
+  res.render('index', { title: "Loic TRUCHOT : " + voc.parcours.fr + " " + voc.et.en + " " + voc.fr.actualite + " d'un d&eacute;veloppeur web" });
 };
