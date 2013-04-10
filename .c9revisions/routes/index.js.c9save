@@ -41,3 +41,4 @@
 {"ts":1365605643804,"patch":[[{"diffs":[[0,"};\nfor ("],[1,"var "],[0,"sCle in "]],"start1":790,"start2":790,"length1":16,"length2":20},{"diffs":[[0,"Entites)"],[1," {\n    \n}"],[0,"\n\n\nexpor"]],"start1":811,"start2":811,"length1":16,"length2":25}]],"length":902,"saved":false}
 {"ts":1365605660870,"patch":[[{"diffs":[[0,") {\n    "],[1,"oEntites[sCle] = PremiereLettreMaj(oEntites.sCle)"],[0,"\n}\n\n\nexp"]],"start1":818,"start2":818,"length1":16,"length2":65}]],"length":951,"saved":false}
 {"ts":1365605662895,"patch":[[{"diffs":[[0,"es.sCle)"],[1,";"],[0,"\n}\n\n\nexp"]],"start1":867,"start2":867,"length1":16,"length2":17}]],"length":952,"saved":false}
+{"ts":1365605792185,"patch":[[{"diffs":[[0,"ites"],[-1,"."],[1,"["],[0,"sCle"],[1,"]"],[0,");\n}"]],"start1":865,"start2":865,"length1":13,"length2":14}]],"length":953,"saved":false}

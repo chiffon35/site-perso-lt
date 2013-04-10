@@ -37,7 +37,7 @@ var oEntites = {
     lttools: voc.lttools.fr
 };
 for (var sCle in oEntites) {
-    oEntites[sCle] = PremiereLettreMaj(oEntites.sCle);
+    oEntites[sCle] = PremiereLettreMaj(oEntites[sCle]);
 }
 
 
