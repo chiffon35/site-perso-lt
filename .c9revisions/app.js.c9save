@@ -3,3 +3,5 @@
 {"ts":1365603067103,"patch":[[{"diffs":[[0,"index);\n"],[1,"app.get('/home', routes.index);\n"],[0,"app.get("]],"start1":811,"start2":811,"length1":16,"length2":48}]],"length":1015,"saved":false}
 {"ts":1365603933524,"patch":[[{"diffs":[[0,"et('/', "],[-1,"routes.index"],[1,"function (res, req) {\n    }()\n"],[0,");\napp.g"]],"start1":796,"start2":796,"length1":28,"length2":46}]],"length":1033,"saved":false}
 {"ts":1365603991889,"patch":[[{"diffs":[[0,"    "],[-1,"}()\n"],[1,"res.redirect(\"/home\");\n}"],[0,");\na"]],"start1":826,"start2":826,"length1":12,"length2":32}]],"length":1053,"saved":false}
+{"ts":1365604073996,"patch":[[{"diffs":[[0," (re"],[-1,"s"],[1,"q"],[0,", re"],[-1,"q"],[1,"s"],[0,") {\n"]],"start1":812,"start2":812,"length1":14,"length2":14}]],"length":1053,"saved":false}
+{"ts":1365604095304,"patch":[[{"diffs":[[0,"ect("],[-1,"\""],[1,"'"],[0,"/home"],[-1,"\""],[1,"'"],[0,");\n}"]],"start1":839,"start2":839,"length1":15,"length2":15}]],"length":1053,"saved":false}
