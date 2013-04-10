@@ -46,6 +46,6 @@ for (var sCle in oEntites) {
 
 
 exports.index = function(req, res){
-  console.log( req.query.user)
+  oEntite.lang = req.query.lang;
   res.render('index', oEntites);
 };
