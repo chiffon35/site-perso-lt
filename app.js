@@ -30,7 +30,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', function (res, req) {
+    res.redirect("/home");
+});
 app.get('/home', routes.index);
 app.get('/users', user.list);
 
