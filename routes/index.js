@@ -3,12 +3,16 @@
  * GET home page.
  */
 function PremiereLettreMaj(chaine){
-    return chaine.substr(0,1).toUpperCase()+	chaine.substr(1,chaine.length);		
+    return chaine.substr(0,1).toUpperCase() + chaine.substr(1,chaine.length);		
 }
 var langue = "fr";
 var voc = {
+    loic_truchot : {
+        fr: "Lo&iuml;c TRUCHOT",
+        en: "Lo&iuml;c TRUCHOT"
+    },
     parcours_et_actualites_d_un_developpeur_web : {
-        fr : "parcours et actualités d'un développeur web",
+        fr : "parcours et actualit&eacute;s d'un d&eacute;veloppeur web",
         en : "professional path and agenda of a web developer"
     },
     accueil : {
@@ -30,11 +34,11 @@ var voc = {
 };
 
 var oEntites = {
-    title : voc.parcours_et_actualites_d_un_developpeur_web.fr,
-    accueil: voc.accueil.fr,
-    cv: voc.cv.fr,
-    blog: voc.cv.fr,
-    lttools: voc.lttools.fr
+    title : voc.loic_truchot[langue] + " : " + voc.parcours_et_actualites_d_un_developpeur_web[langue],
+    accueil: voc.accueil[langue],
+    cv: voc.cv[langue],
+    blog: voc.blog[langue],
+    lttools: voc.lttools[langue]
 };
 for (var sCle in oEntites) {
     oEntites[sCle] = PremiereLettreMaj(oEntites[sCle]);
