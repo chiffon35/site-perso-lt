@@ -38,7 +38,8 @@ var oEntites = {
     accueil: voc.accueil[langue],
     cv: voc.cv[langue],
     blog: voc.blog[langue],
-    lttools: voc.lttools[langue]
+    lttools: voc.lttools[langue],
+    requete: "" 
 };
 for (var sCle in oEntites) {
     oEntites[sCle] = PremiereLettreMaj(oEntites[sCle]);
@@ -46,9 +47,8 @@ for (var sCle in oEntites) {
 
 
 exports.index = function(req, res){
-    oEntite["req"] = "";
     if (req.query["lang"]) {
-        oEntite["req"] = req.query["lang"];
+        oEntite["requete"] = req.query["lang"];
     }
     res.render('index', oEntites);
 };
