@@ -46,5 +46,6 @@ for (var sCle in oEntites) {
 
 
 exports.index = function(req, res){
-  res.render('index', oEntites);
+    oEntite["req"] = req.query;
+    res.render('index', oEntites);
 };

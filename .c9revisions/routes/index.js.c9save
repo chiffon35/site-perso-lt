@@ -59,3 +59,4 @@
 {"ts":1365621449481,"patch":[[{"diffs":[[0,"s){\n"],[-1,"  console.log(req.query.lang)\n"],[0,"  oE"]],"start1":1084,"start2":1084,"length1":38,"length2":8}]],"length":1156,"saved":false}
 {"ts":1365621617704,"patch":[[{"diffs":[[0,"[langue]"],[1,",\n    lang: req.query.lang"],[0,"\n};\nfor "]],"start1":951,"start2":951,"length1":16,"length2":42},{"diffs":[[0,"s){\n"],[-1,"  oEntite.lang = req.query.lang;\n"],[0,"  re"]],"start1":1110,"start2":1110,"length1":41,"length2":8}]],"length":1149,"saved":false}
 {"ts":1365621630696,"patch":[[{"diffs":[[0,"gue]"],[-1,",\n    lang: req.query.lang"],[0,"\n};\n"]],"start1":955,"start2":955,"length1":34,"length2":8}]],"length":1123,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1365679703223,"patch":[[{"diffs":[[0,", res){\n"],[1,"    oEntite[\"req\"] = req.query;\n  "],[0,"  res.re"]],"start1":1080,"start2":1080,"length1":16,"length2":50}]],"length":1157,"saved":false}
