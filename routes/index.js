@@ -37,6 +37,9 @@ exports.index = function(req, res){
     if (req.query["lang"] === "en") {
         langue = req.query["lang"];
     }
+    else {
+        langue = "fr";
+    }
     
     var oEntites = {
         title : voc.loic_truchot[langue] + " : " + voc.parcours_et_actualites_d_un_developpeur_web[langue],

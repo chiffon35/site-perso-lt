@@ -69,3 +69,4 @@
 {"ts":1365680224817,"patch":[[{"diffs":[[0,"    "],[-1,"oEntites[\"requete\"]"],[1,"langue"],[0," = r"]],"start1":793,"start2":793,"length1":27,"length2":14}]],"length":1270,"saved":false}
 {"ts":1365680315175,"patch":[[{"diffs":[[0,"[\"lang\"]"],[1," === \"en\""],[0,") {\n    "]],"start1":777,"start2":777,"length1":16,"length2":25}]],"length":1279,"saved":false}
 {"ts":1365680336901,"patch":[[{"diffs":[[0,"gue]"],[-1,",\n        requete: \"\" "],[0,"\n   "]],"start1":1104,"start2":1104,"length1":30,"length2":8}]],"length":1257,"saved":false}
+{"ts":1365680788894,"patch":[[{"diffs":[[0,"[\"lang\"];\n    }\n"],[1,"    else {\n        langue = \"fr\";\n    }\n"],[0,"    \n    var oEn"]],"start1":824,"start2":824,"length1":32,"length2":72}]],"length":1297,"saved":false}
