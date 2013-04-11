@@ -34,8 +34,8 @@ var voc = {
 };
 
 exports.index = function(req, res){    
-    if (req.query["lang"] === "en") {
-        langue = req.query["lang"];
+    if (req.query['lang'] === "en") {
+        langue = req.query['lang'];
     }
     else {
         langue = "fr";
