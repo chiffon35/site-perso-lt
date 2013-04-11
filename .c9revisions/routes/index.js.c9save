@@ -70,3 +70,4 @@
 {"ts":1365680315175,"patch":[[{"diffs":[[0,"[\"lang\"]"],[1," === \"en\""],[0,") {\n    "]],"start1":777,"start2":777,"length1":16,"length2":25}]],"length":1279,"saved":false}
 {"ts":1365680336901,"patch":[[{"diffs":[[0,"gue]"],[-1,",\n        requete: \"\" "],[0,"\n   "]],"start1":1104,"start2":1104,"length1":30,"length2":8}]],"length":1257,"saved":false}
 {"ts":1365680788894,"patch":[[{"diffs":[[0,"[\"lang\"];\n    }\n"],[1,"    else {\n        langue = \"fr\";\n    }\n"],[0,"    \n    var oEn"]],"start1":824,"start2":824,"length1":32,"length2":72}]],"length":1297,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1365690179539,"patch":[[{"diffs":[[0,"     tit"],[-1,"l"],[1,"r"],[0,"e : voc."]],"start1":909,"start2":909,"length1":17,"length2":17},{"diffs":[[0,"gue]"],[-1," + \" : \" +"],[1,",\n        sousTitre :"],[0," voc"]],"start1":942,"start2":942,"length1":18,"length2":29}]],"length":1308,"saved":false}

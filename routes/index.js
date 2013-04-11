@@ -42,7 +42,8 @@ exports.index = function(req, res){
     }
     
     var oEntites = {
-        title : voc.loic_truchot[langue] + " : " + voc.parcours_et_actualites_d_un_developpeur_web[langue],
+        titre : voc.loic_truchot[langue],
+        sousTitre : voc.parcours_et_actualites_d_un_developpeur_web[langue],
         accueil: voc.accueil[langue],
         cv: voc.cv[langue],
         blog: voc.blog[langue],
