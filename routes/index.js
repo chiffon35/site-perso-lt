@@ -33,22 +33,21 @@ var voc = {
     }
 };
 
-var oEntites = {
-    title : voc.loic_truchot[langue] + " : " + voc.parcours_et_actualites_d_un_developpeur_web[langue],
-    accueil: voc.accueil[langue],
-    cv: voc.cv[langue],
-    blog: voc.blog[langue],
-    lttools: voc.lttools[langue],
-    requete: "" 
-};
-for (var sCle in oEntites) {
-    oEntites[sCle] = PremiereLettreMaj(oEntites[sCle]);
-}
-
-
-exports.index = function(req, res){
-    if (req.query["lang"]) {
-        oEntites["requete"] = req.query["lang"];
+exports.index = function(req, res){    
+    if (req.query["lang"] === "en") {
+        langue = req.query["lang"];
     }
+    
+    var oEntites = {
+        title : voc.loic_truchot[langue] + " : " + voc.parcours_et_actualites_d_un_developpeur_web[langue],
+        accueil: voc.accueil[langue],
+        cv: voc.cv[langue],
+        blog: voc.blog[langue],
+        lttools: voc.lttools[langue]
+    };
+    for (var sCle in oEntites) {
+        oEntites[sCle] = PremiereLettreMaj(oEntites[sCle]);
+    }
+    
     res.render('index', oEntites);
 };
