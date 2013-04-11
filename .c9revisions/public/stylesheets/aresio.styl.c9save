@@ -13,3 +13,4 @@
 {"ts":1365682777921,"patch":[[{"diffs":[[0,"#FFF"],[-1,"AFA url(../images/site/paper-tile.jpg) "],[0,"\r\n/*"]],"start1":234,"start2":234,"length1":47,"length2":8}]],"length":1120,"saved":false}
 {"ts":1365682828736,"patch":[[{"diffs":[[0,"mage"],[-1,"s/site/graph-tile.pn"],[1,"/bg/bg-aresio.jp"],[0,"g) c"]],"start1":463,"start2":463,"length1":28,"length2":24}]],"length":1116,"saved":false}
 {"ts":1365682859554,"patch":[[{"diffs":[[0,"../image"],[1,"s"],[0,"/bg/bg-a"]],"start1":459,"start2":459,"length1":16,"length2":17}]],"length":1117,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1365683383925,"patch":[[{"diffs":[[0,"/bg-"],[-1,"aresio"],[1,"page"],[0,".jpg"]],"start1":471,"start2":471,"length1":14,"length2":12}]],"length":1115,"saved":false}
