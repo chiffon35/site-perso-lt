@@ -5,7 +5,6 @@
 function PremiereLettreMaj(chaine){
     return chaine.substr(0,1).toUpperCase() + chaine.substr(1,chaine.length);		
 }
-var langue = "fr";
 var voc = {
     loic_truchot : {
         fr: "Lo&iuml;c TRUCHOT",
@@ -34,12 +33,13 @@ var voc = {
 };
 
 exports.index = function(req, res){    
-    if (req.query['lang'] === "en") {
-        langue = req.query['lang'];
-    }
-    else {
-        langue = "fr";
-    }
+    var langue = "fr";
+    // if (req.query.lang === 'en') {
+    //     langue = req.query.lang;
+    // }
+    // else {
+    //     langue = "fr";
+    // }
     
     var oEntites = {
         titre : voc.loic_truchot[langue],

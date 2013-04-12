@@ -31,9 +31,9 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', function (req, res) {
-    res.redirect('/home');
+    res.redirect('/fr/accueil');
 });
-app.get('/home', routes.index);
+app.get('/fr/accueil', routes.index);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
