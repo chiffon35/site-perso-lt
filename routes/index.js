@@ -29,6 +29,10 @@ var voc = {
     lttools : {
         fr : "LTTOoLS",
         en : "LTTOoLS"
+    },
+    langues_disponibles : {
+        fr : "langues disponibles",
+        en: "available language"
     }
 };
 
@@ -47,7 +51,9 @@ exports.index = function(req, res){
         accueil: voc.accueil[langue],
         cv: voc.cv[langue],
         blog: voc.blog[langue],
-        lttools: voc.lttools[langue]
+        lttools: voc.lttools[langue],
+        tradLangues_disponibles: voc.langues_disponibles[langue]
+        
     };
     for (var sCle in oEntites) {
         oEntites[sCle] = PremiereLettreMaj(oEntites[sCle]);
