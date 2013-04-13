@@ -7,15 +7,17 @@ html
     body
         div#page
             header 
-                div.titre
-                    h1 #{titre} 
-                    span #{sousTitre}
-                include mod-choix-langue 
+                div.entete
+                    a.titre(href='/')
+                        h1.invisible #{titre} 
+                        span.invisible #{sousTitre}
+                    include mod-choix-langue 
                 div.clear
-                hr
+                div.hr320
+                    hr
                 nav.menu
                     ul
-                        li #{accueil}
+                        li.elt-menu-pressed #{accueil}
                         li #{cv}
                         li #{blog}
                         li #{lttools}
