@@ -33,6 +33,18 @@ var voc = {
     langues_disponibles : {
         fr : "langues disponibles",
         en: "available language"
+    },
+    identifiant : {
+        fr: "identifiant",
+        en: "login"
+    },
+    mot_de_passe :  {
+        fr : "mot de passe",
+        en : "password"
+    },
+    acces_aux_donnees_personnelles : {
+        fr : "accès aux données personnelles",
+        en : "access to personal data"
     }
 };
 
@@ -52,8 +64,10 @@ exports.index = function(req, res){
         cv: voc.cv[langue],
         blog: voc.blog[langue],
         lttools: voc.lttools[langue],
-        tradLangues_disponibles: voc.langues_disponibles[langue]
-        
+        tradLangues_disponibles: voc.langues_disponibles[langue],
+        tradIdentifiant: voc.identifiant[langue],
+        tradMot_de_passe: voc.mot_de_passe[langue],
+        tradAcces_aux_donnees_personnelles : voc.acces_aux_donnees_personnelles[langue]
     };
     for (var sCle in oEntites) {
         oEntites[sCle] = PremiereLettreMaj(oEntites[sCle]);

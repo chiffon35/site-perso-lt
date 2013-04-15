@@ -3,24 +3,28 @@ html
     head
         title #{titre} - #{sousTitre}
         link(rel='stylesheet', href='/stylesheets/aresio.css', media='screen')
-        //meta(name='viewport' content='width=device-width')
+        meta(name='viewport', content='width=device-width')
+        
     body
         div#page
             header 
-                div.entete
+                div.entete1
                     a.titre(href='/')
-                        h1.invisible #{titre} 
+                        h1.invisible #{titre}                        
+                    include mod-choix-langue
+                div.entete2
+                    div.identification
+                        include mod-login   
+                    div.soustitre
                         span.invisible #{sousTitre}
-                    include mod-choix-langue 
-                div.clear
-                div.hr320
-                    hr
+                        div.clear
                 nav.menu
                     ul
                         li.elt-menu-pressed #{accueil}
                         li #{cv}
                         li #{blog}
                         li #{lttools}
+            div.clear
             block contenu
             footer
                 br
