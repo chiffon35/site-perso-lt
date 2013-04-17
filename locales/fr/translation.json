@@ -1,0 +1,11 @@
+{
+    "app" : 
+    {
+        "parcours_et_actualites_d_un_developpeur_web" : "parcours et actualit&eacute;s d'un d&eacute;veloppeur web",
+        "accueil" : "accueil",
+        "langues_disponibles" : "langues disponibles",
+        "identifiant" : "identifiant",
+        "mot_de_passe" : "mot de passe",
+        "acces_aux_donnees_personnelles" : "acc&egrave;s aux donn&eacute;es personnelles"
+    }
+}

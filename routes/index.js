@@ -1,77 +1,11 @@
-
 /*
- * GET home page.
+ * GET /fr/accueil
+ * GET /en/home
  */
 function PremiereLettreMaj(chaine){
     return chaine.substr(0,1).toUpperCase() + chaine.substr(1,chaine.length);		
 }
-var voc = {
-    loic_truchot : {
-        fr: "Lo&iuml;c TRUCHOT",
-        en: "Lo&iuml;c TRUCHOT"
-    },
-    parcours_et_actualites_d_un_developpeur_web : {
-        fr : "parcours et actualit&eacute;s d'un d&eacute;veloppeur web",
-        en : "professional path and agenda of a web developer"
-    },
-    accueil : {
-        fr : "accueil",
-        en : "home"
-    },
-    cv : {
-        fr : "CV",
-        en : "CV"
-    },
-    blog : {
-        fr : "blog",
-        en : "blog"
-    },
-    lttools : {
-        fr : "LTTOoLS",
-        en : "LTTOoLS"
-    },
-    langues_disponibles : {
-        fr : "langues disponibles",
-        en: "available language"
-    },
-    identifiant : {
-        fr: "identifiant",
-        en: "login"
-    },
-    mot_de_passe :  {
-        fr : "mot de passe",
-        en : "password"
-    },
-    acces_aux_donnees_personnelles : {
-        fr : "accès aux données personnelles",
-        en : "access to personal data"
-    }
-};
 
-exports.index = function(req, res){    
-    var langue = "fr";
-    // if (req.query.lang === 'en') {
-    //     langue = req.query.lang;
-    // }
-    // else {
-    //     langue = "fr";
-    // }
-    
-    var oEntites = {
-        titre : voc.loic_truchot[langue],
-        sousTitre : voc.parcours_et_actualites_d_un_developpeur_web[langue],
-        accueil: voc.accueil[langue],
-        cv: voc.cv[langue],
-        blog: voc.blog[langue],
-        lttools: voc.lttools[langue],
-        tradLangues_disponibles: voc.langues_disponibles[langue],
-        tradIdentifiant: voc.identifiant[langue],
-        tradMot_de_passe: voc.mot_de_passe[langue],
-        tradAcces_aux_donnees_personnelles : voc.acces_aux_donnees_personnelles[langue]
-    };
-    for (var sCle in oEntites) {
-        oEntites[sCle] = PremiereLettreMaj(oEntites[sCle]);
-    }
-    
-    res.render('index', oEntites);
+exports.index = function(req, res){  
+    res.render('index', {});
 };

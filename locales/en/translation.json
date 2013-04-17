@@ -1,0 +1,11 @@
+{
+    "app" : 
+    {
+        "parcours_et_actualites_d_un_developpeur_web" : "professional path and agenda of a web developer"
+        "accueil" : "home",
+        "langues_disponibles" : "available language",
+        "identifiant" : "login",
+        "mot_de_passe" : "password",
+        "acces_aux_donnees_personnelles" : "access to personal data"
+    }
+}
