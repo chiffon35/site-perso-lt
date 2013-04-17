@@ -130,3 +130,8 @@
 {"ts":1366207572886,"patch":[[{"diffs":[[-1,"\n"],[0,"/*\n * GE"]],"start1":0,"start2":0,"length1":9,"length2":8},{"diffs":[[0,"GET "],[-1,"home page."],[1,"fr/accueil"],[0,"\n */"]],"start1":6,"start2":6,"length1":18,"length2":18}]],"length":213,"saved":false}
 {"ts":1366207584760,"patch":[[{"diffs":[[0,"accueil\n"],[1," * GET en/home\n"],[0," */\nfunc"]],"start1":13,"start2":13,"length1":16,"length2":31}]],"length":228,"saved":false}
 {"ts":1366207592934,"patch":[[{"diffs":[[0,"\n * GET "],[1,"/"],[0,"fr/accue"]],"start1":2,"start2":2,"length1":16,"length2":17},{"diffs":[[0,"\n * GET "],[1,"/"],[0,"en/home\n"]],"start1":21,"start2":21,"length1":16,"length2":17}]],"length":230,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1366211867137,"patch":[[{"diffs":[[0," */\n"],[-1,"function PremiereLettreMaj(chaine){\n    return chaine.substr(0,1).toUpperCase() + chaine.substr(1,chaine.length);\t\t\n}\n\n"],[0,"expo"]],"start1":38,"start2":38,"length1":127,"length2":8}]],"length":111,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1366213619097,"patch":[[{"diffs":[[0,"ndex', {"],[1,"langue : i18n.req.langue"],[0,"});\n};"]],"start1":97,"start2":97,"length1":14,"length2":38}]],"length":135,"saved":false}
+{"ts":1366213637196,"patch":[[{"diffs":[[0,"e : "],[-1,"i18n."],[0,"req."]],"start1":110,"start2":110,"length1":13,"length2":8}]],"length":130,"saved":false}
+{"ts":1366213681263,"patch":[[{"diffs":[[0,"e : req."],[1,"GET."],[0,"langue})"]],"start1":110,"start2":110,"length1":16,"length2":20}]],"length":134,"saved":false}
+{"ts":1366213826806,"patch":[[{"diffs":[[0,"req."],[-1,"GET.langu"],[1,"local"],[0,"e});"]],"start1":114,"start2":114,"length1":17,"length2":13}]],"length":130,"saved":false}

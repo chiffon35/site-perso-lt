@@ -1,0 +1,50 @@
+.boite_a_onglet div, .boite_a_onglet p, .boite_a_onglet ul  {
+    padding:0;
+    margin:0;
+}
+.boite_a_onglet ul {
+    list-style-type:none;
+}
+.bao_onglet_bouton {
+    display:block;
+    float:left;
+    width:90px;    
+    text-align:center;
+    color:#666666;
+    font-size:11px;
+    font-weight:bold;
+    line-height:10px;
+    margin-bottom:-1px;
+    padding:8px 5px;
+    height:10px;    
+    background:url(../../image/bg/BAOOnglet100.png) no-repeat; 
+    cursor:pointer;
+}
+.bao_onglet_contenu {
+    background:url(../../image/bg/BAOCorps320.png) repeat-y;
+    width:320px;
+    clear:both;
+    float:none;
+}
+.bao_onglet_pied {
+    background:url(../../image/bg/BAOPied320.png) no-repeat;
+    width:320px;
+    height:8px;
+    clear:both;
+    float:none;
+}
+.bao_onglet_entete {
+    background:url(../../image/bg/BAOEntete320-2.png) no-repeat;
+    width:320px;
+    height:4px;
+    clear:both;
+    float:none;
+}
+.selection_onglet {
+    background:url(../../image/bg/BAOOngletSelection100.png) no-repeat; 
+    cursor:default;
+}
+.onglet_text_12 {
+    height:20px;
+    padding:3px 5px;
+}

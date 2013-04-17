@@ -9,6 +9,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , i18n = require('i18next');
+  
+var LTTOoLS = require('./LTTOoLS');
 
 var app = express();
 i18n.init({ detectLngFromPath: 0 });
