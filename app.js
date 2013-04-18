@@ -56,11 +56,7 @@ app.get('/en/home', routes.index);
 
 app.get('/users', user.list);
 
-app.use(require("stylus").middleware({
-    src: __dirname + '/public',
-    dest: __dirname + '/public',
-    force: true
-}));
+app.use(require("stylus").middleware(__dirname + '/public'));
 
 
 http.createServer(app).listen(app.get('port'), function(){
