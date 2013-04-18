@@ -8,7 +8,8 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , i18n = require('i18next');
+  , i18n = require('i18next')
+  , stylus = require('stylus');
   
 var LTTOoLS = require('./LTTOoLS');
 
@@ -27,7 +28,6 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
-app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 i18n.registerAppHelper(app);
@@ -36,6 +36,16 @@ i18n.registerAppHelper(app);
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
+
+//LANGUE COURANTE
+var langue = "fr";
+app.get(/^\/en\/.*/, function (req, res, next) {
+    if (req.locale) {
+        langue = req.locale;
+    }
+    next();
+});
 
 //ACCUEIL
 app.get('/', function (req, res) {
@@ -46,6 +56,18 @@ app.get('/en/home', routes.index);
 
 
 app.get('/users', user.list);
+
+app.use(stylus.middleware({
+    src: __dirname + '/public',
+    compile: function (str, path) {
+        var mylib = function(style) {
+            style.define('langueCourante', function () {
+               return new stylus.nodes.Literal(langue);
+            });
+        };
+        return stylus(str).use(mylib);
+    }
+}));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
