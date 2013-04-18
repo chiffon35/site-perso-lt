@@ -17,7 +17,6 @@ body {
   font-family: Arial, sans-serif;
   font-size: 13px;
   color: #000;
-  background-color: en;
 }
 h1 {
   text-align: left;
@@ -55,7 +54,7 @@ h1 {
   float: left;
   width: 300px;
   height: 190px;
-  background: url("../images/bg/carte-visite-v1-fr.png") top left no-repeat;
+  background: url("../../images/bg/carte-visite-v1-fr.png") top left no-repeat;
 }
 .entete2 {
   float: left;

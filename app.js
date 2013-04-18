@@ -28,9 +28,8 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
-
 i18n.registerAppHelper(app);
+app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -57,17 +56,12 @@ app.get('/en/home', routes.index);
 
 app.get('/users', user.list);
 
-app.use(stylus.middleware({
+app.use(require("stylus").middleware({
     src: __dirname + '/public',
-    compile: function (str, path) {
-        var mylib = function(style) {
-            style.define('langueCourante', function () {
-               return new stylus.nodes.Literal(langue);
-            });
-        };
-        return stylus(str).use(mylib);
-    }
+    dest: __dirname + '/public',
+    force: true
 }));
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

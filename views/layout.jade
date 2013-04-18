@@ -4,15 +4,19 @@ html
         meta(name='description', content='Site personnel de Lo&iuml;c TRUCHOT : CV, Blog, LTTOols (bo&icirc;te à outils JavaScript)')
         meta(name='viewport', content='width=device-width')
         title= "Loic TRUCHOT -" +  t('app.Parcours_et_actualites_d_un_developpeur_web')
-        link(rel='stylesheet', href='/stylesheets/aresio.css', media='screen')
+        link(rel='stylesheet', href='/stylesheets/#{langue}/aresio.css', media='screen')
         script(src='/scripts/jquery-1.9.1.min.js', type='text/javascript')
         
     body
         div#page
             header 
                 div.entete1
-                    a.titre(href='/')
-                        h1.invisible Loic Truchot                        
+                    - if (langue === "fr")
+                        a.titre(href='/')
+                            h1.invisible Loic Truchot
+                    - else
+                         a.titre(href='/', style='background:url(../images/bg/carte-visite-v1-en.png) top left no-repeat;')
+                            h1.invisible Loic Truchot
                     include mod-choix-langue
                 div.entete2
                     div.identification
