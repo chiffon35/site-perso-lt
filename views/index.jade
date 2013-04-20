@@ -1,4 +1,10 @@
 extend layout
+
+block meta-title
+    title= ('Loic TRUCHOT - ') +  t('app.Parcours_et_actualites_d_un_developpeur_web')
+    meta(name='description', content=t('app.Site_personnel_de_Loic_TRUCHOT') + (' : CV, Blog, LTTOols (') + t('app.boite_a_outils_javascript') + (')...'))
+    meta(name='keywords', content='loïc, loic, truchot, cv, developpeur, travaux, blog, lttools, javascript, node, jquery, perso, parcours')
+
 block contenu
     br
     br

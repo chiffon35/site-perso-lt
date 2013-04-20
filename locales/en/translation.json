@@ -6,6 +6,8 @@
         "Langues_disponibles" : "Available language",
         "Identifiant" : "Login",
         "Mot_de_passe" : "Password",
-        "Acces_aux_donnees_personnelles" : "Access to personal data"
+        "Acces_aux_donnees_personnelles" : "Access to personal data",
+        "Site_personnel_de_Loic_TRUCHOT" : "Loic Truchot's Personal Web Page",
+        "boite_a_outils_javascript" : "tools for JavaScript"
     }
 }
