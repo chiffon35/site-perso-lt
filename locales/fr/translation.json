@@ -8,6 +8,14 @@
         "Mot_de_passe" : "Mot de passe",
         "Acces_aux_donnees_personnelles" : "Accès aux données personnelles",
         "Site_personnel_de_Loic_TRUCHOT" : "Site personnel de Loïc TRUCHOT",
-        "boite_a_outils_javascript" : "boîte à outils JavaScript"
+        "boite_a_outils_javascript" : "boîte à outils JavaScript",
+        "Rechercher" : "Rechercher",
+        "Tutoriels_articles_et_demonstrations" : "Tutoriels, article et démonstrations",
+        "autour_du_web_moderne_et_de_JavaScript" : "autour du web moderne et de JavaScript"
+    },
+    "url" :
+    {
+        "accueil" : "/fr/accueil",
+        "blog": "/fr/blog"
     }
 }

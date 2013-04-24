@@ -1,4 +1,4 @@
-exports.oStringHelper =  {
+LTTOoLS.oStringHelper =  {
     decouperMotsParLongueur : function (sLigne, iLongueur, sScission) {
         var tabLigneDecoupe = [];
         var tabPlusieursMots = [];

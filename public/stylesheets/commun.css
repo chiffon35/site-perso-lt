@@ -25,6 +25,10 @@ h1 {
   margin: 0;
   font-size: 1.5em;
 }
+input {
+  color: #808080;
+  font-style: italic;
+}
 /* ----------------- FIN HTML -------------------- */
 /* ----------------- DEBUT CUSTOM ---------------- */
 .clear {
@@ -76,7 +80,7 @@ h1 {
   font-size: 1.4em;
   font-style: italic;
   display: block;
-  margin: 60px 0 55px 0;
+  margin: 75px 0 40px 0;
   width: 620px;
   height: 50px;
   text-align: center;
@@ -178,8 +182,6 @@ nav.langues ul li span.selected {
   background: url("../images/bg/bg-ipt100.png");
   border: 0;
   padding: 0 4px;
-  color: #808080;
-  font-style: italic;
   margin-right: 5px;
 }
 .btn40 {
@@ -193,6 +195,38 @@ nav.langues ul li span.selected {
   font-size: 0.9em;
   cursor: pointer;
   line-height: 15px;
+}
+.rechercher {
+  width: 210px;
+  height: 31px;
+  float: left;
+  padding-top: 5px;
+  margin-left: 20px;
+}
+.rechercher-left {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  display: block;
+  width: 174px;
+  height: 31px;
+  background: url("../images/bg/bg-recherche-left-182.png") top left no-repeat;
+  float: left;
+  padding: 0 4px;
+}
+.rechercher-right {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  display: block;
+  width: 28px;
+  height: 31px;
+  background: url("../images/bg/bg-recherche-right.png") top left no-repeat;
+  float: left;
+}
+.rechercher-right:hover {
+  cursor: pointer;
+  background: url("../images/bg/bg-recherche-right-hover.png") top left no-repeat;
 }
 /* ----------------- FIN CUSTOM ---------------- */
 /* ----------------- DEBUT BLOCS -------------------- */
@@ -230,6 +264,11 @@ div#page {
   }
   nav.menu {
     margin: 20px 0 0 50px;
+  }
+  .rechercher {
+    float: right;
+    clear: left;
+    margin-right: 52px;
   }
 }
 @media (min-device-width:1024px) and (max-width:509px),(max-device-width:480px) and (orientation:portrait) {

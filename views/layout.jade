@@ -4,32 +4,26 @@ html
         block meta-title
         meta(name='viewport', content='width=device-width')
         meta(http-equiv='Content-Type', content='text/html; charset=utf-8')        
-        link(rel='stylesheet', href='/stylesheets/#{langue}/aresio.css', media='screen')
+        link(rel='stylesheet', href='/stylesheets/#{langue_courante}/aresio.css', media='screen')
         script(src='/scripts/jquery-1.9.1.min.js', type='text/javascript')
         
     body
         div#page
             header 
                 div.entete1
-                    - if (langue === "fr")
-                        a.titre(href='/')
-                            h1.invisible Loic Truchot
-                    - else
-                         a.titre(href='/', style='background:url(../images/bg/carte-visite-v1-en.png) top left no-repeat;')
-                            h1.invisible Loic Truchot
+                    a.titre(href=t('url.accueil'))
+                        h1.invisible Loic Truchot                        
                     include mod-choix-langue
                 div.entete2
                     div.identification
-                        include mod-login   
+                        include mod-identification  
                     div.soustitre
                         span.invisible=t('app.Parcours_et_actualites_d_un_developpeur_web')
                         div.clear
-                nav.menu
-                    ul
-                        li.elt-menu-pressed= t('app.Accueil')                       
-                        li CV
-                        li Blog
-                        li LTTOoLS
+                include mod-menu
+                div.rechercher
+                    input.rechercher-left(value=t('app.Rechercher'))
+                    input.rechercher-right(type="button", value="")
             div.clear
             block contenu
             footer
@@ -39,5 +33,9 @@ html
                     em Ce site fonctionne sous Node.js avec Express, Jade et Stylus.
                     br
                     em Outils de développement : Cloud9 (IDE), Heroku (Hébergement), GitHub (Versions), Gandi (Domaine). 
-                    br                   
+                    br        
+        script(src='/scripts/LTTOoLS/index.js', type='text/javascript')
+        script(src='/scripts/LTTOoLS/object/oScreenHelper.js', type='text/javascript')
+        script(src='/scripts/commun.js', type='text/javascript')
+            
 

@@ -20,6 +20,11 @@ h1
     padding:5px 0
     margin:0
     font-size:1.5em
+
+input
+    color:#808080
+    font-style:italic
+    
 /* ----------------- FIN HTML -------------------- */
 
 /* ----------------- DEBUT CUSTOM ---------------- */
@@ -71,7 +76,7 @@ h1
     font-size:1.4em
     font-style:italic
     display:block
-    margin:60px 0 55px 0
+    margin:75px 0 40px 0
     width:620px
     height:50px
     text-align:center   
@@ -167,15 +172,14 @@ nav.langues ul li span.selected
 .invisible
     display:none
 
+
 .ipt100 
     display:block
     width:92px
     height:25px
     background:url(../images/bg/bg-ipt100.png)
     border:0
-    padding:0 4px
-    color:#808080
-    font-style:italic
+    padding:0 4px    
     margin-right:5px
 
 .btn40
@@ -189,6 +193,40 @@ nav.langues ul li span.selected
     font-size:0.9em
     cursor:pointer
     line-height:15px
+
+.rechercher
+    width:210px
+    height:31px
+    float:left
+    padding-top:5px
+    margin-left:20px
+    
+.rechercher-left
+    padding:0
+    margin:0
+    border:0
+    display:block
+    width:174px
+    height:31px
+    background:url(../images/bg/bg-recherche-left-182.png) top left no-repeat
+    float:left
+    padding:0 4px  
+    
+.rechercher-right
+    padding:0
+    margin:0
+    border:0
+    display:block
+    width:28px
+    height:31px
+    background:url(../images/bg/bg-recherche-right.png) top left no-repeat
+    float:left
+
+.rechercher-right:hover
+    cursor:pointer
+    background:url(../images/bg/bg-recherche-right-hover.png) top left no-repeat
+
+
 /* ----------------- FIN CUSTOM ---------------- */
 
 /* ----------------- DEBUT BLOCS -------------------- */
@@ -203,23 +241,35 @@ div#page
 @media (min-device-width:1024px) and (max-width:989px), screen and (max-device-width:480px), (max-device-width:480px) and (orientation:landscape), (min-device-width:481px) and (max-device-width:1024px) and (orientation:portrait) 
     div#page
         width:468px
+        
     .entete2
         width:140px
         float:right
+        
     .soustitre
-        display:none        
+        display:none  
+        
     .identification
         padding-top:50px
         text-align:center
         float:right
+        
     .identification input
         float:none;
         display:inline-block
         margin:0
+        
     .btn40
         float:right  
+        
     nav.menu
         margin:20px 0 0 50px
+    
+    .rechercher
+        float:right
+        clear:left
+        margin-right:52px
+        
 
 @media (min-device-width:1024px) and (max-width:509px),(max-device-width:480px) and (orientation:portrait) 
   div#page

@@ -1,0 +1,4 @@
+{"ts":1366706766666,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1366706812090,"patch":[[{"diffs":[[1,"nav.menu\r\n    ul\r\n        li.elt-menu-pressed= t('app.Accueil')                       \r\n        li CV\r\n        li Blog\r\n        li LTTOoLS"]],"start1":0,"start2":0,"length1":0,"length2":138}]],"length":138,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1366805202281,"patch":[[{"diffs":[[0,"     li "],[1,"\r\n            a(href=\"/fr/blog\") "],[0,"Blog\r\n  "]],"start1":106,"start2":106,"length1":16,"length2":49}]],"length":171,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1366831577713,"patch":[[{"diffs":[[0," li "],[-1,"\r\n            a(href=\"/fr/blog\") "],[0,"Blog"]],"start1":110,"start2":110,"length1":41,"length2":8}]],"length":138,"saved":false}

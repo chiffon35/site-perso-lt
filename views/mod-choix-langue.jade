@@ -1,7 +1,7 @@
 nav.langues(title=t("app.Langues_disponibles"))
     ul
         li 
-            - if (langue === "en")
+            - if (langue_courante === "en")
                 a(href="/fr/accueil")
                     img(src='../images/img/fr.png', alt='Drapeau France') 
                     span.invisible Fran&ccedil;ais
@@ -10,7 +10,7 @@ nav.langues(title=t("app.Langues_disponibles"))
                     img(src='../images/img/fr.png', alt='Drapeau France') 
                     span.invisible Fran&ccedil;ais
         li
-            - if (langue === "fr")
+            - if (langue_courante === "fr")
                 a(href="/en/home")
                     img(src='../images/img/en.png', alt='Drapeau Royaume-Unis') 
                     span.invisible English
