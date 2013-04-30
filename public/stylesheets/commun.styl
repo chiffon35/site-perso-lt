@@ -12,7 +12,7 @@ body
     font-family:Arial, sans-serif
     font-size:13px
     color:#000   
-    
+    background:url(../images/bg/128-183.jpg) top left repeat    
     
 h1
     text-align:left
@@ -26,7 +26,9 @@ h1
 input
     color:#808080
     font-style:italic
-    
+
+a, a img
+    border:0
 /* ----------------- FIN HTML -------------------- */
 
 /* ----------------- DEBUT CUSTOM ---------------- */
@@ -249,6 +251,10 @@ article.blog
     z-index:10
     position:relative
 
+article.blog a
+    text-decoration:underline
+    color:#d7d7d7
+
 article.blog h2, article.blog h3, article.blog h4
     color:#f2ae24
 
@@ -304,7 +310,8 @@ div#page
     width:946px
     margin:0 auto
     padding:5px 17px 10px 17px
-    background:url(../images/bg/bg-page.jpg) center top 
+    background:url(../images/bg/bg-page.jpg) center top
+    box-shadow:0 0 20px #000
 /* ----------------- FIN BLOCS -------------------- */
 
 /* ------------------- DEBUT MEDIA --------------------- */
@@ -345,7 +352,10 @@ div#page
         
 
 @media (min-device-width:1024px) and (max-width:509px),(max-device-width:480px) and (orientation:portrait) 
-  div#page
-    padding:5px 0px 10px 0px
-    width:306px
+    div#page
+        padding:5px 0px 10px 0px
+        width:306px
+    article.blog img
+        max-width:280px
+        
 /* ------------------- FIN MEDIA --------------------- */
