@@ -23,7 +23,9 @@ h1 {
   font-style: italic;
   padding: 5px 0;
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.4em;
+  color: #808080;
+  text-align: center;
 }
 input {
   color: #808080;
@@ -76,7 +78,8 @@ input {
 .identification input {
   float: left;
 }
-.soustitre {
+.soustitre-accueil,
+.soustitre-blog {
   font-size: 1.4em;
   font-style: italic;
   display: block;
@@ -100,7 +103,7 @@ nav.menu ul {
   list-style-type: none;
   list-style-image: none;
 }
-nav.menu ul li {
+nav.menu ul li a {
   background: url("../images/bg/bg-elt-menu.png");
   display: block;
   float: left;
@@ -111,19 +114,22 @@ nav.menu ul li {
   text-align: center;
   font-weight: bold;
   color: #808080;
+  text-decoration: none;
+  border: none;
 }
-nav.menu ul li:first-child {
+nav.menu ul li:first-child a {
   background: url("../images/bg/bg-elt-menu-gauche.png");
   width: 91px;
 }
-nav.menu ul li:last-child {
+nav.menu ul li:last-child a {
   background: url("../images/bg/bg-elt-menu-droite.png");
   width: 91px;
 }
-nav.menu ul li.elt-menu-pressed {
+nav.menu ul li a.elt-menu-pressed {
   background: url("../images/bg/bg-elt-menu-pressed.png");
+  cursor: default;
 }
-nav.menu ul li:not(.elt-menu-pressed):hover {
+nav.menu ul li a:not(.elt-menu-pressed):hover {
   background: url("../images/bg/bg-elt-menu-hover.png");
   cursor: pointer;
 }
@@ -228,6 +234,71 @@ nav.langues ul li span.selected {
   cursor: pointer;
   background: url("../images/bg/bg-recherche-right-hover.png") top left no-repeat;
 }
+div.contenu-simple h1 {
+  margin: 10px 0 5px 0;
+}
+div.contenu-simple h2 {
+  font-size: 1.3em;
+}
+article.blog {
+  border: 1px solid #d7d7d7;
+  background-color: #fff;
+  margin: 0 0 5px 0;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: #999;
+  border-top-left-radius: 0;
+  z-index: 10;
+  position: relative;
+}
+article.blog h2,
+article.blog h3,
+article.blog h4 {
+  color: #f2ae24;
+}
+article.blog p {
+  text-align: justify;
+}
+article.blog img.left {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  margin-right: 5px;
+  float: left;
+}
+article.blog img.right {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  margin-left: 5px;
+  float: right;
+}
+article.blog img.center {
+  display: block;
+  margin: 5px auto;
+}
+div.entete-blog {
+  border: 1px solid #d7d7d7;
+  font-size: 1.3em;
+  font-style: italic;
+  font-weight: bold;
+  background-color: #fff;
+  margin: 10px 0 0 0;
+  padding: 10px;
+  text-align: center;
+  color: #999;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 0;
+  width: 150px;
+  height: 25px;
+  z-index: 20;
+  position: relative;
+  margin-bottom: -1px;
+}
+article.blog pre {
+  display: inline;
+}
 /* ----------------- FIN CUSTOM ---------------- */
 /* ----------------- DEBUT BLOCS -------------------- */
 div#page {
@@ -246,7 +317,8 @@ div#page {
     width: 140px;
     float: right;
   }
-  .soustitre {
+  .soustitre-accueil,
+  .soustitre-blog {
     display: none;
   }
   .identification {
@@ -269,6 +341,9 @@ div#page {
     float: right;
     clear: left;
     margin-right: 52px;
+  }
+  article.blog img {
+    max-width: 450px;
   }
 }
 @media (min-device-width:1024px) and (max-width:509px),(max-device-width:480px) and (orientation:portrait) {

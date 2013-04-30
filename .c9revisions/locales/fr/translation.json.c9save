@@ -24,3 +24,4 @@
 {"ts":1366804619574,"patch":[[{"diffs":[[0,"e et de "],[-1,"javas"],[1,"JavaS"],[0,"cript"],[1,"\""],[0,"\n    },\n"]],"start1":709,"start2":709,"length1":26,"length2":27}]],"length":795,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1366805468540,"patch":[[{"diffs":[[0,"accueil\""],[1,",\n        \"blog\": \"/fr/blog"],[0,"\n    }\n}"]],"start1":779,"start2":779,"length1":16,"length2":43}]],"length":822,"saved":false}
 {"ts":1366805630054,"patch":[[{"diffs":[[0,"/fr/blog"],[1,"\""],[0,"\n    }\n}"]],"start1":806,"start2":806,"length1":16,"length2":17}]],"length":823,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1367225825348,"patch":[[{"diffs":[[0,"fr/blog\""],[1,",\n        \"cv\" : \"/fr/cv\",\n        \"lttools\" : \"/fr/lttools\""],[0,"\n    }\n}"]],"start1":807,"start2":807,"length1":16,"length2":76}]],"length":883,"saved":false}

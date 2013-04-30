@@ -38,3 +38,4 @@
 {"ts":1366455395964,"patch":[[{"diffs":[[0,"eb')"],[-1," + (' : ') + t('app.Acceuil')"],[0,"\r\n  "]],"start1":117,"start2":117,"length1":37,"length2":8}]],"length":684,"saved":false}
 {"ts":1366455445354,"patch":[[{"diffs":[[0,"ontent='"],[1,"loïc, "],[0,"loic, tr"]],"start1":306,"start2":306,"length1":16,"length2":22}]],"length":690,"saved":false}
 {"ts":1366455487277,"patch":[[{"diffs":[[0," perso, "],[1,"parcours"],[0,"')\r\n\r\nbl"]],"start1":401,"start2":401,"length1":16,"length2":24}]],"length":698,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1367312325905,"patch":[[{"diffs":[[0,"rcours')\r\n\r\n"],[1,"block sous-titre\r\n    div.soustitre-accueil\r\n        span.invisible=t('app.Parcours_et_actualites_d_un_developpeur_web')\r\n        div.clear\r\n        \r\n"],[0,"block conten"]],"start1":411,"start2":411,"length1":24,"length2":175}]],"length":849,"saved":false}

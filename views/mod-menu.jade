@@ -1,6 +1,10 @@
 nav.menu
     ul
-        li.elt-menu-pressed= t('app.Accueil')                       
-        li CV
-        li Blog
-        li LTTOoLS
+        li
+            a(href=t("url.accueil"))=t("app.Accueil")                       
+        li 
+            a(href=t("url.cv")) CV
+        li 
+            a(href=t("url.blog")) Blog
+        li 
+            a(href=t("url.lttools")) LTTOoLS

@@ -19,10 +19,8 @@ html
                     include mod-choix-langue
                 div.entete2
                     div.identification
-                        include mod-identification  
-                    div.soustitre
-                        span.invisible=t('app.Parcours_et_actualites_d_un_developpeur_web')
-                        div.clear
+                        include mod-identification
+                    block sous-titre                    
                 include mod-menu
                 div.rechercher
                     input.rechercher-left(value=t('app.Rechercher'))
@@ -33,9 +31,9 @@ html
                 br
                 br
                 p
-                    em Ce site fonctionne sous Node.js avec Express, Jade et Stylus.
+                    em Ce site fonctionne sous <a href="http://nodejs.org/">Node.js</a> avec <a href="http://expressjs.com/">Express</a>, <a href="http://jade-lang.com/">Jade</a> et <a href="http://learnboost.github.io/stylus/">Stylus</a>.
                     br
-                    em Outils de développement : Cloud9 (IDE), Heroku (Hébergement), GitHub (Versions), Gandi (Domaine). 
+                    em Outils de développement : <a href="https://c9.io/">Cloud9</a> (IDE), <a href="https://www.heroku.com/">Heroku</a> (Hébergement), <a href="https://github.com/">GitHub</a> (Versions), <a href="http://www.gandi.net/">Gandi</a> (Domaine). 
                     br        
         
             

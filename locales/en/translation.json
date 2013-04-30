@@ -16,6 +16,8 @@
     "url" :
     {
         "accueil" : "/en/home",
-        "blog": "/en/blog"
+        "blog": "/en/blog",
+        "cv" : "/en/cv",
+        "lttools" : "/en/lttools"
     }
 }

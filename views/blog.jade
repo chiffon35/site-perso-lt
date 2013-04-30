@@ -5,13 +5,127 @@ block meta-title
     meta(name='description', content=t('app.Tutoriels_articles_et_demonstrations') + (' ') + t('app.autour_du_web_moderne_et_de_JavaScript'))
     meta(name='keywords', content='blog, javascript, node, cloud9, heroku, github, express, jade')
 
+block sous-titre
+    div.soustitre-blog
+        span.invisible=('Blog : ') + t('app.Tutoriels_articles_et_demonstrations') + (' ') + t('app.autour_du_web_moderne_et_de_JavaScript')
+        div.clear
+
 block contenu
-    h1 blog
-    span=t('app.Tutoriels_articles_et_demonstrations') + (' ') + t('app.autour_du_web_moderne_et_de_JavaScript')
-    br
-    br
-    p 
-    | Ce site est encore en construction. Veuillez revenir à compter du 2 mai 2013 pour en savoir plus. 
-    br
-    | Pour me contacter avant cette date : 
-    a(href="mailto:loic.truchot@laposte.net") loic.truchot [at] laposte.net
+    div.contenu-simple
+        div.entete-blog Avril 2013            
+        article.blog
+            h2 
+                |Tutoriel : Initiation aux outils web &quot;nouvelle génération&quot; 
+                br
+                |Créer gratuitement une application en ligne avec cloud9, github, heroku, Node.js + Express + Jade.
+            p 
+                |Le site que vous consultez en ce moment pourrait être entièrement gratuit à produire et à maintenir : il existe en effet des outils de développement, de révision, d'hébergement, etc. accessibles en ligne, sur simple inscription. Si vous souhaitez vous initier à de nouvelles formes de développement d'applications web tout en mettant en ligne un projet personnel, vous suivez le bon tutoriel.
+                br
+                br
+                |Cela est possible uniquement dans le cadre d'un petit projet (moins de 200 Mo de contenu, moins de 100 connexions par jours, un code public), mais si votre projet doit grandir vous pourrez toujours investir quelques euro dans sa pérennisation.
+                |De quoi avons nous besoin pour commencer ?
+                ul
+                    li une adresse e-mail;
+                    li <a href="http://www.mozilla.org/">Mozilla Firefox</a> ou <a href="www.google.com/chrome/">Google Chrome</a> à jour;                
+                    li quelques notions de programmation (JavaScript, HTML), du réseau Internet et de l'anglais;
+                    li un après midi de temps libre.
+            
+            h3 Etape 1 : S'emparer des outils à notre disposition
+            h4 1.1 Github
+            p
+                img.left(src="../images/img/article/2013_04/github-signup.png", alt="")
+                |Github est un service web de gestion de versions. Lorsque vous développez votre site web, son code évolue petit à petit, et grâce à Github vous pourrez stoker en ligne chaque version du code de votre site (vous pourrez ainsi revenir à un état antérieur, invitez des collaborateurs à contribuer à votre site, etc.). 
+                br
+                br
+                |Ce service sera le pivot de notre site web : on pourra en voir l'évolution, accéder au code, le déployer sur le serveur d'hébergement, etc.
+                br
+                br           
+                |Pour créer un identifiant, rendez-vous sur <a href="https://github.com/">https://github.com/</a> : renseignez les champs à droite de l'écran et validez l'inscription.
+                br
+                br
+                br
+                img.right(src="../images/img/article/2013_04/github-createrepo1.png", alt="")
+                |Vous accédez directement à votre interface de démarrage sur laquelle vous pouvez créer un &quot;dépôt&quot; en bas à droite : cliquez sur &quot;New repository&quot;.
+                br
+                br
+                br
+                br
+                img.left(src="../images/img/article/2013_04/github-createrepo2.png", alt="")
+                br
+                |Vous pouvez enfin créer votre répertoire en le nommant et en ajoutant éventuellement une description.
+                br
+                br
+                |Ce répertoire sera publique, car git-hub n'est gratuit que dans le cadre de projets open-source. Ainsi, gardez en mémoire que votre projet ne doit pas contenir d'informations confidentielles ni rien qui puisse entâcher votre réputation sur internet.
+                br
+                br
+                |Validez avec le bouton &quot;Create repository&quot;, et gardez votre page web Github ouverte pour la suite.
+            div.clear
+            h4 1.2 Cloud9 IDE
+            p
+                img.left(src="../images/img/article/2013_04/cloud9-sign-avec-gitub.png", alt="")
+                |Cloud9 IDE est un environnement de développement entièrement accessible en ligne, proposant de très nombreuses fonctionnalités classiques pour bien organiser ses projets et programmer son site web. C'est l'équivalent d'Eclipse ou de Visual Studio en version web (comme Google Docs remplace open office ou Microsoft Office).
+                br
+                br
+                |Nul besoin de créer un identifiant, car nous allons pouvoir utiliser notre profil Github directement dans Cloud9. Rendez-vous sur <a href="https:/c9.io/">https:/c9.io/</a>, et identifiez vous avec Github (bouton vert à droite de &quot;Sign me up !&quot;). 
+                br
+                br
+                |Si vous êtes toujours identifié sur Github, validez simplement l'autorisation de cloud9. Sinon, entrez vos identifiants Github. Passez les pubs pour voir votre Dashboard.
+                br
+                div.clear
+                img.right(src="../images/img/article/2013_04/cloud9-dashboard.png", alt="")
+                br
+                br
+                |Vous pouvez voir votre répertoire Github en bas à gauche. Cliquez dessus pour pouvoir le cloner, appuyant sur &quot;Clone to edit&quot;.
+                br 
+                br
+                |Choisissez un projet privé, et selectionez Node.js. 
+                br
+                |Enfin, créez le clone en bas à droite.                
+                div.clear
+                br
+                img.left(src="../images/img/article/2013_04/cloud9-nodejs.png", alt="")
+                br
+                |Laissez à Cloud9 le temps de charger votre projet : il apparaît enfin dans la section &quot;My Project&quot; de votre Dashboard. 
+                br
+                br
+                |Cliquez dessus puis sur le bouton vert &quot;Start editing&quot;.
+                br
+                br
+                Vous accédez à l'IDE où vous retrouvez, à droite, l'arborescence de vos fichiers, au centre, la page courante que vous programmez, et en bas, le terminal.
+                br 
+                br
+                div.clear
+                img.right(src="../images/img/article/2013_04/cloud9-projet.png", alt="")
+                br
+                |Vérifions le bon fonctionnement de notre circuit.
+                br
+                br
+                |Faites un clic droit sur votre répertoire racine et choisissez &quot;New file&quot; : nous l'appellerons &quot;test.html&quot;.
+                br
+                br
+                |Ouvrez le en double-cliquant dessus et tapez un titre :&lt;h1&gt;Mon premier fichier&lt;/h1&gt;.
+                br
+                br
+                |Ctrl+S pour enregistrer (ou File->Save)
+                br
+                br
+                |Grâce à Cloud9 IDE, vous pourrez directement communiquer avec Github en ligne de commande.
+                div.clear
+                |Placer vous dans le terminal, ou ouvrez un nouveau terminal (Views->Terminals->New Terminal) et tapez :
+                br
+                br
+                |<pre>git add .</pre> (pour ajouter les nouveaux fichiers créés)
+                br
+                |<pre>git commit -m "premier dépôt"</pre> (pour préparer l'envoi de votre version)
+                br
+                |<pre>git push origin master</pre> (pour valider le tout et envoyer cette version du projet)
+                div.clear
+                img.center(src="../images/img/article/2013_04/cloud9-premier-fichier.png", alt="")
+                div.clear
+                br
+                img.right(src="../images/img/article/2013_04/github-premier-depot.png", alt="")
+                |Vous pouvez directement vérifier sur votre fenêtre Github la présence de votre fichier dans le dépôt (F5 pour actualiser la page).
+                br
+                br
+                |Nous voilà prêt à mettre en ligne un premier projet.
+                div.clear
