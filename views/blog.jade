@@ -14,10 +14,8 @@ block contenu
     div.contenu-simple
         div.entete-blog Avril 2013            
         article.blog
-            h2 
-                |Tutoriel : Initiation aux outils web &quot;nouvelle génération&quot; 
-                br
-                |Créer gratuitement une application en ligne avec Cloud9 IDE, Github, Heroku, Node.js (Express + Jade + Stylus)
+            h2.t-tuto Tutoriel : Initiation aux outils web &quot;nouvelle génération&quot; - Etape 1/2
+            span.st-tuto Créer gratuitement une application en ligne avec Cloud9 IDE, Github, Heroku, Node.js (Express + Jade + Stylus)
             p 
                 |Le site que vous consultez en ce moment pourrait être entièrement gratuit à produire et à maintenir : il existe en effet des outils de développement, de révision, d'hébergement, etc. accessibles en ligne, sur simple inscription. Si vous souhaitez vous initier à de nouvelles formes de développement d'applications web tout en mettant en ligne un projet personnel, vous suivez le bon tutoriel.
                 br
@@ -60,6 +58,8 @@ block contenu
                 br
                 |Validez avec le bouton &quot;Create repository&quot;, et gardez votre page web Github ouverte pour la suite.
             div.clear
+            div.hr320
+                hr
             h4 1.2 Cloud9 IDE
             p
                 img.left(src="../images/img/article/2013_04/cloud9-sign-avec-gitub.png", alt="")
@@ -124,8 +124,54 @@ block contenu
                 div.clear
                 br
                 img.right(src="../images/img/article/2013_04/github-premier-depot.png", alt="")
-                |Vous pouvez directement vérifier sur votre fenêtre Github la présence de votre fichier dans le dépôt (F5 pour actualiser la page).
+                |Vous pouvez directement vérifier sur votre fenêtre Github la présence de votre fichier dans le dépôt ([F5] pour actualiser la page).
                 br
                 br
                 |Nous voilà prêt à mettre en ligne un premier projet.
+                div.clear
+            div.hr320
+                hr
+            h4 1.3 Heroku
+            p
+                img.right(src="../images/img/article/2013_04/heroku-signup.png", alt="Heroku - Sign Up")
+                |Heroku est une plateforme d'hébergement compatible avec node.js qui nous premettra de mettre en ligne notre application.
+                br
+                br
+                |Rendez-vous sur <a href="https://www.heroku.com/">https://www.heroku.com/</a> pour créer un identifiant. Cliquez sur le bouton gris &quot;Sign up&quot; en bas à droite, puis renseignez vote e-mail dans l'encart violet.
+                br
+                |Validez, et consultez votre boîte mail pour suivre le lien d'activation.
+                br
+                br
+                |Depuis ce lien, choisissez un mot de passe et sauvez.
+                div.clear
+                img.left(src="../images/img/article/2013_04/cloud9-deploy.png", alt="Cloud9 IDE - Deploy")
+                |Revenons à Cloud9 pour déployer directement notre projet sur Heroku.
+                br
+                br
+                |Choisissez l'onglet de déploiement (petite mongolfière sous le menu) et cliquez sur le &quot;+&quot; pour ajouter un serveur.
+                br
+                br
+                |Choisissez Heroku.com pour serveur et entrez vos identifiants Heroku pour donner à Cloud9 un accès à votre espace Heroku.
+                div.clear
+                img.right(src="../images/img/article/2013_04/cloud9-add.png", alt="Cloud9 IDE - Add")
+                br
+                br
+                |Cliquez sur « create new » en haut de la fenêtre, puis nommer votre application, et cliquez sur « ADD ».
+                br
+                br
+                |Vous avez désormais accès au serveur heroku pour déployer directement votre site.
+                br
+                br
+                br
+                img.left(src="../images/img/article/2013_04/heroku-apps.png", alt="Heroku - Apps")
+                br
+                br
+                |Vérifier sur Heroku que votre application a bien été crée (actualisez la votre page Heroku avec [F5])
+                div.clear
+                br
+                img.right(src="../images/img/article/2013_04/cloud9-deploy-final.png", alt="Cloud9 IDE - Deploy")
+                |Malheureusement la fonction de deploiement de Cloud9 vers Heroku est souvent « buguée » et il vous faudra peut-être déployer manuellement votre site (grâce au terminal).
+                br
+                br
+                |De toute façon, en l'état, notre site ne peut pas être déployé car il nous faut prévenir Heroku que nous allons utiliser Node.js.
                 div.clear
