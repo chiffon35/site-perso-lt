@@ -78,9 +78,9 @@ io.sockets.on('connection', function (socket) {
     setInterval(function () {
         annee++;
         socket.emit('donnees_serveur', { annee_courante : annee });
-    }, 60000);
+    }, 1000);
     socket.on('relancer', function () {
-        annee = 2013
+        annee = 2013;
         socket.emit('donnees_serveur', { annee_courante : annee });
         console.log("relancer décompte année");
     });
