@@ -39,3 +39,7 @@
 {"ts":1366455445354,"patch":[[{"diffs":[[0,"ontent='"],[1,"loïc, "],[0,"loic, tr"]],"start1":306,"start2":306,"length1":16,"length2":22}]],"length":690,"saved":false}
 {"ts":1366455487277,"patch":[[{"diffs":[[0," perso, "],[1,"parcours"],[0,"')\r\n\r\nbl"]],"start1":401,"start2":401,"length1":16,"length2":24}]],"length":698,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1367312325905,"patch":[[{"diffs":[[0,"rcours')\r\n\r\n"],[1,"block sous-titre\r\n    div.soustitre-accueil\r\n        span.invisible=t('app.Parcours_et_actualites_d_un_developpeur_web')\r\n        div.clear\r\n        \r\n"],[0,"block conten"]],"start1":411,"start2":411,"length1":24,"length2":175}]],"length":849,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1368784866371,"patch":[[{"diffs":[[0,"er du 2 "],[-1,"mai"],[1,"juin"],[0," 2013 po"]],"start1":679,"start2":679,"length1":19,"length2":20}]],"length":850,"saved":false}
+{"ts":1368784895456,"patch":[[{"diffs":[[0,"chot"],[-1,"@laposte.net"],[1,"35@gmail.com"],[0,"\") l"]],"start1":800,"start2":800,"length1":20,"length2":20}]],"length":850,"saved":false}
+{"ts":1368784910962,"patch":[[{"diffs":[[0,"chot"],[1,"35"],[0," [at] "],[-1,"laposte.net"],[1,"gmail.com"],[0,"\r\n"]],"start1":827,"start2":827,"length1":23,"length2":23}]],"length":850,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1368794244778,"patch":[[{"diffs":[[0,"il.com\r\n"],[1,"    br\r\n    a(href=\"/test\") test"]],"start1":842,"start2":842,"length1":8,"length2":40}]],"length":882,"saved":false}

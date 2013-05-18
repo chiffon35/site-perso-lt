@@ -78,7 +78,7 @@ a, a img
 .identification input
     float:left
     
-.soustitre-accueil, .soustitre-blog
+.soustitre-accueil, .soustitre-blog, .soustitre-cv
     font-size:1.4em
     font-style:italic
     display:block
@@ -250,49 +250,64 @@ span.st-tuto
     margin:0 0 10px 0
     font-style:italic
 
-article.blog
+article.contour-tl
+    border-top-left-radius: 0;
+
+article
     border:1px solid #d7d7d7
     background-color:#FFF
     margin:0 0 5px 0
     padding:5px 10px
     border-radius: 10px;
-    color:#999999
-    border-top-left-radius: 0;
+    color:#999999    
     z-index:10
     position:relative
 
-article.blog a
+article a
     text-decoration:underline
     color:#999999
+    font-style:italic
  
-article.blog a:hover
+article a:hover
     color:#d7d7d7
 
-article.blog h2, article.blog h3, article.blog h4
+article h2, article.blog h3, article.blog h4
     color:#f2ae24
+    
+article h2.grand-titre
+    font-size:2.7em
+    letter-spacing:5px
+    text-transform:uppercase
+    text-align:center
+    color:#f0610b
 
-article.blog p
+article p
     text-align:justify
     
-article.blog img.left
+article img
     margin:0
     padding:0
     border:0
+
+article .left
     margin-right:5px
     float:left
 
-article.blog img.right
+article .contour-dashed
+    border:2px dotted #d7d7d7
     margin:0
-    padding:0
-    border:0
+    padding:5px
+    border-radius:5px
+
+article .right
     margin-left:5px 
     float:right
 
-article.blog img.center
+article .center
     display:block
     margin:5px auto
 
-div.entete-blog
+div.entete-article
     border:1px solid #d7d7d7
     font-size:1.3em
     font-style:italic
@@ -311,8 +326,11 @@ div.entete-blog
     position:relative
     margin-bottom:-1px
 
-article.blog pre
+article pre
     display:inline
+
+article .entete-t1
+    padding:10px 0
     
 
 
@@ -336,7 +354,7 @@ div#page
         width:140px
         float:right
         
-    .soustitre-accueil, .soustitre-blog
+    .soustitre-accueil, .soustitre-blog, .soustitre-cv
         display:none  
         
     .identification
@@ -360,7 +378,7 @@ div#page
         clear:left
         margin-right:52px
     
-    article.blog img
+    article img
         max-width:450px
         
 
@@ -370,5 +388,8 @@ div#page
         width:306px
     article.blog img
         max-width:280px
+    
+    article h2.grand-titre
+        font-size:2em
         
 /* ------------------- FIN MEDIA --------------------- */

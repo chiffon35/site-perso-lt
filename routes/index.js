@@ -14,5 +14,13 @@ exports.index = function(req, res){
 };
 
 exports.blog = function(req, res){
-    res.render('blog', SPLT_SERVEUR.setVarJade(req))
+    res.render('blog', SPLT_SERVEUR.setVarJade(req));
+};
+
+exports.cv = function(req, res){
+    res.render('cv', SPLT_SERVEUR.setVarJade(req));
+};
+
+exports.test = function(req, res){
+    res.render('test', {});
 };
