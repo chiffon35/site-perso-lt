@@ -74,14 +74,16 @@ io.configure(function () {
 var annee = 2013;
 
 io.sockets.on('connection', function (socket) {
-    socket.emit('donnees_serveur', { annee_courante : annee });
-    setInterval(function () {
-        annee++;
-        socket.emit('donnees_serveur', { annee_courante : annee });
-    }, 1000);
+    socket.emit('donnees_serveur', { annee_courante : annee });    
     socket.on('relancer', function () {
         annee = 2013;
         socket.emit('donnees_serveur', { annee_courante : annee });
         console.log("relancer décompte année");
     });
 });
+
+setInterval(function () {
+        annee++;
+        io.sockets.emit('donnees_serveur', { annee_courante : annee });
+    }, 10000);
+

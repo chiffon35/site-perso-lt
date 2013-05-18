@@ -32,3 +32,5 @@
 {"ts":1368910946425,"patch":[[{"diffs":[[0,"   $(\"#annee"],[-1,"_"],[1,"-"],[0,"courante\").e"]],"start1":3672,"start2":3672,"length1":25,"length2":25}]],"length":4088,"saved":false}
 {"ts":1368911026465,"patch":[[{"diffs":[[0,"    "],[-1,"    //socket.emit('my other event', { my: 'data' });"],[1,"});\n    $(\"#button-restart\").click(function () {\n        "],[0,"\n   "]],"start1":3773,"start2":3773,"length1":60,"length2":65}]],"length":4093,"saved":false}
 {"ts":1368911129760,"patch":[[{"diffs":[[0,") {\n        "],[1,"socket.emit('relancer');"],[0,"\n    });\n}\n/"]],"start1":3822,"start2":3822,"length1":24,"length2":48}]],"length":4117,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1368918353172,"patch":[[{"diffs":[[0,"relancer');\n"],[1,"        console.log(\"relancer decompte);\n"],[0,"    });\n}\n//"]],"start1":3847,"start2":3847,"length1":24,"length2":65}]],"length":4158,"saved":false}
+{"ts":1368918354567,"patch":[[{"diffs":[[0,"decompte"],[1,"\""],[0,");\n    }"]],"start1":3889,"start2":3889,"length1":16,"length2":17}]],"length":4159,"saved":false}

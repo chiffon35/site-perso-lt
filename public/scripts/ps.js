@@ -114,6 +114,7 @@ function init () {
     });
     $("#button-restart").click(function () {
         socket.emit('relancer');
+        console.log("relancer decompte");
     });
 }
 // alert("Groupe : 4799\n" + 
