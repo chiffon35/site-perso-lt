@@ -66,6 +66,11 @@ server.listen(app.get('port'), function(){
   console.log('-------Express server listening on port ' + app.get('port') + '---------');
 });
 
+io.configure(function () { 
+  io.set("transports", ["xhr-polling"]); 
+  io.set("polling duration", 10); 
+});
+
 var annee = 2013;
 
 io.sockets.on('connection', function (socket) {
