@@ -1,0 +1,41 @@
+body,
+div {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+#menu-haut {
+  width: 1003px;
+  height: 150px;
+}
+#menu-gauche {
+  width: 323px;
+  height: 520px;
+  float: left;
+}
+#carte {
+  float: left;
+  width: 680px;
+  height: 520px;
+}
+#menu-bas {
+  width: 1003px;
+  height: 150px;
+  clear: both;
+  float: none;
+}
+div.legende-pays-jouable,
+div.legende-pays-joue,
+div.legende-pays-non-jouable {
+  width: 16px;
+  height: 16px;
+}
+div.legende-pays-jouable {
+  background-color: #008000;
+}
+div.legende-pays-joue {
+  background-color: #f00;
+}
+div.legende-pays-non-jouable {
+  background-color: #c0c0c0;
+}

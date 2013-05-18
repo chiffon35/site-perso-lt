@@ -54,7 +54,7 @@ app.get('/fr/blog', routes.blog);
 app.get('/en/blog', routes.blog);
 app.get('/fr/cv', routes.cv);
 app.get('/en/cv', routes.cv);
-app.get('/test', routes.test);
+app.get('/interfaceps', routes.interfaceps);
 //app.get('/users', user.list);
 
 app.use(require("stylus").middleware(__dirname + '/public'));

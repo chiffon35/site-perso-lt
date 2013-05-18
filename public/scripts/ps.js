@@ -66,12 +66,29 @@ var passerAnnee = function () {
     //alert(oPays1.population.total);
 };
 $(document).ready(function () {
+    var tabPaysJouables = ["fr", "es", "uk", "de"];
+    for (var idPays in tabPaysJouables) {
+        $("#svg2 #" + tabPaysJouables[idPays])
+        .css({"fill" : "green", "cursor" : "pointer"})
+        .attr("class", "paysJouable");
+    }
+    $(".paysJouable").mouseover(function () {
+        $(this).css({"fill" : "blue"});
+    });
+    $(".paysJouable").mouseout(function () {
+        $(this).css({"fill" : "green"});
+    });
+    
+    
+    
     $("body").append('<div id="donnee_fixe">Taux de natalité : <span id="tn">12.6</span> enfants/an pour 1000 habs<input id="aug_alloc" type="button" value="augmenter les allocations familiales" /></div><div id="flux">Démarrage en cours...</div>');
     setInterval(function () {passerAnnee()}, 12000);
     $("#aug_alloc").click(function () {
         oPays1.population.tn = Math.round((oPays1.population.tn + 0.1)*10)/10;
         $("#tn").empty().append(oPays1.population.tn);
     });
+    
+    
 });
 
 function lisibilite_nombre(nbr)
