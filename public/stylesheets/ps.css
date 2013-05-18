@@ -2,12 +2,15 @@ body,
 div {
   margin: 0;
   padding: 0;
+}
+body {
   font-family: Arial, sans-serif;
   background: url("../images/bg/bg-page.jpg") top left repeat;
 }
 #menu-haut {
   width: 1003px;
   height: 150px;
+  position: relative;
 }
 #menu-gauche {
   width: 323px;
@@ -40,4 +43,21 @@ div.legende-pays-joue {
 }
 div.legende-pays-non-jouable {
   background-color: #c0c0c0;
+}
+#annee-courante {
+  position: absolute;
+  width: 100px;
+  height: 23px;
+  top: 0;
+  left: 450px;
+  background: #fff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 0 10px;
+  text-align: center;
+  font-weight: bold;
+}
+#button-restart {
+  position: absolute;
+  left: 560px;
 }

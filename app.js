@@ -60,6 +60,23 @@ app.get('/interfaceps', routes.interfaceps);
 app.use(require("stylus").middleware(__dirname + '/public'));
 
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+server.listen(app.get('port'), function(){
+  console.log('-------Express server listening on port ' + app.get('port') + '---------');
+});
+
+var annee = 2013;
+
+io.sockets.on('connection', function (socket) {
+    socket.emit('donnees_serveur', { annee_courante : annee });
+    setInterval(function () {
+        annee++;
+        socket.emit('donnees_serveur', { annee_courante : annee });
+    }, 60000);
+    socket.on('relancer', function () {
+        annee = 2013
+        socket.emit('donnees_serveur', { annee_courante : annee });
+        console.log("relancer décompte année");
+    });
 });

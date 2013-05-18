@@ -87,7 +87,7 @@ $(document).ready(function () {
         oPays1.population.tn = Math.round((oPays1.population.tn + 0.1)*10)/10;
         $("#tn").empty().append(oPays1.population.tn);
     });
-    
+    init();
     
 });
 
@@ -106,11 +106,16 @@ function lisibilite_nombre(nbr)
     }
     return retour;
 }
-
-
-
-
-
+function init () {
+    var socket = io.connect(window.location.origin);
+    socket.on('donnees_serveur', function (data) {
+        $("#annee-courante").empty().text(data.annee_courante);
+        console.log(data.annee_courante);
+    });
+    $("#button-restart").click(function () {
+        socket.emit('relancer');
+    });
+}
 // alert("Groupe : 4799\n" + 
 //  "genre : " + oPays1.groupes[4799].genre + "\n" +
 //  "age : " + oPays1.groupes[4799].age);
