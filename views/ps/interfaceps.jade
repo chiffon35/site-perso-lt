@@ -5,17 +5,41 @@ html
         meta(http-equiv='Content-Type', content='text/html; charset=utf-8')        
         link(rel='stylesheet', href='/stylesheets/ps.css', media='screen')
         script(src='/scripts/jquery-1.9.1.min.js', type='text/javascript')
+        script(src='/scripts/jquery.svg.min.js', type='text/javascript')
+        script(src='/scripts/jquery.svgdom.min.js', type='text/javascript')
         script(src='/socket.io/socket.io.js', type='text/javascript')
-        script(src='/scripts/ps.js', type='text/javascript')        
+        
+        //- ------------ DEBUT PS SCRIPTS -------------
+        script(src='/scripts/LTTOoLS/index.js', type='text/javascript')
+        script(src='/scripts/LTTOoLS/object/oDebugHelper.js', type='text/javascript')
+        script(src='/scripts/LTTOoLS/object/oErrorHelper.js', type='text/javascript')
+        script(src='/scripts/LTTOoLS/object/oNumberHelper.js', type='text/javascript')
+        script(src='/scripts/LTTOoLS/object/oJqueryHelper.js', type='text/javascript')
+        script(src='/scripts/PS/index.js', type='text/javascript')        
+        script(src='/scripts/PS/class/Joueur.js', type='text/javascript')
+        script(src='/scripts/PS/class/Carte.js', type='text/javascript')
+        script(src='/scripts/PS/class/Sio.js', type='text/javascript')
+        script(src='/scripts/PS/class/MenuMinistere.js', type='text/javascript')
+        script(src='/scripts/PS/interfaceps.js', type='text/javascript') 
+        
     body
         div#menu-haut 
             div#annee-courante                
             input#button-restart(type="button", value="Relancer")
+            div#barre-info1 Choisissez un pays
+            
         div#menu-gauche menu gauche
+        
         div#carte
             include cartesvg.svg
+            
         div#menu-bas
             table
+                tr
+                    td 
+                        div.legende-mon-pays &nbsp;                       
+                    td
+                        |mon pays
                 tr
                     td 
                         div.legende-pays-jouable &nbsp;                       

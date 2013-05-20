@@ -66,24 +66,57 @@ server.listen(app.get('port'), function(){
   console.log('-------Express server listening on port ' + app.get('port') + '---------');
 });
 
+//**********************************************
+//**************** DEBUT IO ********************
+//**********************************************
 io.configure(function () { 
   io.set("transports", ["xhr-polling"]); 
   io.set("polling duration", 10); 
 });
 
-var annee = 2013;
 
-io.sockets.on('connection', function (socket) {
-    socket.emit('donnees_serveur', { annee_courante : annee });    
-    socket.on('relancer', function () {
-        annee = 2013;
-        socket.emit('donnees_serveur', { annee_courante : annee });
-        console.log("relancer décompte année");
-    });
-});
-
+//---------------- DEBUT ANNEE COURANTE ---------------
+var iAnneeCourante = 2013;
 setInterval(function () {
-        annee++;
-        io.sockets.emit('donnees_serveur', { annee_courante : annee });
-    }, 10000);
+        iAnneeCourante++;
+        io.sockets.emit('iAnneeCourante', iAnneeCourante);
+    }, 5000);
+
+//---------------- FIN ANNEE COURANTE ---------------
+
+
+//---------------- DEBUT PAYS ---------------
+var oPays = {"fr" : 0, "es" : 0, "de" : 0, "uk" : 0, "it" : 1};  
+//---------------- FIN PAYS ----------------
+
+
+//--------------- DEBUT DONNEES CONNEXION-------------
+io.sockets.on('connection', function (socket) { 
+    socket.emit('iAnneeCourante', iAnneeCourante);
+    socket.emit('oPays', oPays);
+    
+    socket.on('relancer', function () {
+        iAnneeCourante = 2013;
+        io.sockets.emit('iAnneeCourante', iAnneeCourante);
+    });
+    
+    socket.on('oChoixPays', function (oChoixPays, callback) {
+        var bDisponible = false;
+        if (oPays[oChoixPays.sPaysChoisi] === 0) {
+            oPays[oChoixPays.sPaysChoisi] = 1;
+            bDisponible = true;
+        }
+        callback({ bEstDisponible: bDisponible });
+        socket.emit('oPays', oPays);
+    }); 
+});
+//--------------- FIN DONNEES CONNEXION-------------
+//**********************************************
+//***************** FIN IO *********************
+//**********************************************
+
+
+
+
+
 

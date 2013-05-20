@@ -54,9 +54,9 @@ var passerAnnee = function () {
         oPays1.groupes.push({genre:"femme", age:0});
     }
     $("#flux").empty().append("Année courante : " + annee_courante + "<br />" +
-        "Population totale : " + lisibilite_nombre(oPays1.population.total * 1000) + " hab" + "<br />" +
-        "Nb de naissances en " + (annee_courante - 1) + " : " + lisibilite_nombre(nb_naissance * 1000) + "<br />" +
-        "Nombre de cohortes réelles : " + lisibilite_nombre(oPays1.groupes.length) + "<br />" +
+        "Population totale : " + LTTOoLS.oNumberHelper.afficherMilliers(oPays1.population.total * 1000) + " hab" + "<br />" +
+        "Nb de naissances en " + (annee_courante - 1) + " : " + LTTOoLS.oNumberHelper.afficherMilliers(nb_naissance * 1000) + "<br />" +
+        "Nombre de cohortes réelles : " + LTTOoLS.oNumberHelper.afficherMilliers(oPays1.groupes.length) + "<br />" +
         "Deux exemples de cohortes : " +
         "<ul>" +
         "   <li>N°5212 - genre : " + oPays1.groupes[5212].genre + " / age : " + oPays1.groupes[5212].age + "</li>" +
@@ -66,18 +66,20 @@ var passerAnnee = function () {
     //alert(oPays1.population.total);
 };
 $(document).ready(function () {
-    var tabPaysJouables = ["fr", "es", "uk", "de"];
-    for (var idPays in tabPaysJouables) {
-        $("#svg2 #" + tabPaysJouables[idPays])
-        .css({"fill" : "green", "cursor" : "pointer"})
-        .attr("class", "paysJouable");
-    }
-    $(".paysJouable").mouseover(function () {
-        $(this).css({"fill" : "blue"});
+    
+    var INTERFACE = INTERFACE || {};
+    INTERFACE.oSio = new PS.Sio ();
+    INTERFACE.oCarte = new PS.Carte(INTERFACE.oSio);
+    INTERFACE.sMenuMinistere = new PS.MenuMinistere();
+    
+    $("#button-restart").click(function () {
+        INTERFACE.oSio.oSocket.emit('relancer');
+        console.log("relancer decompte");
     });
-    $(".paysJouable").mouseout(function () {
-        $(this).css({"fill" : "green"});
-    });
+    
+    
+    $("menu-gauche").append(INTERFACE.sMenuMinistere);
+    
     
     
     
@@ -87,36 +89,11 @@ $(document).ready(function () {
         oPays1.population.tn = Math.round((oPays1.population.tn + 0.1)*10)/10;
         $("#tn").empty().append(oPays1.population.tn);
     });
-    init();
     
 });
 
-function lisibilite_nombre(nbr)
-{
-    var nombre = '' + nbr;
-    var retour = '';
-    var count=0;
-    for(var i=nombre.length-1 ; i>=0 ; i--)
-    {
-        if(count!==0 && count % 3 === 0)
-            retour = nombre[i]+' '+retour ;
-        else
-            retour = nombre[i]+retour ;
-        count++;
-    }
-    return retour;
-}
-function init () {
-    var socket = io.connect(window.location.origin);
-    socket.on('donnees_serveur', function (data) {
-        $("#annee-courante").empty().text(data.annee_courante);
-        console.log(data.annee_courante);
-    });
-    $("#button-restart").click(function () {
-        socket.emit('relancer');
-        console.log("relancer decompte");
-    });
-}
+
+
 // alert("Groupe : 4799\n" + 
 //  "genre : " + oPays1.groupes[4799].genre + "\n" +
 //  "age : " + oPays1.groupes[4799].age);
