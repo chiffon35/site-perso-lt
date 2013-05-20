@@ -40,32 +40,34 @@ PS.Carte = (function () {
                 }
             }
             
-            //configurer indisponibles
+            //configurer indisponibles            
             $(".carte-pays-indisponible")
                 .css({"fill" : "red", "cursor" : "default"})
                 .unbind('click').unbind('mouseover').unbind('mouseout');
-            
+                
             //configurer disponibles
-            $(".carte-pays-disponible")
-                .css({"fill" : "green", "cursor" : "pointer"})
-                .mouseover(function () {
-                    $(this).css({"fill" : "blue"});
-                })
-                .mouseout(function () {
-                    $(this).css({"fill" : "green"});
-                })
-                .click(function () {
-                    var oMonPays = this;
-                    self.oSio.chargerPays($(this).attr('id'), function (error, bEstDisponible) { 
-                        if (bEstDisponible) {
-                            $(".carte-pays-disponible").unbind('click').unbind('mouseover').unbind('mouseout').css({"cursor" : "default"});
-                            $(oMonPays).css({"fill" : "blue", "cursor" : "default"}).removeClass('carte-pays-disponible');
-                            self.sMonPays = $(oMonPays).attr("id");   
-                            self.oSio.rafraichirPaysPourTous();
-                        }
+            if (this.sMonPays === "") {
+                $(".carte-pays-disponible").css({"fill" : "green"});
+                $(".carte-pays-disponible").css({"cursor" : "pointer"})
+                    .mouseover(function () {
+                        $(this).css({"fill" : "blue"});
+                    })
+                    .mouseout(function () {
+                        $(this).css({"fill" : "green"});
+                    })
+                    .click(function () {
+                        var oMonPays = this;
+                        self.oSio.chargerPays($(this).attr('id'), function (error, bEstDisponible) { 
+                            if (bEstDisponible) {
+                                $(".carte-pays-disponible").unbind('click').unbind('mouseover').unbind('mouseout').css({"cursor" : "default"});
+                                $(oMonPays).css({"fill" : "blue", "cursor" : "default"}).removeClass('carte-pays-disponible');
+                                self.sMonPays = $(oMonPays).attr("id");   
+                                self.oSio.rafraichirPaysPourTous();
+                            }
+                        });
+                                       
                     });
-                                   
-                });
+            }
         }
     };
     return Carte;
