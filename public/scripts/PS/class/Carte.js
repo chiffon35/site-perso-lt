@@ -9,7 +9,7 @@ PS.Carte = (function () {
         
         this.sMonPays = "";
         
-        this.oSio.oSocket.on('oPays', function (oPays) {
+        this.oSio.oSocket.on('oPays', function (oPays) {            
             self.chargerPaysDisponible(oPays);           
         });    
     }
@@ -28,10 +28,14 @@ PS.Carte = (function () {
                 var sId = this.sIdCarte + " #" + sPays;
                 if (sPays !== this.sMonPays) {
                     if (bEstDisponible){
-                        $(sId).addClass("carte-pays-disponible");
+                        $(sId)
+                            .removeClass("carte-pays-indisponible")
+                            .addClass("carte-pays-disponible");
                     }
-                    else {
-                        $(sId).addClass("carte-pays-indisponible");
+                    else {                        
+                        $(sId)
+                            .removeClass("carte-pays-disponible")
+                            .addClass("carte-pays-indisponible");
                     }
                 }
             }
@@ -54,7 +58,8 @@ PS.Carte = (function () {
                         if (bEstDisponible) {
                             $(".carte-pays-disponible").unbind('click').unbind('mouseover').unbind('mouseout').css({"cursor" : "default"});
                             $(oMonPays).css({"fill" : "blue", "cursor" : "default"}).removeClass('carte-pays-disponible');
-                            self.sMonPays = $(oMonPays).attr("id");                            
+                            self.sMonPays = $(oMonPays).attr("id");   
+                            self.oSio.rafraichirPaysPourTous();
                         }
                     });
                                    

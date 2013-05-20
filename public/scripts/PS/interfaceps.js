@@ -73,8 +73,7 @@ $(document).ready(function () {
     INTERFACE.sMenuMinistere = new PS.MenuMinistere();
     
     $("#button-restart").click(function () {
-        INTERFACE.oSio.oSocket.emit('relancer');
-        console.log("relancer decompte");
+        INTERFACE.oSio.oSocket.emit('E_relancer');
     });
     
     

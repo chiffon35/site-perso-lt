@@ -80,7 +80,7 @@ var iAnneeCourante = 2013;
 setInterval(function () {
         iAnneeCourante++;
         io.sockets.emit('iAnneeCourante', iAnneeCourante);
-    }, 5000);
+    }, 12000);
 
 //---------------- FIN ANNEE COURANTE ---------------
 
@@ -95,7 +95,7 @@ io.sockets.on('connection', function (socket) {
     socket.emit('iAnneeCourante', iAnneeCourante);
     socket.emit('oPays', oPays);
     
-    socket.on('relancer', function () {
+    socket.on('E_relancer', function () {
         iAnneeCourante = 2013;
         io.sockets.emit('iAnneeCourante', iAnneeCourante);
     });
@@ -106,10 +106,13 @@ io.sockets.on('connection', function (socket) {
             oPays[oChoixPays.sPaysChoisi] = 1;
             bDisponible = true;
         }
-        callback({ bEstDisponible: bDisponible });
-        socket.emit('oPays', oPays);
+        callback({ bEstDisponible: bDisponible });        
     }); 
+    socket.on('E_rafraichir_pays', function () {
+        io.sockets.emit('oPays', oPays);  
+    });
 });
+
 //--------------- FIN DONNEES CONNEXION-------------
 //**********************************************
 //***************** FIN IO *********************

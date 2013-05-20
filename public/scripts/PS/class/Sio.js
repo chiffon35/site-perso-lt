@@ -24,12 +24,15 @@ PS.Sio = (function () {
         },    
         
         
-        chargerPays: function (sPays, cb) {
-            var self = this;            
-            self.oSocket.emit('oChoixPays', {sPaysChoisi : sPays}, function (reponse) {
+        chargerPays: function (sPays, cb) { 
+            this.oSocket.emit('oChoixPays', {sPaysChoisi : sPays}, function (reponse) {
                 cb(null, reponse.bEstDisponible);
             });
 
+        },
+        
+        rafraichirPaysPourTous: function () {
+            this.oSocket.emit('E_rafraichir_pays');
         }
     }; 
     
