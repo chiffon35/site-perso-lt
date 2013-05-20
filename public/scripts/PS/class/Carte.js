@@ -46,8 +46,8 @@ PS.Carte = (function () {
                 .unbind('click').unbind('mouseover').unbind('mouseout');
                 
             //configurer disponibles
-            if (this.sMonPays === "") {
-                $(".carte-pays-disponible").css({"fill" : "green"});
+            $(".carte-pays-disponible").css({"fill" : "green"});
+            if (this.sMonPays === "") {                
                 $(".carte-pays-disponible").css({"cursor" : "pointer"})
                     .mouseover(function () {
                         $(this).css({"fill" : "blue"});
