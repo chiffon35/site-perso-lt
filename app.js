@@ -72,7 +72,7 @@ server.listen(app.get('port'), function(){
 io.configure(function () { 
   io.set("transports", ["xhr-polling"]); 
   io.set("polling duration", 10); 
-  io.set("close timeout", 5);
+  io.set("close timeout", 12);
 });
 
 
@@ -87,7 +87,7 @@ setInterval(function () {
 
 
 //---------------- DEBUT PAYS ---------------
-var oPays = {"fr" : 0, "es" : 0, "de" : 0, "uk" : 0, "it" : 1};  
+var oPays = {"fr" : 0, "es" : 0, "de" : 0, "uk" : 0, "it" : 0};  
 //---------------- FIN PAYS ----------------
 
 
@@ -117,7 +117,6 @@ io.sockets.on('connection', function (socket) {
     
     
     socket.on('disconnect', function () {
-        console.log('----------------DECO-------------');
         socket.get('sMonPays', function (error, sMonPays) {
             oPays[sMonPays] = 0;
             io.sockets.emit('oPays', oPays);
