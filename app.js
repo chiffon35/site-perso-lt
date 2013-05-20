@@ -72,6 +72,7 @@ server.listen(app.get('port'), function(){
 io.configure(function () { 
   io.set("transports", ["xhr-polling"]); 
   io.set("polling duration", 10); 
+  io.set("close timeout", 5);
 });
 
 
@@ -91,7 +92,7 @@ var oPays = {"fr" : 0, "es" : 0, "de" : 0, "uk" : 0, "it" : 1};
 
 
 //--------------- DEBUT DONNEES CONNEXION-------------
-io.sockets.on('connection', function (socket) { 
+io.sockets.on('connection', function (socket) {     
     socket.emit('iAnneeCourante', iAnneeCourante);
     socket.emit('oPays', oPays);
     
@@ -104,12 +105,23 @@ io.sockets.on('connection', function (socket) {
         var bDisponible = false;
         if (oPays[oChoixPays.sPaysChoisi] === 0) {
             oPays[oChoixPays.sPaysChoisi] = 1;
+            socket.set('sMonPays', oChoixPays.sPaysChoisi);
             bDisponible = true;
         }
         callback({ bEstDisponible: bDisponible });        
     }); 
     socket.on('E_rafraichir_pays', function () {
         io.sockets.emit('oPays', oPays);  
+    });
+    
+    
+    
+    socket.on('disconnect', function () {
+        console.log('----------------DECO-------------');
+        socket.get('sMonPays', function (error, sMonPays) {
+            oPays[sMonPays] = 0;
+            io.sockets.emit('oPays', oPays);
+        });        
     });
 });
 
