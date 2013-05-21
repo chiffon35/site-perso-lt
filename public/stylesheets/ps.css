@@ -76,3 +76,14 @@ div.legende-pays-non-jouable {
   resize: none;
   display: block;
 }
+.btn300 {
+  background: url("../images/bg/btn300.png") top left no-repeat;
+  width: 300px;
+  height: 40px;
+  cursor: pointer;
+  margin: auto;
+  text-align: center;
+  line-height: 40px;
+  font-weight: bold;
+  color: #808080;
+}

@@ -1,50 +1,42 @@
 PS.MenuMinistere = (function () {
     //©2013 Loïc TRUCHOT
-    //Outils requis : LT_TOOLS.oSvgHelper
-    //Outils requis : LT_TOOLS.oMathHelper
-    //Outils requis : LT_TOOLS.oStringHelper
-    //Outils requis : LT_TOOLS.oErrorHelper
     
-    "use strict";
-    //constantes de classe
-    MenuMinistere.NB_AXES_MIN = 3;
-    
-    //variables de classe
-    MenuMinistere.nombre = 0;
-    
-    function MenuMinistere () {
+    function MenuMinistere (oSio) {
+        
+        var self = this;
         
         //Références à LT TOOLS
         this.oString = LTTOoLS.oStringHelper;
-        this.oError = LTTOoLS.oErrorHelper;
         
-        //gestion des erreurs
-        this.tabMsgErreur = [];
-        
-        //elements obligatoires
-        //this.iTailleCadreSvg = this.oError.confirmerTypePropriete(this.tabMsgErreur, iTailleCadreSvg, "number", "la taille du graphique doit être saisie");
-               
-        //elements subsidiaires
-        //this.tabEchelons = tabEchelons || [];            
-        
+        this.oSio = oSio;
+            
     
-        
-        //construction du menu
-        this.sMenuMinistere = this.creerMenuMinistere();
-        
-        //rapport d'erreurs
-        this.oError.enregistrerErreurs(this.tabMsgErreur, this.sNomObjet);
-        
         //action sur les variables de classe
         MenuMinistere.nombre++; 
         
+        //Reception
+        this.oSio.oSocket.on('ES_Afficher_Menu_Ministere', function () {
+            self.afficherMenuMinistere();           
+        }); 
+        this.oSio.oSocket.on('ES_Supprimer_Menu_Ministere', function () {
+            self.supprimerMenuMinistere();           
+        }); 
+        
+        
     }    
     MenuMinistere.prototype = {        
-        creerMenuMinistere : function () {
-            var sMenuMinistere = "";
-            
-            return MenuMinistere;
-        }      
+        creerHtmlMenuMinistere : function () {
+            var sMenuMinistere = '';
+            sMenuMinistere += '<div class="btn300">Population, Familles et Diversité</div>';            
+            return sMenuMinistere;
+        },
+        afficherMenuMinistere : function () {
+            $("#menu-gauche").html(this.creerHtmlMenuMinistere);
+        },
+        supprimerMenuMinistere : function () {
+            $("#menu-gauche").empty();
+        }
+        
     }; 
     return MenuMinistere;
 } ()); 

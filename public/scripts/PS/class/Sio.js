@@ -9,9 +9,7 @@ PS.Sio = (function () {
         this.oJquery = LTTOoLS.oJqueryHelper;        
         
         //Connection
-        this.oSocket = io.connect(window.location.origin);
-        this.tabPaysJouables = [];
-        //Emissions
+        this.oSocket = io.connect(window.location.origin, { 'sync disconnect on unload': true });
         
         //Receptions
         this.oSocket.on('iAnneeCourante', function (iAnneeCourante) {
@@ -29,6 +27,10 @@ PS.Sio = (function () {
                 rappel(null, reponse.bEstDisponible);
             });
 
+        },
+        
+        relancerPartie: function () { 
+           this.oSocket.emit('E_relancer');
         },
         
         rafraichirPaysPourTous: function () {

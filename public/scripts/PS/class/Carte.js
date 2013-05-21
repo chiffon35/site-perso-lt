@@ -13,12 +13,18 @@ PS.Carte = (function () {
         //reception
         this.oSio.oSocket.on('oPays', function (oPays) {            
             self.chargerPaysDisponible(oPays);           
-        });    
+        });   
+        
     }
     Carte.prototype = {
         chargerPaysDisponible : function(oPays) {
             var self = this;
             for (var sPays in oPays) {                
+                
+                //Nettoyer l'objet
+                if (sPays === this.sMonPays && oPays[sPays].bDisponible) {
+                    this.sMonPays = "";
+                }
                 
                 //Appliquer disponibilité
                 var sId = this.sIdCarte + " #" + sPays;
@@ -61,7 +67,7 @@ PS.Carte = (function () {
                             self.sMonPays = $(oMonPays).attr("id");   
                             self.oSio.rafraichirPaysPourTous();
                             self.oBlockInfo1.ecrireMessage("Vous jouez désormais " + oPays[sMonPaysId].sNomAvecDetMin + "");
-                            self.oSio.oSocket.emit('B_ecrire_message', "Un joueur a pris le contrôle de " + oPays[sMonPaysId].sNomAvecDetMin);
+                            self.oSio.oSocket.emit('B_ecrire_message', "Un joueur a pris le contrôle de " + oPays[sMonPaysId].sNomAvecDetMin);                            
                         }
                     });               
                 });

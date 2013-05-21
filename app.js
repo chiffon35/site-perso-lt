@@ -121,7 +121,14 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('E_relancer', function () {
         iAnneeCourante = 2013;
+        for (var sPays in oPays) {
+            oPays[sPays].bDisponible = true;
+        }
         io.sockets.emit('iAnneeCourante', iAnneeCourante);
+        io.sockets.emit('oPays', oPays);
+        socket.emit('sMessage', "Vous avez relancé la partie");
+        socket.broadcast.emit('sMessage', "Un joueur a relancé la partie"); 
+        io.sockets.emit('ES_Supprimer_Menu_Ministere');
     });
     
     socket.on('oChoixPays', function (oChoixPays, callback) {
@@ -129,6 +136,7 @@ io.sockets.on('connection', function (socket) {
         if (oPays[oChoixPays.sPaysChoisi].bDisponible === true) {
             oPays[oChoixPays.sPaysChoisi].bDisponible = false;
             socket.set('sMonPays', oChoixPays.sPaysChoisi);
+            socket.emit('ES_Afficher_Menu_Ministere');
         }              
     }); 
     
