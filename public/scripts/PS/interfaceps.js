@@ -68,10 +68,12 @@ var passerAnnee = function () {
 $(document).ready(function () {
     
     var INTERFACE = INTERFACE || {};
-    INTERFACE.oSio = new PS.Sio ();
-    INTERFACE.oCarte = new PS.Carte(INTERFACE.oSio);
+    INTERFACE.oSio = new PS.Sio();
+    INTERFACE.oBlockInfo1 = new PS.BlockInfo1(INTERFACE.oSio);
+    INTERFACE.oCarte = new PS.Carte(INTERFACE.oSio, INTERFACE.oBlockInfo1);
     INTERFACE.sMenuMinistere = new PS.MenuMinistere();
     
+    INTERFACE.oBlockInfo1.ecrireMessage("Choisissez un Pays...")
     $("#button-restart").click(function () {
         INTERFACE.oSio.oSocket.emit('E_relancer');
     });

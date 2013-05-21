@@ -24,9 +24,9 @@ PS.Sio = (function () {
         },    
         
         
-        chargerPays: function (sPays, cb) { 
+        chargerPays: function (sPays, rappel) { 
             this.oSocket.emit('oChoixPays', {sPaysChoisi : sPays}, function (reponse) {
-                cb(null, reponse.bEstDisponible);
+                rappel(null, reponse.bEstDisponible);
             });
 
         },

@@ -87,7 +87,28 @@ setInterval(function () {
 
 
 //---------------- DEBUT PAYS ---------------
-var oPays = {"fr" : 0, "es" : 0, "de" : 0, "uk" : 0, "it" : 0};  
+var oPays = {
+    "fr" : {
+        bDisponible : true,
+        sNomAvecDetMin : "la France"
+    }, 
+    "es" : {
+        bDisponible : true,
+        sNomAvecDetMin : "l'Espagne"
+    }, 
+    "de" : {
+        bDisponible : true,
+        sNomAvecDetMin : "l'Allemagne"
+    },  
+    "uk" : {
+        bDisponible : true,
+        sNomAvecDetMin : "le Royaume Uni"
+    },  
+    "it" : {
+        bDisponible : true,
+        sNomAvecDetMin : "l'Italie"
+    }
+};  
 //---------------- FIN PAYS ----------------
 
 
@@ -102,23 +123,28 @@ io.sockets.on('connection', function (socket) {
     });
     
     socket.on('oChoixPays', function (oChoixPays, callback) {
-        var bDisponible = false;
-        if (oPays[oChoixPays.sPaysChoisi] === 0) {
-            oPays[oChoixPays.sPaysChoisi] = 1;
+        callback({ bEstDisponible: oPays[oChoixPays.sPaysChoisi].bDisponible });  
+        if (oPays[oChoixPays.sPaysChoisi].bDisponible === true) {
+            oPays[oChoixPays.sPaysChoisi].bDisponible = false;
             socket.set('sMonPays', oChoixPays.sPaysChoisi);
-            bDisponible = true;
-        }
-        callback({ bEstDisponible: bDisponible });        
+        }              
     }); 
+    
     socket.on('E_rafraichir_pays', function () {
         io.sockets.emit('oPays', oPays);  
+        console.log("-> E_rafraichir_pays")
+    });
+    
+    socket.on('B_ecrire_message', function (sMessage) {
+        socket.broadcast.emit('sMessage', sMessage); 
+        console.log("-> B_ecrire_message : " + sMessage);
     });
     
     
     
     socket.on('disconnect', function () {
         socket.get('sMonPays', function (error, sMonPays) {
-            oPays[sMonPays] = 0;
+            oPays[sMonPays].bDisponible = true;
             io.sockets.emit('oPays', oPays);
         });        
     });
