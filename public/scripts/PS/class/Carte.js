@@ -12,13 +12,14 @@ PS.Carte = (function () {
         
         //reception
         this.oSio.oSocket.on('oPays', function (oPays) {            
-            self.chargerPaysDisponible(oPays);           
+            self.chargerPaysDisponible(oPays); 
+            console.log(oPays.fr);
         });   
         
     }
     Carte.prototype = {
         chargerPaysDisponible : function(oPays) {
-            var self = this;
+            var self = this;            
             for (var sPays in oPays) {                
                 
                 //Nettoyer l'objet

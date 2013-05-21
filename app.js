@@ -67,6 +67,7 @@ server.listen(app.get('port'), function(){
 
 //Modules perso
 var LTTOoLS = require('./public/scripts/LTTOoLS');
+var PS = require('./public/scripts/PS');
 
 //**********************************************
 //**************** DEBUT IO ********************
@@ -78,46 +79,84 @@ io.configure(function () {
 });
 
 
+//---------------- DEBUT PAYS ---------------
+
+//base départ
+var oPays = {}; 
+var oPaysLight = {};
+
+oPays.es = new PS.Pays("es",
+    true,
+    "l'Espagne",
+    {
+        iTotalEnK : 65000,
+        fPctHomme : 48/100,
+        fTauxNatalite : 12.6
+    }
+);
+oPays.de = new PS.Pays("de",
+    true,
+    "l'Allemagne",
+    {
+        iTotalEnK : 65000,
+        fPctHomme : 48/100,
+        fTauxNatalite : 12.6
+    }
+);
+oPays.uk = new PS.Pays("uk",
+    true,
+    "le Royaume-Uni",
+    {
+        iTotalEnK : 65000,
+        fPctHomme : 48/100,
+        fTauxNatalite : 12.6
+    }
+);
+oPays.it = new PS.Pays("it",
+    true,
+    "l'Italie",
+    {
+        iTotalEnK : 65000,
+        fPctHomme : 48/100,
+        fTauxNatalite : 12.6
+    }
+);    
+
+oPays.fr = new PS.Pays("fr", 
+    true, 
+    "la France", 
+    {
+        iTotalEnK : 65000,
+        fPctHomme : 48/100,
+        fTauxNatalite : 12.6
+    }
+);
+
+ 
+//---------------- FIN PAYS ----------------
+
 //---------------- DEBUT ANNEE COURANTE ---------------
 var iAnneeCourante = 2013;
-setInterval(function () {
-        iAnneeCourante++;
-        io.sockets.emit('iAnneeCourante', iAnneeCourante);
-    }, 12000);
-
 //---------------- FIN ANNEE COURANTE ---------------
 
+//--------------- DEBUT CHANGEMENT D'ANNEE-------------
+setInterval(function () {
+        iAnneeCourante++;        
+        io.sockets.emit('iAnneeCourante', iAnneeCourante);
+    }, 12000);
+//--------------- FIN CHANGEMENT D'ANNEE-------------
 
-//---------------- DEBUT PAYS ---------------
-var oPays = {
-    "fr" : {
-        bDisponible : true,
-        sNomAvecDetMin : "la France"
-    }, 
-    "es" : {
-        bDisponible : true,
-        sNomAvecDetMin : "l'Espagne"
-    }, 
-    "de" : {
-        bDisponible : true,
-        sNomAvecDetMin : "l'Allemagne"
-    },  
-    "uk" : {
-        bDisponible : true,
-        sNomAvecDetMin : "le Royaume Uni"
-    },  
-    "it" : {
-        bDisponible : true,
-        sNomAvecDetMin : "l'Italie"
-    }
-};  
-//---------------- FIN PAYS ----------------
 
 
 //--------------- DEBUT DONNEES CONNEXION-------------
 io.sockets.on('connection', function (socket) {     
-    socket.emit('iAnneeCourante', iAnneeCourante);
-    socket.emit('oPays', oPays);
+    socket.emit('iAnneeCourante', iAnneeCourante); 
+    
+    //Emit Pays light
+    for (var sPays in oPays) {
+        oPaysLight[sPays] = oPays[sPays].obtenirVersionLegere1();       
+    }
+    socket.emit('oPays', oPaysLight);
     
     socket.on('E_relancer', function () {
         iAnneeCourante = 2013;
@@ -125,10 +164,16 @@ io.sockets.on('connection', function (socket) {
             oPays[sPays].bDisponible = true;
         }
         io.sockets.emit('iAnneeCourante', iAnneeCourante);
-        io.sockets.emit('oPays', oPays);
+        
+        //Emit Pays light
+        for (var sPays in oPays) {
+            oPaysLight[sPays] = oPays[sPays].obtenirVersionLegere1();       
+        }
+        io.sockets.emit('oPays', oPaysLight);
+        
         socket.emit('sMessage', "Vous avez relancé la partie");
         socket.broadcast.emit('sMessage', "Un joueur a relancé la partie"); 
-        io.sockets.emit('ES_Supprimer_Menu_Ministere');
+        io.sockets.emit('ES_Supprimer_Ministeres');
     });
     
     socket.on('oChoixPays', function (oChoixPays, callback) {
@@ -136,13 +181,24 @@ io.sockets.on('connection', function (socket) {
         if (oPays[oChoixPays.sPaysChoisi].bDisponible === true) {
             oPays[oChoixPays.sPaysChoisi].bDisponible = false;
             socket.set('sMonPays', oChoixPays.sPaysChoisi);
-            socket.emit('ES_Afficher_Menu_Ministere');
+            
+            //Emit Pays light
+            for (var sPays in oPays) {
+                oPaysLight[sPays] = oPays[sPays].obtenirVersionLegere1();       
+            }
+            socket.emit('ES_Creer_Ministeres', oPaysLight[oChoixPays.sPaysChoisi]);
         }              
     }); 
     
     socket.on('E_rafraichir_pays', function () {
-        io.sockets.emit('oPays', oPays);  
-        console.log("-> E_rafraichir_pays")
+        
+        //Emit Pays light
+        for (var sPays in oPays) {
+            oPaysLight[sPays] = oPays[sPays].obtenirVersionLegere1();       
+        }
+        io.sockets.emit('oPays', oPaysLight);  
+        
+        console.log("-> E_rafraichir_pays");
     });
     
     socket.on('B_ecrire_message', function (sMessage) {
@@ -156,7 +212,13 @@ io.sockets.on('connection', function (socket) {
         socket.get('sMonPays', function (error, sMonPays) {
             if (sMonPays !== null) {
                 oPays[sMonPays].bDisponible = true;
-                io.sockets.emit('oPays', oPays);
+                
+                //Emit Pays light
+                for (var sPays in oPays) {
+                oPaysLight[sPays] = oPays[sPays].obtenirVersionLegere1();       
+                }
+                io.sockets.emit('oPays', oPaysLight);
+                
                 socket.broadcast.emit('sMessage', LTTOoLS.oStringHelper.passerPremiereLettreEnMaj(oPays[sMonPays].sNomAvecDetMin) + " est de nouveau Disponible"); 
             }
        });        

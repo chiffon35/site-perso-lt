@@ -1,2 +1,6 @@
 {"ts":1368963721234,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
 {"contributors":[],"silentsave":false,"ts":1368963850814,"patch":[[{"diffs":[[1,"var PS = PS || {};"]],"start1":0,"start2":0,"length1":0,"length2":18}]],"length":18,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1369171280303,"patch":[[{"diffs":[[0,"S || {};"],[1,"\nif (typeof module !== \"undefined\") {\n    PS.Pays =  require(\"./object/oStringHelper.js\");\n    module.exports = LTTOoLS;\n}"]],"start1":10,"start2":10,"length1":8,"length2":130}]],"length":140,"saved":false}
+{"ts":1369171287492,"patch":[[{"diffs":[[0,"(\"./"],[-1,"object"],[1,"class-server"],[0,"/oSt"]],"start1":78,"start2":78,"length1":14,"length2":20}]],"length":146,"saved":false}
+{"ts":1369171304049,"patch":[[{"diffs":[[0,"ver/"],[-1,"oStringHelper"],[1,"Pays"],[0,".js\""]],"start1":91,"start2":91,"length1":21,"length2":12},{"diffs":[[0,"s = "],[-1,"LTTOoL"],[1,"P"],[0,"S;\n}"]],"start1":123,"start2":123,"length1":14,"length2":9}]],"length":132,"saved":false}
+{"ts":1369171311891,"patch":[[{"diffs":[[0," || {};\n"],[1,"\n"],[0,"if (type"]],"start1":11,"start2":11,"length1":16,"length2":17}]],"length":133,"saved":false}
