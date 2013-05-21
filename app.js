@@ -7,8 +7,7 @@ var express = require('express')
   , i18n = require('i18next')
   , stylus = require('stylus');
 
-//Modules perso
-//var LTTOoLS = require('./LTTOoLS');
+
 
 //Configuration Express
 var app = express();
@@ -65,6 +64,9 @@ var io = require('socket.io').listen(server);
 server.listen(app.get('port'), function(){
   console.log('-------Express server listening on port ' + app.get('port') + '---------');
 });
+
+//Modules perso
+var LTTOoLS = require('./public/scripts/LTTOoLS');
 
 //**********************************************
 //**************** DEBUT IO ********************
@@ -144,9 +146,12 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('disconnect', function () {
         socket.get('sMonPays', function (error, sMonPays) {
-            oPays[sMonPays].bDisponible = true;
-            io.sockets.emit('oPays', oPays);
-        });        
+            if (sMonPays !== null) {
+                oPays[sMonPays].bDisponible = true;
+                io.sockets.emit('oPays', oPays);
+                socket.broadcast.emit('sMessage', LTTOoLS.oStringHelper.passerPremiereLettreEnMaj(oPays[sMonPays].sNomAvecDetMin) + " est de nouveau Disponible"); 
+            }
+       });        
     });
 });
 

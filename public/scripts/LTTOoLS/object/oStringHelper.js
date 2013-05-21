@@ -1,3 +1,4 @@
+var LTTOoLS = LTTOoLS || {};
 LTTOoLS.oStringHelper =  {
     decouperMotsParLongueur : function (sLigne, iLongueur, sScission) {
         var tabLigneDecoupe = [];
@@ -30,3 +31,7 @@ LTTOoLS.oStringHelper =  {
         return chaine.substr(0,1).toUpperCase() + chaine.substr(1,chaine.length);        
     }    
 };
+
+if (typeof module !== "undefined") {
+    module.exports = LTTOoLS.oStringHelper;
+}

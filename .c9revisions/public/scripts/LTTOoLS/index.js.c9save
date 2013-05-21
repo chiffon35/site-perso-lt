@@ -16,3 +16,19 @@
 {"ts":1366211029658,"patch":[[{"diffs":[[0,"TOoLS = "],[1,"exports."],[0,"LTTOoLS "]],"start1":10,"start2":10,"length1":16,"length2":24}]],"length":41,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1366818869075,"patch":[[{"diffs":[[-1,"exports."],[1,"var "],[0,"LTTOoLS = export"]],"start1":0,"start2":0,"length1":24,"length2":20},{"diffs":[[0,"TOoLS = "],[1,"LTTOoLS || {};\nLTTOoLS.oStringHelper = require('./object/oStringHelper');\n//"],[0,"exports."]],"start1":6,"start2":6,"length1":16,"length2":92},{"diffs":[[0,"exports.LTTOoLS "],[-1,"|| {}"],[1,"= LTTOoLS"],[0,";\n"]],"start1":90,"start2":90,"length1":23,"length2":27}]],"length":117,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1366821326519,"patch":[[{"diffs":[[0," || {};\n"],[1,"//"],[0,"LTTOoLS."]],"start1":21,"start2":21,"length1":16,"length2":18}]],"length":119,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1369139519274,"patch":[[{"diffs":[[0,"lper');\n"],[-1,"//"],[1,"if (exports) {\n    "],[0,"exports."]],"start1":82,"start2":82,"length1":18,"length2":35},{"diffs":[[0,"TTOoLS;\n"],[1,"}\n"]],"start1":128,"start2":128,"length1":8,"length2":10}]],"length":138,"saved":false}
+{"ts":1369139830046,"patch":[[{"diffs":[[0,"orts) {\n"],[1,"    console.log(exports);\n}\n"],[0,"    expo"]],"start1":97,"start2":97,"length1":16,"length2":44}]],"length":166,"saved":false}
+{"ts":1369139834558,"patch":[[{"diffs":[[0,"ports);\n"],[-1,"}\n"],[0,"    expo"]],"start1":123,"start2":123,"length1":18,"length2":16}]],"length":164,"saved":false}
+{"ts":1369139982679,"patch":[[{"diffs":[[0,"');\nif ("],[-1,"exports"],[1,"typeof exports !== \"undefined\""],[0,") {\n    "]],"start1":86,"start2":86,"length1":23,"length2":46}]],"length":187,"saved":false}
+{"ts":1369140262033,"patch":[[{"diffs":[[0,"ports);\n"],[1,"    require(\"object/oStringHelper);\n"],[0,"    expo"]],"start1":146,"start2":146,"length1":16,"length2":52}]],"length":223,"saved":false}
+{"ts":1369140266461,"patch":[[{"diffs":[[0,"ngHelper"],[1,"\""],[0,");\n    e"]],"start1":179,"start2":179,"length1":16,"length2":17}]],"length":224,"saved":false}
+{"ts":1369140373998,"patch":[[{"diffs":[[0,"equire(\""],[1,"./public/scripts/"],[0,"object/o"]],"start1":159,"start2":159,"length1":16,"length2":33}]],"length":241,"saved":false}
+{"ts":1369140394229,"patch":[[{"diffs":[[0,"re(\""],[-1,"./public/scripts/"],[0,"obje"]],"start1":163,"start2":163,"length1":25,"length2":8}]],"length":224,"saved":false}
+{"ts":1369140408613,"patch":[[{"diffs":[[0,"ngHelper"],[1,".js"],[0,"\");\n    "]],"start1":179,"start2":179,"length1":16,"length2":19}]],"length":227,"saved":false}
+{"ts":1369140480978,"patch":[[{"diffs":[[0,"equire(\""],[1,"./"],[0,"object/o"]],"start1":159,"start2":159,"length1":16,"length2":18}]],"length":229,"saved":false}
+{"ts":1369140484173,"patch":[[{"diffs":[[0,"lper"],[-1,".js"],[0,"\");\n"]],"start1":185,"start2":185,"length1":11,"length2":8}]],"length":226,"saved":false}
+{"ts":1369140734274,"patch":[[{"diffs":[[0,") {\n"],[-1,"    console.log(exports);\n"],[0,"    "]],"start1":124,"start2":124,"length1":34,"length2":8}]],"length":200,"saved":false}
+{"ts":1369140788447,"patch":[[{"diffs":[[0,"\") {\n   "],[1," LTTOoLS.oStringHelper ="],[0," require"]],"start1":123,"start2":123,"length1":16,"length2":40}]],"length":224,"saved":false}
+{"ts":1369140885291,"patch":[[{"diffs":[[0,"{};\n"],[-1,"//LTTOoLS.oStringHelper = require('./object/oStringHelper');"],[0,"\nif "]],"start1":25,"start2":25,"length1":68,"length2":8}]],"length":164,"saved":false}
+{"ts":1369140968073,"patch":[[{"diffs":[[0,"lper\");\n"],[1,"    console.log(LTTOoLS.oStringHelper);\n"],[0,"    expo"]],"start1":123,"start2":123,"length1":16,"length2":56}]],"length":204,"saved":false}
+{"ts":1369141018518,"patch":[[{"diffs":[[0,"ole.log("],[1,"\"core : \" + "],[0,"LTTOoLS."]],"start1":139,"start2":139,"length1":16,"length2":28}]],"length":216,"saved":false}

@@ -16,7 +16,11 @@ PS.BlockInfo1 = (function () {
         ecrireMessage : function (sMessage) {
             var oDateCourante = new Date();
             this.oBlockInfo1.append(oDateCourante.getHours() + ":" + oDateCourante.getMinutes() + " | " +sMessage + "\n");
-        }        
+            this.scrollerBas();
+        },
+        scrollerBas : function () {
+            this.oBlockInfo1.scrollTop(this.oBlockInfo1[0].scrollHeight);
+        }
     };
     return BlockInfo1;
 }());

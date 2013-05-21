@@ -36,7 +36,7 @@ PS.Carte = (function () {
                 }
             }
             
-            //configurer indisponibles            
+            //configurer indisponibles  
             $(".carte-pays-indisponible")
                 .css({"fill" : "red", "cursor" : "default"})
                 .unbind('click').unbind('mouseover').unbind('mouseout');
