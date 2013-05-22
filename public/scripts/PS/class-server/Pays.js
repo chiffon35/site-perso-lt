@@ -23,8 +23,9 @@ PS.Pays = (function () {
         this.modifierVersionLegere();
 
     }
-    Pays.prototype = {     
+    Pays.prototype = {    
         
+
         //------- DEBUT GETTERS--------
         estDisponible : function () {
             return this.bDisponible;
