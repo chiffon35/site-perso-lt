@@ -1,26 +1,3 @@
-// //lancement du temps.
-// var passerAnnee = function () {
-//     annee_courante++;
-//     for (var groupe in oPays1.groupes) {
-//         oPays1.groupes[groupe].age++;
-//     }
-//     var nb_naissance = parseInt(oPays1.population.total * oPays1.population.tn/1000, 10);
-//     oPays1.population.total = oPays1.population.total + nb_naissance;
-//     for (var i=0; i < nb_naissance; i++) {
-//         oPays1.groupes.push({genre:"femme", age:0});
-//     }
-//     $("#flux").empty().append("Année courante : " + annee_courante + "<br />" +
-//         "Population totale : " + LTTOoLS.oNumberHelper.afficherMilliers(oPays1.population.total * 1000) + " hab" + "<br />" +
-//         "Nb de naissances en " + (annee_courante - 1) + " : " + LTTOoLS.oNumberHelper.afficherMilliers(nb_naissance * 1000) + "<br />" +
-//         "Nombre de cohortes réelles : " + LTTOoLS.oNumberHelper.afficherMilliers(oPays1.groupes.length) + "<br />" +
-//         "Deux exemples de cohortes : " +
-//         "<ul>" +
-//         "   <li>N°5212 - genre : " + oPays1.groupes[5212].genre + " / age : " + oPays1.groupes[5212].age + "</li>" +
-//         "   <li>N°49 525 - genre : " + oPays1.groupes[49525].genre + " / age : " + oPays1.groupes[49525].age + "</li>" +
-//         "</ul>"
-//     );
-//     //alert(oPays1.population.total);
-// };
 $(document).ready(function () {
     
     var INTERFACE = INTERFACE || {};

@@ -7,6 +7,8 @@ PS.MenuMinistere = (function () {
         
         //Références à LT TOOLS
         this.oString = LTTOoLS.oStringHelper;
+        this.oNumber = LTTOoLS.oNumberHelper
+        this.bMinistereCree = false;
         
         this.oSio = oSio;
             
@@ -15,8 +17,13 @@ PS.MenuMinistere = (function () {
         MenuMinistere.nombre++; 
         
         //Reception
-        this.oSio.oSocket.on('ES_Creer_Ministeres', function (oMonPays) {
-            self.creerMinisteres(oMonPays);           
+        this.oSio.oSocket.on('ES_Creer_Ministeres', function (oMinisteres) {
+            self.creerMinisteres(oMinisteres);           
+        });
+        this.oSio.oSocket.on('ES_Rafraichir_Ministeres', function (oMinisteres) {
+            if (self.bMinistereCree) {
+                self.rafraichirMinisteres(oMinisteres); 
+            }
         }); 
         this.oSio.oSocket.on('ES_Supprimer_Ministeres', function () {
             self.supprimerMinisteres();           
@@ -25,11 +32,27 @@ PS.MenuMinistere = (function () {
         
         
     }    
-    MenuMinistere.prototype = {        
-        creerMinisteres : function (oMonPays) {
+    MenuMinistere.prototype = {   
+        
+        obtenirMinisterePopulation : function (oMinisteres) {
+            return [
+                {
+                    sId : "MP-population-totale",
+                    sTitre : "Population totale : ",
+                    sContenu : this.oNumber.afficherMilliers((oMinisteres.oPopulation.iTotalEnK * 1000)) + ' habs'
+                },
+                {
+                    sId : "MP-taux-natalite",
+                    sTitre : "Taux de natalité annuel : ",
+                    sContenu : oMinisteres.oPopulation.fTauxNatalite + ' / 1000 habs'
+                }
+            ];
+        },
+        creerMinisteres : function (oMinisteres) {
             var sMenuMinistere = '';
             var sNomMinistere = 'Population, Familles et Diversité';
-            var sHtmlMinisterePopulation = this.creerHtmlMinistere(oMonPays, sNomMinistere);
+            var oMinisterePopulation = this.obtenirMinisterePopulation(oMinisteres);
+            var sHtmlMinisterePopulation = this.creerHtmlMinistere(oMinisterePopulation, sNomMinistere);
             sMenuMinistere += '<div class="btn300" id="btnMinisterePopulation">' + sNomMinistere + '</div>';     
             sMenuMinistere += sHtmlMinisterePopulation;
             $("#menu-gauche").html(sMenuMinistere);
@@ -39,18 +62,26 @@ PS.MenuMinistere = (function () {
             $("#fermerMinisterePopulation").click(function () {
                 $("#ecranMinisterePopulation").hide();
             });
+            this.bMinistereCree = true;
         },
-        creerHtmlMinistere : function (oMonPays, sNomMinistere) {
+        creerHtmlMinistere : function (oMinistere, sNomMinistere) {
             var sMinistereCourant = '';
             sMinistereCourant += '<div id="ecranMinisterePopulation" class="ecranMinistere invisible">' + "\n";
             sMinistereCourant += "\t" + '<div class="titreMinistere">' + sNomMinistere + '</div>' + "\n";
             sMinistereCourant += "\t" + '<div id="fermerMinisterePopulation" class="fermerMinistere">X</div>' + "\n";
             sMinistereCourant += "\t" + '<div class="contenuMinistere">' + "\n";
-            sMinistereCourant += "\t\t" + oMonPays.sNomAvecDetMin + "\n";
+            for (var iDonnees in oMinistere) {
+                sMinistereCourant += "\t\t" + oMinistere[iDonnees].sTitre + '<span id="' + oMinistere[iDonnees].sId + '">' + oMinistere[iDonnees].sContenu +'</span><br />' + "\n";
+            }
             sMinistereCourant += "\t" + '</div>' + "\n";
             sMinistereCourant += '</div>' + "\n";
-            return sMinistereCourant;
-            
+            return sMinistereCourant;            
+        },
+        rafraichirMinisteres : function (oMinisteres) {
+            var oMinistere = this.obtenirMinisterePopulation(oMinisteres);
+            for (var iDonnees in oMinistere) {
+                $("#"+ oMinistere[iDonnees].sId).text(oMinistere[iDonnees].sContenu);
+            }
         },
         supprimerMinisteres : function () {
             $("#menu-gauche").empty();
