@@ -89,28 +89,28 @@ var enregistrerPaysDeDepart = function () {
     oPays.es = new PS.Pays("es",
         true,
         "l'Espagne",
-        [65000,48/100,12.6]
+        [65000,48/100,12.6, 8.5]
     );
     oPays.de = new PS.Pays("de",
         true,
         "l'Allemagne",
-        [65000,48/100,12.6]
+        [65000,48/100,12.6, 8.5]
     );
     oPays.uk = new PS.Pays("uk",
         true,
         "le Royaume-Uni",
-        [65000,48/100,12.6]
+        [65000,48/100,12.6, 8.5]
     );
     oPays.it = new PS.Pays("it",
         true,
         "l'Italie",
-        [65000,48/100,12.6]
+        [65000,48/100,12.6, 8.5]
     );    
     
     oPays.fr = new PS.Pays("fr", 
         true, 
         "la France", 
-        [65000,48/100,12.6]
+        [65000,48/100,12.6, 8.5]
     );
 };
 enregistrerPaysDeDepart();
@@ -127,7 +127,7 @@ var iAnneeCourante = 2013;
 //--------------- DEBUT CHANGEMENT D'ANNEE-------------
 setInterval(function () {
         passerAnnee(oPays)
-    }, 12000);
+    }, 60000);
     
 //lancement du temps.
 var passerAnnee = function () {
@@ -135,8 +135,7 @@ var passerAnnee = function () {
     io.sockets.emit('iAnneeCourante', iAnneeCourante);
     
     for (var sPays in oPays) {
-        oPays[sPays].faireEvoluerAge();
-        oPays[sPays].creerNouvelleGeneration();
+        oPays[sPays].faireEvoluerPopulation();
         if (typeof oPays[sPays].oPossesseur.id !== "undefined") {
             oPays[sPays].oPossesseur.emit('ES_Rafraichir_Ministeres', oPays[sPays].obtenirMinisteres());
         }

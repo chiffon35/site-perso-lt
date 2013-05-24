@@ -45,6 +45,11 @@ PS.MenuMinistere = (function () {
                     sId : "MP-taux-natalite",
                     sTitre : "Taux de natalité annuel : ",
                     sContenu : oMinisteres.oPopulation.fTauxNatalite + ' / 1000 habs'
+                },
+                {
+                    sId : "MP-taux-mortalite",
+                    sTitre : "Taux de mortalite annuel : ",
+                    sContenu : oMinisteres.oPopulation.fTauxMortalite + ' / 1000 habs'
                 }
             ];
         },
