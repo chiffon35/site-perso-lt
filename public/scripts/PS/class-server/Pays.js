@@ -6,11 +6,48 @@ PS.Pays = (function () {
         "homme" : 0,
         "femme" : 1
     };
+    Pays.oDepenses = {
+        oNatalite : {
+            oPolitiqueNataliste : {
+                "aucune" : 0,
+                "allocations_familiales" : 1,
+                "enfant_unique" : 2
+            },
+            oContraception : {
+                "contraception_prohibee" : 0,
+                "contraception_autorisee" : 1,
+                "contraception_gratuite" : 2
+            } ,
+            oPedagogie : {
+                "anti_nataliste" : 0,
+                "aucune" : 1,
+                "pro_nataliste" : 2
+            },
+            oAvortement : {
+                "avortement_prohibe" : 0,
+                "avortement_autorise" : 1,
+                "avortement_gratuit" : 2                
+            },
+            oEugenisme : {
+                "eugenisme_prohibe" : 0,
+                "eugenisme_prive" : 1,
+                "eugenisme_d_etat" : 2,
+                oCriteres : {
+                    "genre" : 0,
+                    "ethnie" : 1,
+                    "richesse" : 2,
+                    "sante" : 3,
+                    "religion" : 4
+                }
+            }
+        }
+    }
         
-    function Pays (sId, bDisponible, sNomAvecDetMin, tabPopulation) {
+    function Pays (sId, bDisponible, sNomAvecDetMin, tabPopulation, iRecette) {
         
         var self = this;
         
+        //variables construites
         this.sId = sId;
         this.bDisponible = bDisponible;
         this.sNomAvecDetMin = sNomAvecDetMin;
@@ -20,6 +57,10 @@ PS.Pays = (function () {
             fTauxNatalite : tabPopulation[2],
             fTauxMortalite : tabPopulation[3]
         };
+        this.iRecette = iRecette;
+        
+        //variables déduites
+        this.iDepense = 0;
         this.tabCohortes = [];
         this.oPossesseur = {};
         
@@ -52,7 +93,16 @@ PS.Pays = (function () {
                 }
             }
             return iNbParAge;
-        },        
+        },     
+        obtenirNbParTrancheDAge : function (iAgeDepart, iAgeFin) {
+            var iNbParTrancheDAge = 0;
+            for (var iId in this.tabCohortes) {
+                if (this.tabCohortes[iId].iAge >= iAgeDepart && this.tabCohortes[iId].iAge <= iAgeFin) {
+                    iNbParTrancheDAge++;
+                }
+            }
+            return iNbParTrancheDAge;
+        }, 
         obtenirMinisteres : function () {
             var oMinisteres = {
                 oPopulation : this.obtenirInfoMinisterePopulation()

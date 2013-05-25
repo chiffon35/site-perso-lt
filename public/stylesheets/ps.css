@@ -6,6 +6,7 @@ div {
 body {
   font-family: Arial, sans-serif;
   background: url("../images/bg/bg-page.jpg") top left repeat;
+  font-size: 12px;
 }
 .invisible {
   display: none;
@@ -68,6 +69,7 @@ div.legende-pays-non-jouable {
   box-shadow: 0 0 10px;
   text-align: center;
   font-weight: bold;
+  font-size: 16px;
 }
 #menu-haut #button-restart {
   position: absolute;
@@ -94,6 +96,7 @@ div.legende-pays-non-jouable {
   line-height: 40px;
   font-weight: bold;
   color: #808080;
+  font-size: 14px;
 }
 .ecranMinistere {
   position: absolute;
@@ -105,33 +108,33 @@ div.legende-pays-non-jouable {
 .titreMinistere {
   float: left;
   width: 300px;
-  height: 20px;
+  height: 23px;
   border-top-right-radius: 10px;
-  margin-bottom: 3px;
-  box-shadow: 0 10px 0 #fff, 0 0 10px #000;
-  background-color: #fff;
+  background: url("../images/bg/bg-page.jpg") top left repeat;
   text-align: center;
   line-height: 25px;
+  font-weight: bold;
+  color: #808080;
+  font-size: 14px;
 }
 .fermerMinistere {
   width: 30px;
-  height: 20px;
+  height: 23px;
   border-top-left-radius: 10px;
-  margin-bottom: 3px;
   float: right;
-  box-shadow: 0 10px 0 #fff, 0 0 10px #000;
-  background-color: #000;
-  color: #fff;
+  background: url("../images/bg/bg-page.jpg") top left repeat;
+  line-height: 25px;
+  font-weight: bold;
+  color: #808080;
   text-align: center;
   cursor: pointer;
-  font-weight: bold;
 }
 .contenuMinistere {
   clear: both;
   float: none;
   width: 480px;
   min-height: 400px;
-  box-shadow: 0 0 10px #000;
-  background-color: #fff;
   padding: 10px;
+  background: url("../images/bg/bg-page.jpg") top left repeat;
+  box-shadow: 5px 5px 10px #666;
 }

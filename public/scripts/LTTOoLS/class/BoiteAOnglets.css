@@ -1,6 +1,9 @@
-.boite_a_onglet div, .boite_a_onglet p, .boite_a_onglet ul  {
+.boite_a_onglet p, .boite_a_onglet ul  {
     padding:0;
     margin:0;
+}
+.boite_a_onglet {
+    margin:10px;
 }
 .boite_a_onglet ul {
     list-style-type:none;
@@ -17,12 +20,16 @@
     margin-bottom:-1px;
     padding:8px 5px;
     height:10px;    
-    background:url(../../image/bg/BAOOnglet100.png) no-repeat; 
+    background-color:#F5F5F5; 
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    border:1px solid #999;
     cursor:pointer;
 }
 .bao_onglet_contenu {
-    background:url(../../image/bg/BAOCorps320.png) repeat-y;
-    width:320px;
+    background-color:#FFF; 
+    border:1px solid #999;
+    padding:5px;
     clear:both;
     float:none;
 }
@@ -41,8 +48,10 @@
     float:none;
 }
 .selection_onglet {
-    background:url(../../image/bg/BAOOngletSelection100.png) no-repeat; 
+    border-bottom:0;
     cursor:default;
+    margin-bottom:-1px;
+    background-color:#FFF;
 }
 .onglet_text_12 {
     height:20px;

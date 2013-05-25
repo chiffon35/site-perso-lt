@@ -1,4 +1,4 @@
-LT_TOOLS.BoiteAOnglets = (function () {
+LTTOoLS.BoiteAOnglets = (function () {
     //©2013 Loïc TRUCHOT
     //Extension requise : JQuery 1.9+
     //Outils requis : LT_TOOLS.oErrorHelper
@@ -9,6 +9,12 @@ LT_TOOLS.BoiteAOnglets = (function () {
     BoiteAOnglets.NOM = "LT_TOOLS.BoiteAOnglets";
     BoiteAOnglets.NB_ONGLET_MIN = 2;
     BoiteAOnglets.NB_ONGLET_MAX = 5;
+    
+    $(function(){
+        $("head").append(
+            $(document.createElement("link")).attr({rel:"stylesheet", type:"text/css", href:"/scripts/LTTOoLS/class/BoiteAOnglets.css"})
+        );
+    });
 
     
     //variables de classe
@@ -17,8 +23,9 @@ LT_TOOLS.BoiteAOnglets = (function () {
     function BoiteAOnglets (oOnglets, sEltPere) {
         
         //Références à LT TOOLS
-        this.oError = LT_TOOLS.oErrorHelper;
-        this.oObject = LT_TOOLS.oObjectHelper;
+        this.oError = LTTOoLS.oErrorHelper;
+        this.oObject = LTTOoLS.oObjectHelper;
+        
         
         
         //gestion des erreurs
@@ -58,24 +65,27 @@ LT_TOOLS.BoiteAOnglets = (function () {
                     sBoiteAOnglets += "\t\t" + '<li class="bao_onglet_bouton' + sClass12 + '">' + sOnlget + '</li>' + "\n"; 
                 }
                 sBoiteAOnglets += "\t" + '</ul>' + "\n";   
-                sBoiteAOnglets += "\t" + '<div class="bao_onglet_entete"></div>' + "\n"; 
+                //sBoiteAOnglets += "\t" + '<div class="bao_onglet_entete"></div>' + "\n"; 
                 for (var sOnglet2 in this.oOnglets) {
                     sBoiteAOnglets += "\t" + '<div class="bao_onglet_contenu">' + this.oOnglets[sOnglet2] + '</div>' + "\n"; 
                 }
-                sBoiteAOnglets += "\t" + '<div class="bao_onglet_pied"></div>' + "\n"; 
+                //sBoiteAOnglets += "\t" + '<div class="bao_onglet_pied"></div>' + "\n"; 
                 sBoiteAOnglets += '</div>'; 
             }
             return sBoiteAOnglets;
         },
         appliquerOnglets : function () {
             $(this.sEltPere).append(this.sBoiteAOnglet);
-            $("#" + this.sDivOngletId + " .bao_onglet_bouton").click(function () {                
-                $(this).parent().children(".bao_onglet_bouton").removeClass("selection_onglet");
-                $(this).addClass("selection_onglet");
-                $(this).closest("div").children(".bao_onglet_contenu").hide();
-                $(this).closest("div").children(".bao_onglet_contenu:eq(" + $(this).index() +")").show();
+            $("#" + this.sDivOngletId + " > ul > li.bao_onglet_bouton").each(function () {
+                $(this).click(function () {                
+                    $(".selection_onglet").removeClass("selection_onglet");
+                    $(this).addClass("selection_onglet");
+                    $(".bao_onglet_contenu").hide();
+                    $(".bao_onglet_contenu").eq($(this).index()).show();
+                });
             });
-            $("#" + this.sDivOngletId + " .bao_onglet_bouton:eq(0)").trigger("click");
+            //$("#" + this.sDivOngletId).children(".bao_onglet_bouton").trigger("click");
+            $("#" + this.sDivOngletId + " > ul > li.bao_onglet_bouton").eq(0).trigger("click");
             $("#" + this.sDivOngletId).show();
         }
     }; 

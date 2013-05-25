@@ -89,28 +89,33 @@ var enregistrerPaysDeDepart = function () {
     oPays.es = new PS.Pays("es",
         true,
         "l'Espagne",
-        [65000,48/100,12.6, 8.5]
+        [65000,48/100,12.6, 8.5],
+        300000
     );
     oPays.de = new PS.Pays("de",
         true,
         "l'Allemagne",
-        [65000,48/100,12.6, 8.5]
+        [65000,48/100,12.6, 8.5],
+        300000
     );
     oPays.uk = new PS.Pays("uk",
         true,
         "le Royaume-Uni",
-        [65000,48/100,12.6, 8.5]
+        [65000,48/100,12.6, 8.5],
+        300000
     );
     oPays.it = new PS.Pays("it",
         true,
         "l'Italie",
-        [65000,48/100,12.6, 8.5]
+        [65000,48/100,12.6, 8.5],
+        300000
     );    
     
     oPays.fr = new PS.Pays("fr", 
         true, 
         "la France", 
-        [65000,48/100,12.6, 8.5]
+        [65000,48/100,12.6, 8.5],
+        300000
     );
 };
 enregistrerPaysDeDepart();

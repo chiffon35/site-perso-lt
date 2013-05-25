@@ -34,7 +34,7 @@ PS.MenuMinistere = (function () {
     }    
     MenuMinistere.prototype = {   
         
-        obtenirMinisterePopulation : function (oMinisteres) {
+        obtenirResumeMinisterePopulation : function (oMinisteres) {
             return [
                 {
                     sId : "MP-population-totale",
@@ -48,7 +48,7 @@ PS.MenuMinistere = (function () {
                 },
                 {
                     sId : "MP-taux-mortalite",
-                    sTitre : "Taux de mortalite annuel : ",
+                    sTitre : "Taux de mortalité annuel : ",
                     sContenu : oMinisteres.oPopulation.fTauxMortalite + ' / 1000 habs'
                 }
             ];
@@ -56,17 +56,19 @@ PS.MenuMinistere = (function () {
         creerMinisteres : function (oMinisteres) {
             var sMenuMinistere = '';
             var sNomMinistere = 'Population, Familles et Diversité';
-            var oMinisterePopulation = this.obtenirMinisterePopulation(oMinisteres);
+            var oMinisterePopulation = this.obtenirResumeMinisterePopulation(oMinisteres);
             var sHtmlMinisterePopulation = this.creerHtmlMinistere(oMinisterePopulation, sNomMinistere);
             sMenuMinistere += '<div class="btn300" id="btnMinisterePopulation">' + sNomMinistere + '</div>';     
             sMenuMinistere += sHtmlMinisterePopulation;
             $("#menu-gauche").html(sMenuMinistere);
+            var sHtmlContenuPopulation =  this.creerContenuMinistere(oMinisterePopulation);
             $("#btnMinisterePopulation").click(function () {
                 $("#ecranMinisterePopulation").show();
             });
             $("#fermerMinisterePopulation").click(function () {
                 $("#ecranMinisterePopulation").hide();
             });
+            var sHtmlBoiteAOnglets = new LTTOoLS.BoiteAOnglets({"Résumé" : sHtmlContenuPopulation, "Natalité" : "En contruction..."}, ".contenuMinistere");
             this.bMinistereCree = true;
         },
         creerHtmlMinistere : function (oMinistere, sNomMinistere) {
@@ -75,15 +77,19 @@ PS.MenuMinistere = (function () {
             sMinistereCourant += "\t" + '<div class="titreMinistere">' + sNomMinistere + '</div>' + "\n";
             sMinistereCourant += "\t" + '<div id="fermerMinisterePopulation" class="fermerMinistere">X</div>' + "\n";
             sMinistereCourant += "\t" + '<div class="contenuMinistere">' + "\n";
-            for (var iDonnees in oMinistere) {
-                sMinistereCourant += "\t\t" + oMinistere[iDonnees].sTitre + '<span id="' + oMinistere[iDonnees].sId + '">' + oMinistere[iDonnees].sContenu +'</span><br />' + "\n";
-            }
             sMinistereCourant += "\t" + '</div>' + "\n";
             sMinistereCourant += '</div>' + "\n";
             return sMinistereCourant;            
         },
+        creerContenuMinistere : function (oMinistere) {
+            var sContenuMinistere = "";
+            for (var iDonnees in oMinistere) {
+                sContenuMinistere += "\t\t" + oMinistere[iDonnees].sTitre + '<span id="' + oMinistere[iDonnees].sId + '">' + oMinistere[iDonnees].sContenu +'</span><br />' + "\n";
+            }
+            return sContenuMinistere;
+        },
         rafraichirMinisteres : function (oMinisteres) {
-            var oMinistere = this.obtenirMinisterePopulation(oMinisteres);
+            var oMinistere = this.obtenirResumeMinisterePopulation(oMinisteres);
             for (var iDonnees in oMinistere) {
                 $("#"+ oMinistere[iDonnees].sId).text(oMinistere[iDonnees].sContenu);
             }
