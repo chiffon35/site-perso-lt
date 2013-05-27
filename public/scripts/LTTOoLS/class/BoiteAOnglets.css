@@ -5,7 +5,7 @@
 .boite_a_onglet ul  {
     list-style-position:inside;
     padding:0;
-    margin:0;
+    margin:0;    
 }
 
 .astuces {
@@ -40,16 +40,18 @@
     background-color:#F5F5F5; 
     border-top-left-radius:10px;
     border-top-right-radius:10px;
-    border:1px solid #999;
+    border:1px solid #999;    
     cursor:pointer;
     list-style-type:none;
+    z-index:100;
 }
 .bao_onglet_contenu {
     background-color:#FFF; 
-    border:1px solid #999;
+    border:1px solid #999;    
     padding:5px;
     clear:both;
     float:none;
+    z-index:50;
 }
 .bao_onglet_contenu div {
     margin:5px 0 10px 0;
@@ -69,10 +71,11 @@
     float:none;
 }
 .selection_onglet {
-    border-bottom:0;
     cursor:default;
     margin-bottom:-1px;
     background-color:#FFF;
+    border-bottom:1px solid #FFF;
+    z-index:100;
 }
 .onglet_text_12 {
     height:20px;

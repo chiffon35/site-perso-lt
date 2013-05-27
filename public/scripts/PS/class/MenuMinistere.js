@@ -35,42 +35,55 @@ PS.MenuMinistere = (function () {
     MenuMinistere.prototype = {   
         
         obtenirMinisterePopulation : function (oMinisteres) {
+            var oResume = oMinisteres.oPopulation.oResume;
+            var oNatalite = oMinisteres.oPopulation.oNatalite;
             var oPopulation = {
                 "total" : {
                     sId : "MP-population-totale",
                     sTitre : "Population totale : ",
-                    sContenu : this.oNumber.afficherMilliers((oMinisteres.oPopulation.iTotalEnK * 1000)) + ' habs'
+                    sContenu : this.oNumber.afficherMilliers((oResume.iTotalEnK * 1000)) + ' habs'
                 },
                 "natalite" : {
                     sId : "MP-taux-natalite",
                     sTitre : "Taux de natalité annuel : ",
-                    sContenu : oMinisteres.oPopulation.fTauxNatalite + ' / 1000 habs',
+                    sContenu : oResume.fTauxNatalite + ' / 1000 habs',
+                    tabValeurs : [
+                        {
+                            sLabel : "Indice de fécondité : ",
+                            sValeur : 2,
+                            sComplementLabel : " enfants par femmes entre 15 et 49 ans"
+                        },
+                        {
+                            sLabel : "Mortalité infantile : ",
+                            sValeur: oNatalite.fTauxMortaliteInfantile,
+                            sComplementLabel : " décès pour 1000 naissances"
+                        }
+                    ],
                     tabAstuces : [
                         "Les groupes d'intérêts médiatique et réligieux pourront vous aider à faire passer certaines idées pro ou anti natalistes",
                         "L'immigration récente en provenance de pays au taux de natalité élevé peut faire grimper votre taux de natalité",
                         "Autoriser le travail et la formation des femmes sans soutenir la parentalité peut faire chuter votre taux de natalité",
-                        "Améliorez votre système de santé et vos objectifs de recherche peut faire baisser la mortalité infantile",
+                        "Améliorer votre système de santé et vos objectifs de recherche peut faire baisser la mortalité infantile",
                         "Un encadrement cohérent de la natalité fera augmenter le bonheur de votre population"
                     ],
+                    sOpinionNatalite : oNatalite.iOpinionNatalite,
                     oCommandes : [ 
                         {
                             sNomCommande : "Prestations familiales :",
                             sIdCommande : "MP-prestations-familiales",
                             sType : "radio",
+                            iValeurChecked : oNatalite.iPrestationFamiliale,
                             tabRadios : [
                                 { 
                                     sLabel : "Aucune",
-                                    sChecked: false,
                                     iValeur: 0
                                 },
                                 { 
                                     sLabel : "Politique de l'enfant unique",
-                                    sChecked : false,
                                     iValeur: 1
                                 },
                                 { 
                                     sLabel : "Allocations Familiales",
-                                    sChecked : true,
                                     iValeur: 2
                                 }
                             ]
@@ -79,20 +92,18 @@ PS.MenuMinistere = (function () {
                             sNomCommande : "Contraception : ",
                             sIdCommande : "MP-contraception",
                             sType : "radio",
+                            iValeurChecked : oNatalite.iContraception,
                             tabRadios : [
                                 {
                                     sLabel : "Illégale",
-                                    sChecked : false,
                                     iValeur: 0
                                 },
                                 {
                                     sLabel : "Autorisée",
-                                    sChecked : false,
                                     iValeur: 1
                                 },
                                 {
                                     sLabel : "Autorisée et gratuite",
-                                    sChecked : true,
                                     iValeur: 2
                                 }
                             ]
@@ -101,20 +112,18 @@ PS.MenuMinistere = (function () {
                             sNomCommande : "Avortement : ",
                             sIdCommande : "MP-avortement",
                             sType : "radio",
+                            iValeurChecked : oNatalite.iAvortement,
                             tabRadios : [
                                 {
                                     sLabel : "Illégal",
-                                    sChecked : false,
                                     iValeur: 0
                                 },
                                 {
                                     sLabel : "Autorisé",
-                                    sChecked : false,
                                     iValeur: 1
                                 },
                                 {
                                     sLabel : "Autorisé et gratuit",
-                                    sChecked : true,
                                     iValeur: 2
                                 }
                             ]
@@ -123,15 +132,14 @@ PS.MenuMinistere = (function () {
                             sNomCommande : "Salaire parental : ",
                             sIdCommande : "MP-salaire-parental",
                             sType : "radio",
+                            iValeurChecked : oNatalite.iSalaireParental,
                             tabRadios : [
                                 {
                                     sLabel : "Oui",
-                                    sChecked : false,
                                     iValeur: 0
                                 },
                                 {
                                     sLabel : "Non",
-                                    sChecked : true,
                                     iValeur: 1
                                 }
                             ]
@@ -140,20 +148,18 @@ PS.MenuMinistere = (function () {
                             sNomCommande : "Places en crèches : ",
                             sIdCommande : "MP-places-en-creches",
                             sType : "radio",
+                            iValeurChecked : oNatalite.iPlacesEnCreches,
                             tabRadios : [
                                 {
                                     sLabel : "Privées",
-                                    sChecked : false,
                                     iValeur: 0
                                 },
                                 {
                                     sLabel : "Remboursées pour les bas salaires",
-                                    sChecked : true,
                                     iValeur: 1
                                 },
                                 {
                                     sLabel : "Remboursées pour tous",
-                                    sChecked : false,
                                     iValeur: 2
                                 }
                             ]
@@ -162,21 +168,19 @@ PS.MenuMinistere = (function () {
                             sNomCommande : "Programmes scolaires : ",
                             sIdCommande : "MP-programmes-scolaires",
                             sType : "radio",
+                            iValeurChecked : oNatalite.iProgrammeScolaire,
                             tabRadios : [
                                 
                                 {
                                     sLabel : "Anti-nataliste",
-                                    sChecked : true,
-                                    iValeur: 1
-                                },
-                                {
-                                    sLabel : "Neutre",
-                                    sChecked : false,
                                     iValeur: 0
                                 },
                                 {
+                                    sLabel : "Neutre",
+                                    iValeur: 1
+                                },
+                                {
                                     sLabel : "Pro-nataliste",
-                                    sChecked : false,
                                     iValeur: 2
                                 }
                             ]
@@ -240,7 +244,7 @@ PS.MenuMinistere = (function () {
                 "mortalite" : {
                     sId : "MP-taux-mortalite",
                     sTitre : "Taux de mortalité annuel : ",
-                    sContenu : oMinisteres.oPopulation.fTauxMortalite + ' / 1000 habs'
+                    sContenu : oResume.fTauxMortalite + ' / 1000 habs'
                 }
             };
             return oPopulation;
@@ -290,8 +294,28 @@ PS.MenuMinistere = (function () {
         },
         creerMinistereCommandes : function (oSousMinistere) {
             var sCommandesMinistere = "";
-            var oCommandes = oSousMinistere.oCommandes;            
-            sCommandesMinistere += "\t\t" + oSousMinistere.sTitre + '<span class="' + oSousMinistere.sId + '">' + oSousMinistere.sContenu +'</span><br /><br />' + "\n";
+            var oCommandes = oSousMinistere.oCommandes;
+            
+            //Resume natalité
+            sCommandesMinistere += "\t\t" + "<strong>" + oSousMinistere.sTitre + '</strong><span class="' + oSousMinistere.sId + '">' + oSousMinistere.sContenu +'</span><br /><br />' + "\n";
+            for (var iIdValeur in oSousMinistere.tabValeurs) {
+                 sCommandesMinistere += "\t\t" + "<strong>" + oSousMinistere.tabValeurs[iIdValeur].sLabel + '</strong><span class="' + "" + '">' + oSousMinistere.tabValeurs[iIdValeur].sValeur +'</span>' + oSousMinistere.tabValeurs[iIdValeur].sComplementLabel + '<br /><br />' + "\n";
+            }
+                        
+            //Opinion natalité
+            var sOpinionNatalite = "";
+            switch (oSousMinistere.sOpinionNatalite) {
+                case 0 :
+                break;
+                case 2 :
+                    sOpinionNatalite = "La plupart des hommes et femmes de votre nation aimeraient avoir 2 enfants.";
+                break;
+                case 3 : 
+                    sOpinionNatalite =  "Les hommes et femmes de votre nation projetent généralement d'avoir entre 2 à 3 enfants.";
+                break;
+            }
+            sCommandesMinistere += "\t\t" + "<strong>Opinion populaire : </strong>" + '<span class="' + "" + '">' + sOpinionNatalite +'</span><br /><br />' + "\n";
+            
             for (var iCommande in oCommandes) {
                 sCommandesMinistere += '<div class="commande">' + "\n";
                 sCommandesMinistere += "<strong>" + oCommandes[iCommande].sNomCommande + "</strong><br />" + "\n";
@@ -300,7 +324,7 @@ PS.MenuMinistere = (function () {
                         var tabRadios = oCommandes[iCommande].tabRadios;
                         for (var iIdRad in tabRadios) {
                             var sRadChecked = "";
-                            if (tabRadios[iIdRad].sChecked) {
+                            if (oCommandes[iCommande].iValeurChecked === tabRadios[iIdRad].iValeur) {
                                 sRadChecked = "checked ";                                
                             }
                             sCommandesMinistere += "\t\t" + '<input type="radio" name="' + oCommandes[iCommande].sIdCommande + '" ' + sRadChecked + '" value="' + tabRadios[iIdRad].sValeur +'" /> ' + tabRadios[iIdRad].sLabel + '<br />' + "\n";
@@ -339,7 +363,7 @@ PS.MenuMinistere = (function () {
         creerMinistereResume : function (oMinistere) {
             var sContenuMinistere = "";
             for (var sDonnees in oMinistere) {
-                sContenuMinistere += "\t\t" + oMinistere[sDonnees].sTitre + '<span class="' + oMinistere[sDonnees].sId + '">' + oMinistere[sDonnees].sContenu +'</span><br />' + "\n";
+                sContenuMinistere += "\t\t" + "<strong>" +  oMinistere[sDonnees].sTitre + '</strong><span class="' + oMinistere[sDonnees].sId + '">' + oMinistere[sDonnees].sContenu +'</span><br /><br />' + "\n";
             }
             return sContenuMinistere;
         },

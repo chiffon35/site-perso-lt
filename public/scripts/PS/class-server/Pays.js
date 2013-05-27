@@ -1,73 +1,76 @@
-var PS = PS || {};
-PS.Pays = (function () {    
+module.exports =
+(function () {    
     //©2013 Loïc TRUCHOT
     Pays.oPaysVersionLegere = {};
     Pays.oGenres = {
         "homme" : 0,
         "femme" : 1
     };
-    Pays.oDepenses = {
-        oNatalite : {
-            oPolitiqueNataliste : {
-                "aucune" : 0,
-                "allocations_familiales" : 1,
-                "enfant_unique" : 2
+    Pays.oMinisteres =  {
+        "generique" : {
+            "iaa" : {
+                "illegal" : 0,
+                "autorise" : 1,
+                "autorise_et_gratuit" : 2                
             },
-            oContraception : {
-                "contraception_prohibee" : 0,
-                "contraception_autorisee" : 1,
-                "contraception_gratuite" : 2
-            } ,
-            oPedagogie : {
-                "anti_nataliste" : 0,
-                "aucune" : 1,
-                "pro_nataliste" : 2
-            },
-            oAvortement : {
-                "avortement_prohibe" : 0,
-                "avortement_autorise" : 1,
-                "avortement_gratuit" : 2                
-            },
-            oEugenisme : {
-                "eugenisme_prohibe" : 0,
-                "eugenisme_prive" : 1,
-                "eugenisme_d_etat" : 2,
-                oCriteres : {
-                    "genre" : 0,
-                    "ethnie" : 1,
-                    "richesse" : 2,
-                    "sante" : 3,
-                    "religion" : 4
-                }
+            "on" : {
+                "non" : 0,
+                "oui" : 1
             }
-        }
-    }
+        },
+        "population" : {
+            "prestations_familiales" : {
+                "aucune" : 0,
+                "politique_enfant_unique" : 1,
+                "allocations_familiales" : 2
+            },
+            "places_en_creches" : {
+                "privees" : 0,
+                "remboursees_pour_les_bas_salaires" : 1,
+                "remboursees_pour_tous" : 2
+            },
+            "programme_scolaire" : {
+                "anti_nataliste" : 0,
+                "neutre" : 1,
+                "pro_nataliste" : 2                
+            }
+        }  
+    };
         
-    function Pays (sId, bDisponible, sNomAvecDetMin, tabPopulation, iRecette) {
+    function Pays (oValeursDeparts) {
         
         var self = this;
+
+        //Extensions :
+        this.oMath = require("./../../LTTOoLS/object/oMathHelper.js");
         
         //variables construites
-        this.sId = sId;
-        this.bDisponible = bDisponible;
-        this.sNomAvecDetMin = sNomAvecDetMin;
-        this.oPopulation = {
-            iTotalEnK : tabPopulation[0],
-            fPctHomme : tabPopulation[1],
-            fTauxNatalite : tabPopulation[2],
-            fTauxMortalite : tabPopulation[3]
-        };
-        this.iRecette = iRecette;
+        this.sId = oValeursDeparts.sId;
+        this.bDisponible = oValeursDeparts.bDisponible;
+        this.sNomAvecDetMin = oValeursDeparts.sNomAvecDetMin;
+        this.oMinisteres = oValeursDeparts.oMinisteres;        
+        this.iRecette = oValeursDeparts.iRecette;
         
         //variables déduites
-        this.iDepense = 0;
+        this.iDepense = 0;        
+        this.oMinisteres.oPopulation.oResume.fIndiceFecondite = 0;
+        this.oMinisteres.oPopulation.oResume.fTauxNatalite = 0;
+        
+        
+        
         this.tabCohortes = [];
         this.oPossesseur = {};
         
-        //procédure
-        this.creerRepartitionDeDepart(this.oPopulation);
+        //procédures
+        this.creerRepartitionDeDepart(this.oMinisteres.oPopulation.oResume);
+        this.oMinisteres.oPopulation.oResume.fIndiceFecondite = this.calculerIndiceDeFecondite(Pays.oMinisteres, Pays.oGenres);
+        this.oMinisteres.oPopulation.oResume.fTauxNatalite = this.calculerTauxDeNatalite();        
+        
+        //version légère
         this.modifierVersionLegere();
-
+        
+        
+        
     }
     Pays.prototype = {    
         
@@ -103,23 +106,9 @@ PS.Pays = (function () {
             }
             return iNbParTrancheDAge;
         }, 
-        obtenirMinisteres : function () {
-            var oMinisteres = {
-                oPopulation : this.obtenirInfoMinisterePopulation()
-            };            
-            return oMinisteres;
-        },
-        obtenirInfoMinisterePopulation : function () {
-            var oPopulation = {
-                iTotalEnK : this.tabCohortes.length,
-                fTauxNatalite : this.oPopulation.fTauxNatalite,
-                fTauxMortalite  : this.oPopulation.fTauxMortalite
-            };            
-            return oPopulation;
-        },
         //--------FIN GETTERS----------
         
-        //------- DEBUT SETTERS--------
+        //------- DEBUT SETTERS--------        
         modifierDisponibilite : function (bDisponible) {
             this.bDisponible = bDisponible;
             this.modifierVersionLegere();
@@ -127,46 +116,20 @@ PS.Pays = (function () {
         
         //--------FIN SETTERS----------
         
-        //--------- DEBUT CHANGEMENT D'ANNEE----------
-        faireEvoluerPopulation: function () {
-            this.faireEvoluerAge();            
-            this.supprimerDeces();
-            this.creerNouvelleGeneration();
-        },
         
-        faireEvoluerAge : function () {
-            for (var iCohorte in this.tabCohortes) {
-                this.tabCohortes[iCohorte].iAge++;                
-            }  
-        },
         
-        creerNouvelleGeneration : function () {
-            var iNbNaissance = parseInt(this.oPopulation.iTotalEnK * (this.oPopulation.fTauxNatalite/1000), 10);
-            this.oPopulation.iTotalEnK = this.oPopulation.iTotalEnK + iNbNaissance;
-            for (var i=0; i < iNbNaissance; i++) {
-                var sGenreAleatoire = Pays.oGenres.homme
-                if (Math.random() < 0.49) {
-                    sGenreAleatoire = Pays.oGenres.femme
-                }        
-                //console.log(sGenreAleatoire);
-                this.creerCohorte(sGenreAleatoire, 0);
-            }    
-            //console.log("Nombre de naissance : " + iNbNaissance);
-        }, 
-        supprimerDeces : function () {
-            var iNbDeMort = parseInt(this.oPopulation.iTotalEnK * (this.oPopulation.fTauxMortalite/1000), 10);  
-            var iCohorteMax = this.tabCohortes.length - 1;
-            for(var i = 0; i < iNbDeMort; i++) {
-                var idAleatoire = Math.floor(Math.random() * this.tabCohortes.length);
-                this.supprimerCohorte(idAleatoire);
-            }
-            
-            //var iCohorteDebut = iCohorteMax - iNbDeMort; 
-            //this.supprimerCohortesParTanche(iCohorteDebut, iNbDeMort);
-            
-            this.oPopulation.iTotalEnK = this.oPopulation.iTotalEnK - iNbDeMort;
+        // CALCULER INDICE DE FECONDITE
+        //Arguments : PS.Pays.oGenres, PS.Pays.oMinisteres
+        calculerIndiceDeFecondite : require("./Pays-ext/calculerIndiceDeFecondite.js"),
+        
+        //CALCULER TAUX DE NATALITE
+        calculerTauxDeNatalite : function () {
+            var iTauxNatalite = 0;
+            var oResume = this.oMinisteres.oPopulation.oResume;
+            var oNatalite = this.oMinisteres.oPopulation.oNatalite;            
+            iTauxNatalite = (3.8 * oNatalite.iOpinionNatalite * oResume.fIndiceFecondite) - (0.8 * oNatalite.fTauxMortaliteInfantile);
+            return this.oMath.arrondir(iTauxNatalite, 2);
         },
-        //--------- FIN CHANGEMENT D'ANNEE----------
         
         creerCohorte : function (iGenre, iAge) {
             this.tabCohortes.push({iGenre: iGenre, iAge : iAge});
@@ -178,13 +141,13 @@ PS.Pays = (function () {
             this.tabCohortes.splice(iCohorteIdDebut, iNombre);
         }, 
         
-        creerRepartitionDeDepart : function (oPopulation) {
-            var iNbHomme = oPopulation.fPctHomme * oPopulation.iTotalEnK;
-            var iNbFemme = (1- oPopulation.fPctHomme) * oPopulation.iTotalEnK;
+        // ----------------- DEBUT CREER REPARTITION DE DEPART ------------------
+        creerRepartitionDeDepart : function (oResumePopulation) {
+            var iNbHomme = oResumePopulation.fPctHomme * oResumePopulation.iTotalEnK;
+            var iNbFemme = (1- oResumePopulation.fPctHomme) * oResumePopulation.iTotalEnK;
             this.repartirParSexeEtAge(iNbHomme, Pays.oGenres.homme);
             this.repartirParSexeEtAge(iNbFemme, Pays.oGenres.femme);
-        },
-        
+        },        
         repartirParSexeEtAge : function (iNbPop, iGenre) {
             var iPct = parseInt((iNbPop / 100), 10);
             for (var iAge=0; iAge < 100; iAge++) {
@@ -195,12 +158,17 @@ PS.Pays = (function () {
                         this.creerCohorte(iGenre, iAge);
                     }
                 }
-            }
-            //console.log("------------" + this.tabCohortes.length + "----------------");
-        },  
-     
+            }            
+        }, 
+        // ----------------- FIN CREER REPARTITION DE DEPART ------------------
+        
+        // FAIRE EVOLUER LA POPULATION AU CHANGEMENT D'ANNEE
+        //Arguments : PS.Pays.oGenres
+        faireEvoluerPopulation: require("./Pays-ext/faireEvoluerPopulation.js"),
+        
+        //MODIFIER LA VERSION LEGERE
         modifierVersionLegere : function () {
-            PS.Pays.oPaysVersionLegere[this.sId] = {
+            Pays.oPaysVersionLegere[this.sId] = {
                 bDisponible : this.bDisponible,
                 sNomAvecDetMin : this.sNomAvecDetMin
             };
@@ -211,6 +179,3 @@ PS.Pays = (function () {
     
 }());
 
-if (typeof module !== "undefined") {
-    module.exports = PS.Pays;
-}

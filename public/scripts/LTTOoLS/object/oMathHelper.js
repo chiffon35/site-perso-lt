@@ -1,3 +1,4 @@
+var LTTOoLS = LTTOoLS || {};
 LTTOoLS.oMathHelper =  {
     pi180 : Math.PI/180,
     arrondir : function(iNombre, iNbApresVirgule) {
@@ -22,3 +23,8 @@ LTTOoLS.oMathHelper =  {
         return iRadial;
     }
 };
+
+if (typeof module !== "undefined") {
+    module.exports = LTTOoLS.oMathHelper;
+}
+

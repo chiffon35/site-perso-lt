@@ -67,8 +67,8 @@ server.listen(app.get('port'), function(){
 });
 
 //Modules perso
-var LTTOoLS = require('./public/scripts/LTTOoLS');
 var PS = require('./public/scripts/PS');
+var LTTOoLS = require('./public/scripts/LTTOoLS');
 
 //**********************************************
 //**************** DEBUT IO ********************
@@ -86,36 +86,69 @@ io.configure(function () {
 var oPays = {}; 
 var enregistrerPaysDeDepart = function () {
     oPays = {};
-    oPays.es = new PS.Pays("es",
-        true,
-        "l'Espagne",
-        [65000,48/100,12.6, 8.5],
-        300000
-    );
-    oPays.de = new PS.Pays("de",
-        true,
-        "l'Allemagne",
-        [65000,48/100,12.6, 8.5],
-        300000
-    );
-    oPays.uk = new PS.Pays("uk",
-        true,
-        "le Royaume-Uni",
-        [65000,48/100,12.6, 8.5],
-        300000
-    );
-    oPays.it = new PS.Pays("it",
-        true,
-        "l'Italie",
-        [65000,48/100,12.6, 8.5],
-        300000
-    );    
+    // oPays.es = new PS.Pays("es",
+    //     true,
+    //     "l'Espagne",
+    //     [
+    //         65000, 
+    //         48/100,
+    //         12.6, 
+    //         8.5,
+    //         3.7,
+    //         {
+    //             iNatalite : 3
+    //         }
+    //     ],
+    //     300000
+    // );
+    // oPays.de = new PS.Pays("de",
+    //     true,
+    //     "l'Allemagne",
+    //     [65000,48/100,12.6, 8.5],
+    //     300000
+    // );
+    // oPays.uk = new PS.Pays("uk",
+    //     true,
+    //     "le Royaume-Uni",
+    //     [65000,48/100,12.6, 8.5],
+    //     300000
+    // );
+    // oPays.it = new PS.Pays("it",
+    //     true,
+    //     "l'Italie",
+    //     [65000,48/100,12.6, 8.5],
+    //     300000
+    // );    
     
-    oPays.fr = new PS.Pays("fr", 
-        true, 
-        "la France", 
-        [65000,48/100,12.6, 8.5],
-        300000
+    oPays.fr = new PS.Pays(
+        {
+            sId : "fr", 
+            bDisponible : true, 
+            sNomAvecDetMin :"la France",
+            oMinisteres : {
+                oPopulation : 
+                {
+                    oResume : 
+                    {
+                        iTotalEnK :65000,
+                        fPctHomme : 0.48,
+                        fTauxMortalite : 8.5                        
+                    },
+                    oNatalite : 
+                    {
+                        fTauxMortaliteInfantile : 3.5,
+                        iOpinionNatalite : 2,
+                        iPrestationFamiliale : 2,
+                        iContraception: 2,
+                        iAvortement : 2,  
+                        iSalaireParental: 0,
+                        iPlacesEnCreches: 1,
+                        iProgrammeScolaire :0
+                    }
+                }
+            },
+            iRecette : 300000
+        }
     );
 };
 enregistrerPaysDeDepart();
@@ -140,9 +173,9 @@ var passerAnnee = function () {
     io.sockets.emit('iAnneeCourante', iAnneeCourante);
     
     for (var sPays in oPays) {
-        oPays[sPays].faireEvoluerPopulation();
+        oPays[sPays].faireEvoluerPopulation(PS.Pays.oGenres);
         if (typeof oPays[sPays].oPossesseur.id !== "undefined") {
-            oPays[sPays].oPossesseur.emit('ES_Rafraichir_Ministeres', oPays[sPays].obtenirMinisteres());
+            oPays[sPays].oPossesseur.emit('ES_Rafraichir_Ministeres', oPays[sPays].oMinisteres);
         }
         //console.log(sPays + " a évolué");
     }
@@ -190,7 +223,7 @@ io.sockets.on('connection', function (socket) {
             oPays[oChoixPays.sPaysChoisi].modifierDisponibilite(false);
             socket.set('sMonPays', oChoixPays.sPaysChoisi);
             oPays[oChoixPays.sPaysChoisi].oPossesseur = socket;
-            socket.emit('ES_Creer_Ministeres', oPays[oChoixPays.sPaysChoisi].obtenirMinisteres());
+            socket.emit('ES_Creer_Ministeres', oPays[oChoixPays.sPaysChoisi].oMinisteres);
         }              
     }); 
     
