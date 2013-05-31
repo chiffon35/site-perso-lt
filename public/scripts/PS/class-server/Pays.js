@@ -69,8 +69,7 @@ module.exports =
         //version légère
         this.modifierVersionLegere();
         
-        
-        
+    
     }
     Pays.prototype = {    
         
@@ -106,6 +105,24 @@ module.exports =
             }
             return iNbParTrancheDAge;
         }, 
+        obtenirTabCohortesParTrancheDAge : function (iAgeDepart, iAgeFin) {
+            var tabCohortesParTrancheDAge = [];
+            for (var iId in this.tabCohortes) {
+                if (this.tabCohortes[iId].iAge >= iAgeDepart && this.tabCohortes[iId].iAge <= iAgeFin) {
+                    tabCohortesParTrancheDAge.push(iId);
+                }
+            }
+            return tabCohortesParTrancheDAge;
+        }, 
+        obtenirNbParTrancheDAgeEtGenre : function (iAgeDepart, iAgeFin, iGenre) {
+            var iNbParTrancheDAgeEtSexe = 0;
+            for (var iId in this.tabCohortes) {
+                if ((this.tabCohortes[iId].iAge  >= iAgeDepart && this.tabCohortes[iId].iAge <= iAgeFin)  && this.tabCohortes[iId].iGenre === iGenre) {
+                    iNbParTrancheDAgeEtSexe++;
+                }
+            }
+            return iNbParTrancheDAgeEtSexe;
+        }, 
         //--------FIN GETTERS----------
         
         //------- DEBUT SETTERS--------        
@@ -113,22 +130,45 @@ module.exports =
             this.bDisponible = bDisponible;
             this.modifierVersionLegere();
         },
+        modifierValeurParID : function(oObjet, sId, iValeur) {
+            var oNataliteValId = {
+                "test" : this.oMinisteres.oPopulation.oNatalite.iOpinionNatalite
+            };
+            oNataliteValId[sId] = iValeur;
+        },
         
         //--------FIN SETTERS----------
         
         
         
         // CALCULER INDICE DE FECONDITE
-        //Arguments : PS.Pays.oGenres, PS.Pays.oMinisteres
+        //Arguments : Pays.oMinisteres, Pays.oGenres
         calculerIndiceDeFecondite : require("./Pays-ext/calculerIndiceDeFecondite.js"),
         
         //CALCULER TAUX DE NATALITE
         calculerTauxDeNatalite : function () {
             var iTauxNatalite = 0;
             var oResume = this.oMinisteres.oPopulation.oResume;
-            var oNatalite = this.oMinisteres.oPopulation.oNatalite;            
-            iTauxNatalite = (3.8 * oNatalite.iOpinionNatalite * oResume.fIndiceFecondite) - (0.8 * oNatalite.fTauxMortaliteInfantile);
-            return this.oMath.arrondir(iTauxNatalite, 2);
+            var oNatalite = this.oMinisteres.oPopulation.oNatalite;
+             var iPctFemmeFeconde = this.oMath.arrondir(((this.obtenirNbParTrancheDAgeEtGenre(15, 49, Pays.oGenres.femme) * 100) /this.tabCohortes.length),0);
+            
+            //formule taux natalité
+            iTauxNatalite = ((4 * ((oNatalite.iOpinionNatalite * 0.5) + 1) * (oResume.fIndiceFecondite * 0.65)) - (0.7 * oNatalite.fTauxMortaliteInfantile)) + iPctFemmeFeconde/5;            
+   
+            
+            if (iTauxNatalite < 0) {
+                iTauxNatalite = 0;
+            }
+            
+            iTauxNatalite = this.oMath.arrondir(iTauxNatalite, 2);
+            //console.log("Pays.js--> " + "Taux de natalité de " + this.sNomAvecDetMin + " : " + iTauxNatalite);
+            return iTauxNatalite;
+        },
+        
+        //RECALCULER NATALITE
+        recalculerNatalite: function () {
+            this.oMinisteres.oPopulation.oResume.fIndiceFecondite =  this.calculerIndiceDeFecondite(Pays.oMinisteres, Pays.oGenres);
+            this.oMinisteres.oPopulation.oResume.fTauxNatalite = this.calculerTauxDeNatalite();
         },
         
         creerCohorte : function (iGenre, iAge) {
@@ -149,16 +189,22 @@ module.exports =
             this.repartirParSexeEtAge(iNbFemme, Pays.oGenres.femme);
         },        
         repartirParSexeEtAge : function (iNbPop, iGenre) {
-            var iPct = parseInt((iNbPop / 100), 10);
-            for (var iAge=0; iAge < 100; iAge++) {
-                var iCohorte = iAge * iPct;
-                var iCohorteSuivante = (iAge + 1) * iPct;
-                for (var iCpt=0; iCpt < iNbPop; iCpt++) {
-                    if (iCpt >= iCohorte && iCpt < iCohorteSuivante) {
+            var tabPctAge25 = this.oMinisteres.oPopulation.oResume.tabPctAge25;
+            
+            //Pour chaque tranche de 25 ans
+            for (var idPct in tabPctAge25) {
+                var iNbPopDansTrancheCourante = this.oMath.arrondir((iNbPop * tabPctAge25[idPct]), 1);
+                var i25EmeDeTranche = this.oMath.arrondir((iNbPopDansTrancheCourante / 25), 1);
+                
+                //Preparation de l'âge courant
+                for (var iAge = (25 * idPct); iAge < (25 * (1 + parseInt(idPct, 10))); iAge++) {
+                    
+                    //Répartition
+                    for (var iCpt = 0; iCpt < i25EmeDeTranche; iCpt++) {
                         this.creerCohorte(iGenre, iAge);
                     }
-                }
-            }            
+                }        
+            }           
         }, 
         // ----------------- FIN CREER REPARTITION DE DEPART ------------------
         

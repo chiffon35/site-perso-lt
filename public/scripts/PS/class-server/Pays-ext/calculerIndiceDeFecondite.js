@@ -1,4 +1,5 @@
  module.exports = function (oPSMinisteres, oPSGenres) {
+    //console.log("--> Calculer indice fecondité");
     var oNatalite = this.oMinisteres.oPopulation.oNatalite;
     var fIndiceFecondite = 0;
     var oPSGenerique = oPSMinisteres.generique;
@@ -7,8 +8,10 @@
     var oPSProgrammeScolaire = oPSMinisteres.population.programme_scolaire;
     
     //-------- DEBUT OPINION NATALITE ---------
-    var iOpinionNatalite = oNatalite.iOpinionNatalite;
-    fIndiceFecondite +=  iOpinionNatalite;
+    fIndiceFecondite +=  oNatalite.iOpinionNatalite * 0.75;
+    if (oNatalite.iOpinionNatalite < 2) {
+        fIndiceFecondite += -0.25;
+    }
     //-------- FIN OPINION NATALITE ---------
     
     //-------- DEBUT RATIO H/F ---------
@@ -23,16 +26,20 @@
     fIndiceFecondite += iBonusRatioHommeFemme;
     //-------- FIN RATIO H/F ---------
     
+
     //-------- DEBUT PRESTATIONS FAMILIALES ---------
-    var iPrestationFamiliale = oNatalite.iPrestationFamiliale;            
-    switch (iPrestationFamiliale) {
+    //console.log("---- Prestation familiale = " + oNatalite.iPrestationFamiliale);
+    //console.log("-->Value politique enfant unique = " + oPSPrestationsFamiliales.politique_enfant_unique);
+    switch (oNatalite.iPrestationFamiliale) {
         case(oPSPrestationsFamiliales.aucune) :
         break;
         case(oPSPrestationsFamiliales.politique_enfant_unique) :
-            fIndiceFecondite -= 1;
+            //console.log("-->Politique enfant unique");
+            fIndiceFecondite = 1 + ((0.25 * oNatalite.iOpinionNatalite) + (0.25 * oNatalite.iSalaireParental) - (0.1 * oNatalite.iAvortement) - (0.1 * oNatalite.iContraception));
+            //console.log("0.75 + ((0.1 * " + oNatalite.iOpinionNatalite + ") + (0.25 * " + oNatalite.iPrestationFamiliale + ") + (0.25 * " + oNatalite.iSalaireParental + ") - (0.1 * " + oNatalite.iAvortement + ") - (0.1 * " + oNatalite.iContraception+"))");            return this.oMath.arrondir(fIndiceFecondite, 2);
         break;
         case(oPSPrestationsFamiliales.allocations_familiales) :
-            fIndiceFecondite += 2;
+            fIndiceFecondite += 0.75;
         break;
         default:
         break;
@@ -40,63 +47,59 @@
     //-------- FIN PRESTATIONS FAMILIALES ---------
     
     //-------- DEBUT CONTRACEPTION ---------
-    var iContraception = oNatalite.iContraception;
-    switch (iContraception) {
+    switch (oNatalite.iContraception) {
         case(oPSGenerique.iaa.illegal) :
-            fIndiceFecondite += 3;
+            fIndiceFecondite += 1.5;
         break;
         case(oPSGenerique.iaa.autorise) :
             fIndiceFecondite -= 0.5;
         break;
         case(oPSGenerique.iaa.autorise_et_gratuit) :
-            fIndiceFecondite -= 1;
+            fIndiceFecondite -= 0.75;
         break;
         default:
         break;
     }
     //-------- FIN CONTRACEPTION ---------
     
-    //-------- DEBUT AVORTEMENT ---------
-    var iAvortement = oNatalite.iAvortement;            
-    switch (iAvortement) {
+    //-------- DEBUT AVORTEMENT --------- 
+    switch (oNatalite.iAvortement) {
         case(oPSGenerique.iaa.illegal) :
-            fIndiceFecondite += 3;
+            fIndiceFecondite += 1.25;
         break;
         case(oPSGenerique.iaa.autorise) :
-            fIndiceFecondite -= 0.5;
+            fIndiceFecondite -= 0.25;
         break;
         case(oPSGenerique.iaa.autorise_et_gratuit) :
-            fIndiceFecondite -= 1;
+            fIndiceFecondite -= 0.5;
         break;
         default:
         break;
     }
     //-------- FIN AVORTEMENT ---------
     
-    //-------- DEBUT SALAIRE PARENTAL ---------
-    var iSalaireParental = oNatalite.iSalaireParental;            
-    switch (iSalaireParental) {
+    //-------- DEBUT SALAIRE PARENTAL ---------  
+    //console.log(oNatalite.iSalaireParental + " : oui -> " + oPSGenerique.on.oui);
+    switch (oNatalite.iSalaireParental) {        
         case(oPSGenerique.on.non) :
-            fIndiceFecondite -= 1;
         break;
         case(oPSGenerique.on.oui) :
-            fIndiceFecondite += 1;
+            fIndiceFecondite += 0.25;
         break;
         default:
         break;
     }
     //-------- FIN SALAIRE PARENTAL  ---------
     
-    //-------- DEBUT PLACES EN CRECHES ---------
-    var iPlacesEnCreches = oNatalite.iPlacesEnCreches ;            
-    switch (iPlacesEnCreches) {
+    //-------- DEBUT PLACES EN CRECHES --------- 
+    switch (oNatalite.iPlacesEnCreches) {
         case(oPSPlacesEnCreches.privees) :
         break;
         case(oPSPlacesEnCreches.remboursees_pour_les_bas_salaires) :
-            fIndiceFecondite += 0.5;
+            fIndiceFecondite += 0.25;
         break;
         case(oPSPlacesEnCreches.remboursees_pour_tous) :
-            fIndiceFecondite += 1;
+            fIndiceFecondite += 0.5;
         break;
         default:
         break;
@@ -104,16 +107,15 @@
     //-------- FIN PLACES EN CRECHES ---------
     
     
-    //-------- DEBUT PROGRAMME SCOLAIRE ---------
-    var iProgrammeScolaire = oNatalite.iProgrammeScolaire ;            
-    switch (iProgrammeScolaire) {
+    //-------- DEBUT PROGRAMME SCOLAIRE ---------   
+    switch (oNatalite.iProgrammeScolaire) {
         case(oPSProgrammeScolaire.anti_nataliste) :
-            fIndiceFecondite -= 0.5;
+            fIndiceFecondite -= 0.25;
         break;
         case(oPSProgrammeScolaire.neutre) :
         break;
         case(oPSProgrammeScolaire.pro_nataliste) :
-            fIndiceFecondite += 0.5;
+            fIndiceFecondite += 0.25;
         break;
         default:
         break;

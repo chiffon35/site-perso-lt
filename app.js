@@ -75,8 +75,8 @@ var LTTOoLS = require('./public/scripts/LTTOoLS');
 //**********************************************
 io.configure(function () { 
   io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
-  io.set("close timeout", 12);
+  io.set("polling duration", 10);
+  io.set("log level", 0);
 });
 
 
@@ -132,6 +132,7 @@ var enregistrerPaysDeDepart = function () {
                     {
                         iTotalEnK :65000,
                         fPctHomme : 0.48,
+                        tabPctAge25 : [0.31, 0.33, 0.28, 0.08],
                         fTauxMortalite : 8.5                        
                     },
                     oNatalite : 
@@ -150,54 +151,60 @@ var enregistrerPaysDeDepart = function () {
             iRecette : 300000
         }
     );
+    oPays.de = new PS.Pays(
+        {
+            sId : "de", 
+            bDisponible : true, 
+            sNomAvecDetMin :"l'Allemagne",
+            oMinisteres : {
+                oPopulation : 
+                {
+                    oResume : 
+                    {
+                        iTotalEnK :82000,
+                        fPctHomme : 0.48,
+                        tabPctAge25 : [0.19, 0.35, 0.31, 0.15],
+                        fTauxMortalite :11.4                        
+                    },
+                    oNatalite : 
+                    {
+                        fTauxMortaliteInfantile : 3.5,
+                        iOpinionNatalite : 1,
+                        iPrestationFamiliale : 2,
+                        iContraception: 1,
+                        iAvortement : 1,  
+                        iSalaireParental: 1,
+                        iPlacesEnCreches: 0,
+                        iProgrammeScolaire :0
+                    }
+                }
+            },
+            iRecette : 300000
+        }
+    );
 };
 enregistrerPaysDeDepart();
-//console.log("Nombre de femme en France :" + oPays.fr.obtenirNbParGenre("femme"));
-//console.log("Nombre de personne de 80 ans en France :" + oPays.fr.obtenirNbParAge(80));
-
- 
 //---------------- FIN PAYS ----------------
+
 
 //---------------- DEBUT ANNEE COURANTE ---------------
 var iAnneeCourante = 2013;
 //---------------- FIN ANNEE COURANTE ---------------
 
+
 //--------------- DEBUT CHANGEMENT D'ANNEE-------------
-setInterval(function () {
-        passerAnnee(oPays)
-    }, 60000);
-    
-//lancement du temps.
+setInterval(function () { passerAnnee(oPays); }, 30000);
 var passerAnnee = function () {
     iAnneeCourante++;
-    io.sockets.emit('iAnneeCourante', iAnneeCourante);
-    
+    io.sockets.emit('iAnneeCourante', iAnneeCourante);    
     for (var sPays in oPays) {
-        oPays[sPays].faireEvoluerPopulation(PS.Pays.oGenres);
-        if (typeof oPays[sPays].oPossesseur.id !== "undefined") {
+        oPays[sPays].faireEvoluerPopulation(PS.Pays.oGenres);        
+        if (typeof oPays[sPays].oPossesseur.id !== "undefined") {            
             oPays[sPays].oPossesseur.emit('ES_Rafraichir_Ministeres', oPays[sPays].oMinisteres);
         }
-        //console.log(sPays + " a évolué");
     }
-    
-   
-    // $("#flux").empty().append("Année courante : " + annee_courante + "<br />" +
-    //     "Population totale : " + LTTOoLS.oNumberHelper.afficherMilliers(oPays1.population.total * 1000) + " hab" + "<br />" +
-    //     "Nb de naissances en " + (annee_courante - 1) + " : " + LTTOoLS.oNumberHelper.afficherMilliers(nb_naissance * 1000) + "<br />" +
-    //     "Nombre de cohortes réelles : " + LTTOoLS.oNumberHelper.afficherMilliers(oPays1.groupes.length) + "<br />" +
-    //     "Deux exemples de cohortes : " +
-    //     "<ul>" +
-    //     "   <li>N°5212 - genre : " + oPays1.groupes[5212].genre + " / age : " + oPays1.groupes[5212].age + "</li>" +
-    //     "   <li>N°49 525 - genre : " + oPays1.groupes[49525].genre + " / age : " + oPays1.groupes[49525].age + "</li>" +
-    //     "</ul>"
-    // );
-    //alert(oPays1.population.total);
-
-};   
-    
-    
+}; 
 //--------------- FIN CHANGEMENT D'ANNEE-------------
-
 
 
 //--------------- DEBUT DONNEES CONNEXION-------------
@@ -235,6 +242,19 @@ io.sockets.on('connection', function (socket) {
     socket.on('B_ecrire_message', function (sMessage) {
         socket.broadcast.emit('sMessage', sMessage); 
         //console.log("-> B_ecrire_message : " + sMessage);
+    });
+    
+    socket.on('E_modifier_MP_Natalite', function (oCommande) {
+       socket.get('sMonPays', function (error, sMonPays) {
+            //console.log("-->socket.get('monPays') = " + sMonPays);
+            if (sMonPays !== null) {
+                oPays[sMonPays].oMinisteres.oPopulation.oNatalite[oCommande.sName] = parseInt(oCommande.iValeur, 10);
+                oPays[sMonPays].recalculerNatalite();
+                //console.log(oPays[sMonPays].oMinisteres);
+                //console.log(oPays[sMonPays].oMinisteres.oPopulation.oNatalite[oCommande.sName]);
+                socket.emit('ES_Rafraichir_Ministeres', oPays[sMonPays].oMinisteres);
+            }
+       });
     });
     
     socket.on('disconnect', function () {

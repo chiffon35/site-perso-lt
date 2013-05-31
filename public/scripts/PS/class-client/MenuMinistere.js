@@ -50,16 +50,19 @@ PS.MenuMinistere = (function () {
                     tabValeurs : [
                         {
                             sLabel : "Indice de fécondité : ",
-                            sValeur : 2,
+                            sId : "MP_indice_de_fecondite",
+                            sValeur : oResume.fIndiceFecondite,
                             sComplementLabel : " enfants par femmes entre 15 et 49 ans"
                         },
                         {
                             sLabel : "Mortalité infantile : ",
+                            sId : "MP_mortalite_infantile",
                             sValeur: oNatalite.fTauxMortaliteInfantile,
                             sComplementLabel : " décès pour 1000 naissances"
                         }
                     ],
                     tabAstuces : [
+                        "Un repartition équitable homme/femme et un age médian bas des femmes augmenteront la natalité",
                         "Les groupes d'intérêts médiatique et réligieux pourront vous aider à faire passer certaines idées pro ou anti natalistes",
                         "L'immigration récente en provenance de pays au taux de natalité élevé peut faire grimper votre taux de natalité",
                         "Autoriser le travail et la formation des femmes sans soutenir la parentalité peut faire chuter votre taux de natalité",
@@ -67,182 +70,10 @@ PS.MenuMinistere = (function () {
                         "Un encadrement cohérent de la natalité fera augmenter le bonheur de votre population"
                     ],
                     sOpinionNatalite : oNatalite.iOpinionNatalite,
-                    oCommandes : [ 
-                        {
-                            sNomCommande : "Prestations familiales :",
-                            sIdCommande : "MP-prestations-familiales",
-                            sType : "radio",
-                            iValeurChecked : oNatalite.iPrestationFamiliale,
-                            tabRadios : [
-                                { 
-                                    sLabel : "Aucune",
-                                    iValeur: 0
-                                },
-                                { 
-                                    sLabel : "Politique de l'enfant unique",
-                                    iValeur: 1
-                                },
-                                { 
-                                    sLabel : "Allocations Familiales",
-                                    iValeur: 2
-                                }
-                            ]
-                        },
-                        {
-                            sNomCommande : "Contraception : ",
-                            sIdCommande : "MP-contraception",
-                            sType : "radio",
-                            iValeurChecked : oNatalite.iContraception,
-                            tabRadios : [
-                                {
-                                    sLabel : "Illégale",
-                                    iValeur: 0
-                                },
-                                {
-                                    sLabel : "Autorisée",
-                                    iValeur: 1
-                                },
-                                {
-                                    sLabel : "Autorisée et gratuite",
-                                    iValeur: 2
-                                }
-                            ]
-                        },
-                        {
-                            sNomCommande : "Avortement : ",
-                            sIdCommande : "MP-avortement",
-                            sType : "radio",
-                            iValeurChecked : oNatalite.iAvortement,
-                            tabRadios : [
-                                {
-                                    sLabel : "Illégal",
-                                    iValeur: 0
-                                },
-                                {
-                                    sLabel : "Autorisé",
-                                    iValeur: 1
-                                },
-                                {
-                                    sLabel : "Autorisé et gratuit",
-                                    iValeur: 2
-                                }
-                            ]
-                        },
-                        {
-                            sNomCommande : "Salaire parental : ",
-                            sIdCommande : "MP-salaire-parental",
-                            sType : "radio",
-                            iValeurChecked : oNatalite.iSalaireParental,
-                            tabRadios : [
-                                {
-                                    sLabel : "Oui",
-                                    iValeur: 0
-                                },
-                                {
-                                    sLabel : "Non",
-                                    iValeur: 1
-                                }
-                            ]
-                        },
-                        {
-                            sNomCommande : "Places en crèches : ",
-                            sIdCommande : "MP-places-en-creches",
-                            sType : "radio",
-                            iValeurChecked : oNatalite.iPlacesEnCreches,
-                            tabRadios : [
-                                {
-                                    sLabel : "Privées",
-                                    iValeur: 0
-                                },
-                                {
-                                    sLabel : "Remboursées pour les bas salaires",
-                                    iValeur: 1
-                                },
-                                {
-                                    sLabel : "Remboursées pour tous",
-                                    iValeur: 2
-                                }
-                            ]
-                        },
-                        {
-                            sNomCommande : "Programmes scolaires : ",
-                            sIdCommande : "MP-programmes-scolaires",
-                            sType : "radio",
-                            iValeurChecked : oNatalite.iProgrammeScolaire,
-                            tabRadios : [
-                                
-                                {
-                                    sLabel : "Anti-nataliste",
-                                    iValeur: 0
-                                },
-                                {
-                                    sLabel : "Neutre",
-                                    iValeur: 1
-                                },
-                                {
-                                    sLabel : "Pro-nataliste",
-                                    iValeur: 2
-                                }
-                            ]
-                        },
-                        {
-                            sNomCommande : "Eugénisme d'état par critères : ",
-                            sIdCommande : "MP-eugenisme",
-                            sType : "checkbox",
-                            tabCheckboxes : [
-                                {
-                                    sLabel : "éthnique",
-                                    sChecked : false,
-                                    iValeur: 0
-                                },
-                                {
-                                    sLabel : "économique",
-                                    sChecked : false,
-                                    iValeur: 1
-                                },
-                                {
-                                    sLabel : "religieux",
-                                    sChecked : false,
-                                    iValeur: 2
-                                },
-                                {
-                                    sLabel : "de handicap léger",
-                                    sChecked : false,
-                                    iValeur: 2
-                                },
-                                {
-                                    sLabel : "de handicap lourd",
-                                    sChecked : true,
-                                    iValeur: 2
-                                }  
-                            ]
-                        },
-                        {
-                            sNomCommande : "Divers : ",
-                            sIdCommande : "MP-divers",
-                            sType : "checkbox",
-                            tabCheckboxes : [
-                                {
-                                    sLabel : "Subventions aux crèches d'entreprise",
-                                    sChecked : true,
-                                    iValeur: 0
-                                },
-                                {
-                                    sLabel : "Autoriser l'eugénisme privé",
-                                    sChecked : false,
-                                    iValeur: 0
-                                },
-                                {
-                                    sLabel : "Autoriser la marchandisation de la reproduction",
-                                    sChecked : false,
-                                    iValeur: 0
-                                }, 
-                            ]
-                        }
-                    ]
+                    oCommandes : PS.creerCommandesNatalite(oNatalite)
                 },
                 "mortalite" : {
-                    sId : "MP-taux-mortalite",
+                    sId : "E_MP_taux_mortalite",
                     sTitre : "Taux de mortalité annuel : ",
                     sContenu : oResume.fTauxMortalite + ' / 1000 habs'
                 }
@@ -293,25 +124,36 @@ PS.MenuMinistere = (function () {
             return sMinistereCourant;            
         },
         creerMinistereCommandes : function (oSousMinistere) {
+            var self = this;
             var sCommandesMinistere = "";
             var oCommandes = oSousMinistere.oCommandes;
             
             //Resume natalité
             sCommandesMinistere += "\t\t" + "<strong>" + oSousMinistere.sTitre + '</strong><span class="' + oSousMinistere.sId + '">' + oSousMinistere.sContenu +'</span><br /><br />' + "\n";
             for (var iIdValeur in oSousMinistere.tabValeurs) {
-                 sCommandesMinistere += "\t\t" + "<strong>" + oSousMinistere.tabValeurs[iIdValeur].sLabel + '</strong><span class="' + "" + '">' + oSousMinistere.tabValeurs[iIdValeur].sValeur +'</span>' + oSousMinistere.tabValeurs[iIdValeur].sComplementLabel + '<br /><br />' + "\n";
+                 sCommandesMinistere += "\t\t" + "<strong>" + oSousMinistere.tabValeurs[iIdValeur].sLabel + '</strong><span class="' + oSousMinistere.tabValeurs[iIdValeur].sId + '">' + oSousMinistere.tabValeurs[iIdValeur].sValeur +'</span>' + oSousMinistere.tabValeurs[iIdValeur].sComplementLabel + '<br /><br />' + "\n";
             }
                         
             //Opinion natalité
             var sOpinionNatalite = "";
             switch (oSousMinistere.sOpinionNatalite) {
                 case 0 :
+                    sOpinionNatalite = "La pluspart des hommes et femmes de votre nation ne souhaitent pas faire d'enfant";
+                break;
+                case 1 :
+                    sOpinionNatalite = "Les hommes et femmes de votre nation pense qu'il est difficle d'avoir plus d'1 enfant";
                 break;
                 case 2 :
                     sOpinionNatalite = "La plupart des hommes et femmes de votre nation aimeraient avoir 2 enfants.";
                 break;
                 case 3 : 
                     sOpinionNatalite =  "Les hommes et femmes de votre nation projetent généralement d'avoir entre 2 à 3 enfants.";
+                break;
+                case 4 : 
+                    sOpinionNatalite =  "Les hommes et femmes espèrent avoir de nombreux enfants, 3 à 4 en moyenne.";
+                break;
+                case 5 : 
+                    sOpinionNatalite =  "Les hommes et femmes auront autant d'enfants qu'ils le pourront : au moins 4 si possible.";
                 break;
             }
             sCommandesMinistere += "\t\t" + "<strong>Opinion populaire : </strong>" + '<span class="' + "" + '">' + sOpinionNatalite +'</span><br /><br />' + "\n";
@@ -323,11 +165,11 @@ PS.MenuMinistere = (function () {
                     case "radio":
                         var tabRadios = oCommandes[iCommande].tabRadios;
                         for (var iIdRad in tabRadios) {
-                            var sRadChecked = "";
+                            var sRadChecked = "";                            
                             if (oCommandes[iCommande].iValeurChecked === tabRadios[iIdRad].iValeur) {
                                 sRadChecked = "checked ";                                
                             }
-                            sCommandesMinistere += "\t\t" + '<input type="radio" name="' + oCommandes[iCommande].sIdCommande + '" ' + sRadChecked + '" value="' + tabRadios[iIdRad].sValeur +'" /> ' + tabRadios[iIdRad].sLabel + '<br />' + "\n";
+                            sCommandesMinistere += "\t\t" + '<input type="radio" name="' + oCommandes[iCommande].sIdCommande + '" ' + sRadChecked + '" value="' + tabRadios[iIdRad].iValeur +'" /> ' + tabRadios[iIdRad].sLabel + '<br />' + "\n";
                         }
                     break;
                     case "checkbox" :
@@ -345,7 +187,18 @@ PS.MenuMinistere = (function () {
                     break;
                 } 
                 sCommandesMinistere += "</div>" + "\n";
-            }
+                
+            }  
+            $(".contenuMinistere").delegate("input:radio", "change", function(event) {
+                var sRadioName = $(this).attr("name");
+                self.oSio.oSocket.emit("E_modifier_MP_Natalite", { 
+                    sName : sRadioName,
+                    iValeur : $("input[name=" + sRadioName + "]:checked").val()                 
+                });
+                console.log("input:radio-->change");
+                console.log("iValeur : " + $("input[name=" + sRadioName + "]:checked").val());
+                
+            });
             if (oSousMinistere.tabAstuces.length > 0) {
                 sCommandesMinistere += '<div class="astuces">' + "\n";
                 sCommandesMinistere += "<strong>Astuces : </strong><br />";
@@ -371,6 +224,9 @@ PS.MenuMinistere = (function () {
             var oMinistere = this.obtenirMinisterePopulation(oMinisteres);
             for (var iDonnees in oMinistere) {
                 $("."+ oMinistere[iDonnees].sId).text(oMinistere[iDonnees].sContenu);
+                for (var iValeur in oMinistere[iDonnees].tabValeurs) {
+                    $("."+ oMinistere[iDonnees].tabValeurs[iValeur].sId).text(oMinistere[iDonnees].tabValeurs[iValeur].sValeur);
+                }
             }
         },
         supprimerMinisteres : function () {

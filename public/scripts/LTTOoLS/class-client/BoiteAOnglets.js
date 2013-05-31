@@ -12,7 +12,7 @@ LTTOoLS.BoiteAOnglets = (function () {
     
     $(function(){
         $("head").append(
-            $(document.createElement("link")).attr({rel:"stylesheet", type:"text/css", href:"/scripts/LTTOoLS/class/BoiteAOnglets.css"})
+            $(document.createElement("link")).attr({rel:"stylesheet", type:"text/css", href:"/scripts/LTTOoLS/class-client/BoiteAOnglets.css"})
         );
     });
 
