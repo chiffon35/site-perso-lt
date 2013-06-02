@@ -21,6 +21,3 @@ exports.cv = function(req, res){
     res.render('cv', SPLT_SERVEUR.setVarJade(req));
 };
 
-exports.interfaceps = function(req, res){
-    res.render('ps/interfaceps', {});
-};

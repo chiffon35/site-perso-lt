@@ -5,6 +5,7 @@ PS.BlockInfo1 = (function () {
         
         this.oSio = oSio;
         this.oBlockInfo1 = $("#block-info1");
+        this.oDate = LTTOoLS.oDateHelper;
         
         //Receptions
         this.oSio.oSocket.on('sMessage', function (sMessage) {
@@ -14,8 +15,8 @@ PS.BlockInfo1 = (function () {
     }
     BlockInfo1.prototype = {
         ecrireMessage : function (sMessage) {
-            var oDateCourante = new Date();
-            this.oBlockInfo1.append(oDateCourante.getHours() + ":" + oDateCourante.getMinutes() + " | " +sMessage + "\n");
+            var sDateCourante = this.oDate.obtenirHeureEtMinuteCourante();
+            this.oBlockInfo1.append(sDateCourante + " | " +sMessage + "\n");
             this.scrollerBas();
         },
         scrollerBas : function () {

@@ -19,7 +19,7 @@
     var iBonusRatioHommeFemme = 1;
     var iNbFemme = this.obtenirNbParGenre(oPSGenres.femme);
     var iNbHomme = this.obtenirNbParGenre(oPSGenres.homme);
-    var iTierDifferentiel = 0.3*iNbFemme;
+    var iTierDifferentiel = 0.3 * iNbFemme;
     if (iNbFemme > (iNbHomme + iTierDifferentiel) || iNbFemme < (iNbHomme - iTierDifferentiel)) {
         iBonusRatioHommeFemme = 0;
     }
@@ -37,7 +37,7 @@
             //console.log("-->Politique enfant unique");
             fIndiceFecondite = 1 + ((0.25 * oNatalite.iOpinionNatalite) + (0.25 * oNatalite.iSalaireParental) - (0.1 * oNatalite.iAvortement) - (0.1 * oNatalite.iContraception));
             //console.log("0.75 + ((0.1 * " + oNatalite.iOpinionNatalite + ") + (0.25 * " + oNatalite.iPrestationFamiliale + ") + (0.25 * " + oNatalite.iSalaireParental + ") - (0.1 * " + oNatalite.iAvortement + ") - (0.1 * " + oNatalite.iContraception+"))");            return this.oMath.arrondir(fIndiceFecondite, 2);
-        break;
+            return fIndiceFecondite;
         case(oPSPrestationsFamiliales.allocations_familiales) :
             fIndiceFecondite += 0.75;
         break;

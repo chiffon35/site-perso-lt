@@ -186,3 +186,7 @@
 {"ts":1367406799453,"patch":[[{"diffs":[[0,"on&quot;"],[1," - "],[0," 1/2\r\n  "]],"start1":707,"start2":707,"length1":16,"length2":19}]],"length":11070,"saved":false}
 {"ts":1367406802682,"patch":[[{"diffs":[[0,"&quot; -"],[-1," "],[0," 1/2\r\n  "]],"start1":709,"start2":709,"length1":17,"length2":16}]],"length":11069,"saved":false}
 {"ts":1367406809286,"patch":[[{"diffs":[[0,"&quot; -"],[1," Etape"],[0," 1/2\r\n  "]],"start1":709,"start2":709,"length1":16,"length2":22}]],"length":11075,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1370168830125,"patch":[[{"diffs":[[0,"ete-"],[-1,"blog Avril"],[1,"article Juin"],[0," 201"]],"start1":570,"start2":570,"length1":18,"length2":20},{"diffs":[[0,"article."],[-1,"blog"],[1,"contour-tl"],[0,"\r\n      "]],"start1":613,"start2":613,"length1":20,"length2":26}]],"length":11083,"saved":false}
+{"ts":1370168917685,"patch":[[{"diffs":[[0,"ontent='"],[1,"rennes, développeur, freelance, web, "],[0,"blog, ja"]],"start1":236,"start2":236,"length1":16,"length2":53}]],"length":11120,"saved":false}
+{"ts":1370168933073,"patch":[[{"diffs":[[0,"nt='"],[-1,"rennes, "],[0,"déve"]],"start1":240,"start2":240,"length1":16,"length2":8},{"diffs":[[0,"loppeur,"],[1," rennes,"],[0," freelan"]],"start1":248,"start2":248,"length1":16,"length2":24}]],"length":11120,"saved":false}
+{"ts":1370168941684,"patch":[[{"diffs":[[0,"nt='"],[-1,"développeur, rennes, freelance, web, "],[0,"blog"]],"start1":240,"start2":240,"length1":45,"length2":8}]],"length":11083,"saved":false}
